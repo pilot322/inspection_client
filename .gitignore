@@ -1,0 +1,17 @@
+/env/
+/temp_images/
+/preset_images/
+/collages/
+/patches/
+/temp_files/
+/misc/
+/build/
+
+**/__pycache__/
+
+folders.db
+project.log
+
+blur_detection_model.keras
+
+/CYTHON/
