@@ -1,6 +1,6 @@
 import os
 from PyQt5.QtWidgets import (QApplication, QMainWindow, QLabel, QVBoxLayout, QWidget, QPushButton, QComboBox, 
-                             QFileDialog, QTableWidget, QTableWidgetItem, QCheckBox, QAbstractItemView)
+                             QFileDialog, QTableWidget, QTableWidgetItem, QCheckBox, QAbstractItemView, QHeaderView)
 from PyQt5.QtCore import Qt, QUrl
 from PyQt5.QtGui import QDragEnterEvent, QDropEvent, QColor, QMouseEvent
 from resources.database import get_folder_state
@@ -8,15 +8,22 @@ from resources.database import get_folder_state
 class SelectionTable(QTableWidget):
     def __init__(self, parent_page):
         super().__init__(0, 3)
-        self.setHorizontalHeaderLabels(["Folder Name", "C", "I"])
+        self.setHorizontalHeaderLabels(["Όνομα Φακέλου", "C", "I"])
         self.setSelectionBehavior(QAbstractItemView.SelectRows)
         self.setEditTriggers(QAbstractItemView.NoEditTriggers)
         self.parent_page = parent_page
 
         # Set column widths
-        self.setColumnWidth(0, 600)
+        self.setColumnWidth(0, 800-98)
         self.setColumnWidth(1, 30)  # Fixed width for Checkbox 1
         self.setColumnWidth(2, 30)  # Fixed width for Checkbox 2
+
+        header = self.horizontalHeader()
+        header.setSectionResizeMode(0, QHeaderView.Fixed)  # Fixes the first column width
+        header.setSectionResizeMode(1, QHeaderView.Fixed)  # Fixes the second column width
+        header.setSectionResizeMode(2, QHeaderView.Fixed)  # Fixes the third column width
+
+
 
         # Set QSS for the table
         self.setStyleSheet("""

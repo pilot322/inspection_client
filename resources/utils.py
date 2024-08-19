@@ -81,7 +81,9 @@ def process_and_save_image(filename, images_path, temp_images_path, counter, tot
             try:
                 new_img_path = temp_image_path.format(label)
                 write_image_with_retry(temp_image_path.format(label), half)
-                results.append((new_img_path, coords))
+                
+                if results is not None:
+                    results.append((new_img_path, coords))
                 break
             except Exception as e:
                 print(f'(Utils-pasi) {e}')
@@ -90,7 +92,7 @@ def process_and_save_image(filename, images_path, temp_images_path, counter, tot
                 attempts += 1
                 if attempts >= 10: return
             
-    if lock:
+    if lock is not None:
         with lock:
             counter.value += 1
             # progress = 100 * counter.value / total_files

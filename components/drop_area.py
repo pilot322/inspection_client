@@ -11,7 +11,24 @@ class DropArea(QWidget):
         super().__init__()
         self.setAcceptDrops(True)
         self.main_page = main_page
-        self.label = QLabel("Drag and drop folders here", self)
+        self.label = QLabel("Κάνε drag and drop τα βιβλία εδώ", self)
+        self.setFixedHeight(100)
+
+        qss = """
+        QWidget {
+            background-color: #f0f0f0;
+            border: 2px dashed #aaaaaa;
+        }
+
+        QLabel {
+            color: #333333;
+            font-size: 16px;
+            font-weight: bold;
+            qproperty-alignment: 'AlignCenter';
+        }
+        """
+
+        self.setStyleSheet(qss)
         layout = QVBoxLayout()
         layout.addWidget(self.label)
         self.setLayout(layout)
@@ -27,7 +44,10 @@ class DropArea(QWidget):
             for url in urls:
                 print(url.toLocalFile())
                 folder_path = url.toLocalFile()
-                if os.path.isdir(folder_path) and folder_path not in self.main_page.selected_folders:
+                
+                has_subfolders = any(os.path.isdir(os.path.join(folder_path, name)) for name in os.listdir(folder_path))
+                
+                if os.path.isdir(folder_path) and folder_path not in self.main_page.selected_folders and not has_subfolders:
                     print('ok')
                     self.main_page.add_folder_to_list(folder_path, get_folder_state(folder_path))
         self.updateTotalFolders()

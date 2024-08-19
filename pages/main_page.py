@@ -69,7 +69,6 @@ class InspectionThread(QThread):
         self._running = False
         self.wait()
 
-
 class MainPage(QWidget):
     def __init__(self, stacked_widget):
         super().__init__()
@@ -93,17 +92,17 @@ class MainPage(QWidget):
         self.folder_table = SelectionTable(self)
         self.new_preset_btn = QPushButton('Create new preset')
         self.preset_combo = QComboBox()
-        self.start_inspection_action_btn = QPushButton('Start Inspection')
-        self.view_results_action_btn = QPushButton('View Results')
+        self.start_inspection_action_btn = QPushButton('Εκκίνηση')
+        self.view_results_action_btn = QPushButton('Όψη Αποτελεσμάτων')
         self.cut_collage_button = QPushButton("Open Collage Inspector")
         self.update_label = QLabel('. . .')
 
-        self.live_btn.setDisabled(True)
+        #self.live_btn.setDisabled(True)
 
         layout.addWidget(self.live_btn)
         layout.addWidget(self.drop_area)
         layout.addWidget(self.folder_table)
-        layout.addWidget(self.preset_combo)
+        #layout.addWidget(self.preset_combo)
         layout.addWidget(self.start_inspection_action_btn)
         layout.addWidget(self.view_results_action_btn)
         layout.addWidget(self.update_label)
@@ -172,7 +171,7 @@ class MainPage(QWidget):
         options = QFileDialog.Options()
         options |= QFileDialog.DontUseNativeDialog
         folder_path = QFileDialog.getExistingDirectory(self, "Select Folder", os.path.join(os.getenv("INSPECTION_CLIENT_FOLDERS_PATH"), 'collages'), options=options)
-        if folder_path:
+        if folder_path and len(os.listdir(folder_path)) == 2 and any([name == 'blurry_cnn' for name in os.listdir(folder_path)]) and  any([name == 'indeterminate_cnn' for name in os.listdir(folder_path)]):
             self.results_window = ResultsWindow(folder_path)
             self.results_window.show()
 
@@ -183,11 +182,15 @@ class MainPage(QWidget):
                 self.new_preset_btn.setVisible(False)
                 self.layout().removeWidget(self.cut_collage_button)
                 self.cut_collage_button.setVisible(False)
+                self.layout().removeWidget(self.preset_combo)
+                self.preset_combo.setVisible(False)
             else:
                 self.layout().addWidget(self.new_preset_btn)
                 self.new_preset_btn.setVisible(True)
                 self.layout().addWidget(self.cut_collage_button)
                 self.cut_collage_button.setVisible(True)
+                self.layout().addWidget(self.preset_combo)
+                self.preset_combo.setVisible(True)
             self.advanced = not self.advanced
 
         if event.key() == Qt.Key_Delete:

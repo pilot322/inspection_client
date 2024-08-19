@@ -29,6 +29,7 @@ def main():
     from resources.log import LoggerSingleton
     import sys
     from PyQt5.QtWidgets import QApplication, QStackedWidget
+    from PyQt5 import QtCore
     from pages.main_page import MainPage
     from pages.new_preset_page import NewPresetPage
     from pages.live_page import LivePage
@@ -62,6 +63,9 @@ def main():
 
     stacked_widget.setWindowTitle('Image Inspector')
     stacked_widget.setGeometry(100, 100, 800, 600)
+
+    stacked_widget.setWindowFlags(stacked_widget.windowFlags() | QtCore.Qt.MSWindowsFixedSizeDialogHint)
+
     stacked_widget.show()
 
     sys.exit(app.exec_())

@@ -209,7 +209,7 @@ def train_svm(patches_path):
     return svm, scaler, pca, features, labels, patch_names
 
 class CollageHandler:
-    def __init__(self, barcode, temp_images_path):
+    def __init__(self, barcode, temp_images_path, live = False):
         from keras.api.models import load_model
         
         self.model = load_model(os.path.join(os.getenv("INSPECTION_CLIENT_FOLDERS_PATH"),'blur_detection_model.keras'))
