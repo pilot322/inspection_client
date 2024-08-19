@@ -2709,6 +2709,7 @@ static const char __pyx_k_tree[] = "tree";
 static const char __pyx_k_Queue[] = "Queue";
 static const char __pyx_k_array[] = "array";
 static const char __pyx_k_batch[] = "batch";
+static const char __pyx_k_cache[] = "cache";
 static const char __pyx_k_clear[] = "clear";
 static const char __pyx_k_cnn_2[] = "_cnn";
 static const char __pyx_k_dtype[] = "dtype";
@@ -3105,6 +3106,7 @@ typedef struct {
   PyObject *__pyx_n_u_book;
   PyObject *__pyx_n_s_bottom_right_coords;
   PyObject *__pyx_n_s_buffer;
+  PyObject *__pyx_n_s_cache;
   PyObject *__pyx_n_s_cache_list;
   PyObject *__pyx_n_s_cache_path;
   PyObject *__pyx_n_s_categories;
@@ -3555,6 +3557,7 @@ static int __pyx_m_clear(PyObject *m) {
   Py_CLEAR(clear_module_state->__pyx_n_u_book);
   Py_CLEAR(clear_module_state->__pyx_n_s_bottom_right_coords);
   Py_CLEAR(clear_module_state->__pyx_n_s_buffer);
+  Py_CLEAR(clear_module_state->__pyx_n_s_cache);
   Py_CLEAR(clear_module_state->__pyx_n_s_cache_list);
   Py_CLEAR(clear_module_state->__pyx_n_s_cache_path);
   Py_CLEAR(clear_module_state->__pyx_n_s_categories);
@@ -3983,6 +3986,7 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
   Py_VISIT(traverse_module_state->__pyx_n_u_book);
   Py_VISIT(traverse_module_state->__pyx_n_s_bottom_right_coords);
   Py_VISIT(traverse_module_state->__pyx_n_s_buffer);
+  Py_VISIT(traverse_module_state->__pyx_n_s_cache);
   Py_VISIT(traverse_module_state->__pyx_n_s_cache_list);
   Py_VISIT(traverse_module_state->__pyx_n_s_cache_path);
   Py_VISIT(traverse_module_state->__pyx_n_s_categories);
@@ -4421,6 +4425,7 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
 #define __pyx_n_u_book __pyx_mstate_global->__pyx_n_u_book
 #define __pyx_n_s_bottom_right_coords __pyx_mstate_global->__pyx_n_s_bottom_right_coords
 #define __pyx_n_s_buffer __pyx_mstate_global->__pyx_n_s_buffer
+#define __pyx_n_s_cache __pyx_mstate_global->__pyx_n_s_cache
 #define __pyx_n_s_cache_list __pyx_mstate_global->__pyx_n_s_cache_list
 #define __pyx_n_s_cache_path __pyx_mstate_global->__pyx_n_s_cache_path
 #define __pyx_n_s_categories __pyx_mstate_global->__pyx_n_s_categories
@@ -14565,6 +14570,7 @@ static PyObject *__pyx_pf_9resources_3svm_14CollageHandler_10finish(CYTHON_UNUSE
   PyObject *__pyx_v_target_cache = NULL;
   PyObject *__pyx_v_cnn_results = NULL;
   PyObject *__pyx_v_attempts = NULL;
+  PyObject *__pyx_v_cache = NULL;
   PyObject *__pyx_v_e = NULL;
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
@@ -14586,16 +14592,15 @@ static PyObject *__pyx_pf_9resources_3svm_14CollageHandler_10finish(CYTHON_UNUSE
   PyObject *__pyx_t_16 = NULL;
   PyObject *__pyx_t_17 = NULL;
   PyObject *__pyx_t_18 = NULL;
-  PyObject *__pyx_t_19 = NULL;
+  int __pyx_t_19;
   int __pyx_t_20;
-  int __pyx_t_21;
-  char const *__pyx_t_22;
+  char const *__pyx_t_21;
+  PyObject *__pyx_t_22 = NULL;
   PyObject *__pyx_t_23 = NULL;
   PyObject *__pyx_t_24 = NULL;
   PyObject *__pyx_t_25 = NULL;
   PyObject *__pyx_t_26 = NULL;
   PyObject *__pyx_t_27 = NULL;
-  PyObject *__pyx_t_28 = NULL;
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
@@ -14870,8 +14875,8 @@ static PyObject *__pyx_pf_9resources_3svm_14CollageHandler_10finish(CYTHON_UNUSE
  *                 if len(target_cache) == 0: break
  * 
  *                 attempts = 0             # <<<<<<<<<<<<<<
+ *                 cache = target_cache.pop()
  *                 while attempts < 10:
- *                     try:
  */
       __Pyx_INCREF(__pyx_int_0);
       __Pyx_XDECREF_SET(__pyx_v_attempts, __pyx_int_0);
@@ -14879,21 +14884,33 @@ static PyObject *__pyx_pf_9resources_3svm_14CollageHandler_10finish(CYTHON_UNUSE
       /* "resources/svm.py":327
  * 
  *                 attempts = 0
+ *                 cache = target_cache.pop()             # <<<<<<<<<<<<<<
+ *                 while attempts < 10:
+ *                     try:
+ */
+      __pyx_t_5 = __Pyx_PyObject_Pop(__pyx_v_target_cache); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 327, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_5);
+      __Pyx_XDECREF_SET(__pyx_v_cache, __pyx_t_5);
+      __pyx_t_5 = 0;
+
+      /* "resources/svm.py":328
+ *                 attempts = 0
+ *                 cache = target_cache.pop()
  *                 while attempts < 10:             # <<<<<<<<<<<<<<
  *                     try:
- *                         target = joblib.load(os.path.join(os.getenv("INSPECTION_CLIENT_FOLDERS_PATH"), 'temp_files', self.barcode ,target_cache.pop()))
+ *                         target = joblib.load(os.path.join(os.getenv("INSPECTION_CLIENT_FOLDERS_PATH"), 'temp_files', self.barcode, cache))
  */
       while (1) {
-        __pyx_t_5 = PyObject_RichCompare(__pyx_v_attempts, __pyx_int_10, Py_LT); __Pyx_XGOTREF(__pyx_t_5); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 327, __pyx_L1_error)
-        __pyx_t_10 = __Pyx_PyObject_IsTrue(__pyx_t_5); if (unlikely((__pyx_t_10 < 0))) __PYX_ERR(0, 327, __pyx_L1_error)
+        __pyx_t_5 = PyObject_RichCompare(__pyx_v_attempts, __pyx_int_10, Py_LT); __Pyx_XGOTREF(__pyx_t_5); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 328, __pyx_L1_error)
+        __pyx_t_10 = __Pyx_PyObject_IsTrue(__pyx_t_5); if (unlikely((__pyx_t_10 < 0))) __PYX_ERR(0, 328, __pyx_L1_error)
         __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
         if (!__pyx_t_10) break;
 
-        /* "resources/svm.py":328
- *                 attempts = 0
+        /* "resources/svm.py":329
+ *                 cache = target_cache.pop()
  *                 while attempts < 10:
  *                     try:             # <<<<<<<<<<<<<<
- *                         target = joblib.load(os.path.join(os.getenv("INSPECTION_CLIENT_FOLDERS_PATH"), 'temp_files', self.barcode ,target_cache.pop()))
+ *                         target = joblib.load(os.path.join(os.getenv("INSPECTION_CLIENT_FOLDERS_PATH"), 'temp_files', self.barcode, cache))
  *                         break
  */
         {
@@ -14905,29 +14922,29 @@ static PyObject *__pyx_pf_9resources_3svm_14CollageHandler_10finish(CYTHON_UNUSE
           __Pyx_XGOTREF(__pyx_t_16);
           /*try:*/ {
 
-            /* "resources/svm.py":329
+            /* "resources/svm.py":330
  *                 while attempts < 10:
  *                     try:
- *                         target = joblib.load(os.path.join(os.getenv("INSPECTION_CLIENT_FOLDERS_PATH"), 'temp_files', self.barcode ,target_cache.pop()))             # <<<<<<<<<<<<<<
+ *                         target = joblib.load(os.path.join(os.getenv("INSPECTION_CLIENT_FOLDERS_PATH"), 'temp_files', self.barcode, cache))             # <<<<<<<<<<<<<<
  *                         break
  *                     except Exception as e:
  */
-            __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_joblib); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 329, __pyx_L13_error)
+            __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_joblib); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 330, __pyx_L13_error)
             __Pyx_GOTREF(__pyx_t_2);
-            __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_load); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 329, __pyx_L13_error)
+            __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_load); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 330, __pyx_L13_error)
             __Pyx_GOTREF(__pyx_t_4);
             __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-            __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_os); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 329, __pyx_L13_error)
+            __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_os); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 330, __pyx_L13_error)
             __Pyx_GOTREF(__pyx_t_3);
-            __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_path); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 329, __pyx_L13_error)
+            __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_path); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 330, __pyx_L13_error)
             __Pyx_GOTREF(__pyx_t_8);
             __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-            __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_8, __pyx_n_s_join); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 329, __pyx_L13_error)
+            __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_8, __pyx_n_s_join); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 330, __pyx_L13_error)
             __Pyx_GOTREF(__pyx_t_3);
             __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-            __Pyx_GetModuleGlobalName(__pyx_t_17, __pyx_n_s_os); if (unlikely(!__pyx_t_17)) __PYX_ERR(0, 329, __pyx_L13_error)
+            __Pyx_GetModuleGlobalName(__pyx_t_17, __pyx_n_s_os); if (unlikely(!__pyx_t_17)) __PYX_ERR(0, 330, __pyx_L13_error)
             __Pyx_GOTREF(__pyx_t_17);
-            __pyx_t_18 = __Pyx_PyObject_GetAttrStr(__pyx_t_17, __pyx_n_s_getenv); if (unlikely(!__pyx_t_18)) __PYX_ERR(0, 329, __pyx_L13_error)
+            __pyx_t_18 = __Pyx_PyObject_GetAttrStr(__pyx_t_17, __pyx_n_s_getenv); if (unlikely(!__pyx_t_18)) __PYX_ERR(0, 330, __pyx_L13_error)
             __Pyx_GOTREF(__pyx_t_18);
             __Pyx_DECREF(__pyx_t_17); __pyx_t_17 = 0;
             __pyx_t_17 = NULL;
@@ -14948,22 +14965,20 @@ static PyObject *__pyx_pf_9resources_3svm_14CollageHandler_10finish(CYTHON_UNUSE
               PyObject *__pyx_callargs[2] = {__pyx_t_17, __pyx_n_u_INSPECTION_CLIENT_FOLDERS_PATH};
               __pyx_t_8 = __Pyx_PyObject_FastCall(__pyx_t_18, __pyx_callargs+1-__pyx_t_11, 1+__pyx_t_11);
               __Pyx_XDECREF(__pyx_t_17); __pyx_t_17 = 0;
-              if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 329, __pyx_L13_error)
+              if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 330, __pyx_L13_error)
               __Pyx_GOTREF(__pyx_t_8);
               __Pyx_DECREF(__pyx_t_18); __pyx_t_18 = 0;
             }
-            __pyx_t_18 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_barcode); if (unlikely(!__pyx_t_18)) __PYX_ERR(0, 329, __pyx_L13_error)
+            __pyx_t_18 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_barcode); if (unlikely(!__pyx_t_18)) __PYX_ERR(0, 330, __pyx_L13_error)
             __Pyx_GOTREF(__pyx_t_18);
-            __pyx_t_17 = __Pyx_PyObject_Pop(__pyx_v_target_cache); if (unlikely(!__pyx_t_17)) __PYX_ERR(0, 329, __pyx_L13_error)
-            __Pyx_GOTREF(__pyx_t_17);
-            __pyx_t_19 = NULL;
+            __pyx_t_17 = NULL;
             __pyx_t_11 = 0;
             #if CYTHON_UNPACK_METHODS
             if (likely(PyMethod_Check(__pyx_t_3))) {
-              __pyx_t_19 = PyMethod_GET_SELF(__pyx_t_3);
-              if (likely(__pyx_t_19)) {
+              __pyx_t_17 = PyMethod_GET_SELF(__pyx_t_3);
+              if (likely(__pyx_t_17)) {
                 PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_3);
-                __Pyx_INCREF(__pyx_t_19);
+                __Pyx_INCREF(__pyx_t_17);
                 __Pyx_INCREF(function);
                 __Pyx_DECREF_SET(__pyx_t_3, function);
                 __pyx_t_11 = 1;
@@ -14971,13 +14986,12 @@ static PyObject *__pyx_pf_9resources_3svm_14CollageHandler_10finish(CYTHON_UNUSE
             }
             #endif
             {
-              PyObject *__pyx_callargs[5] = {__pyx_t_19, __pyx_t_8, __pyx_n_u_temp_files, __pyx_t_18, __pyx_t_17};
+              PyObject *__pyx_callargs[5] = {__pyx_t_17, __pyx_t_8, __pyx_n_u_temp_files, __pyx_t_18, __pyx_v_cache};
               __pyx_t_2 = __Pyx_PyObject_FastCall(__pyx_t_3, __pyx_callargs+1-__pyx_t_11, 4+__pyx_t_11);
-              __Pyx_XDECREF(__pyx_t_19); __pyx_t_19 = 0;
+              __Pyx_XDECREF(__pyx_t_17); __pyx_t_17 = 0;
               __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
               __Pyx_DECREF(__pyx_t_18); __pyx_t_18 = 0;
-              __Pyx_DECREF(__pyx_t_17); __pyx_t_17 = 0;
-              if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 329, __pyx_L13_error)
+              if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 330, __pyx_L13_error)
               __Pyx_GOTREF(__pyx_t_2);
               __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
             }
@@ -15000,51 +15014,50 @@ static PyObject *__pyx_pf_9resources_3svm_14CollageHandler_10finish(CYTHON_UNUSE
               __pyx_t_5 = __Pyx_PyObject_FastCall(__pyx_t_4, __pyx_callargs+1-__pyx_t_11, 1+__pyx_t_11);
               __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
               __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-              if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 329, __pyx_L13_error)
+              if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 330, __pyx_L13_error)
               __Pyx_GOTREF(__pyx_t_5);
               __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
             }
             __Pyx_DECREF_SET(__pyx_v_target, __pyx_t_5);
             __pyx_t_5 = 0;
 
-            /* "resources/svm.py":330
+            /* "resources/svm.py":331
  *                     try:
- *                         target = joblib.load(os.path.join(os.getenv("INSPECTION_CLIENT_FOLDERS_PATH"), 'temp_files', self.barcode ,target_cache.pop()))
+ *                         target = joblib.load(os.path.join(os.getenv("INSPECTION_CLIENT_FOLDERS_PATH"), 'temp_files', self.barcode, cache))
  *                         break             # <<<<<<<<<<<<<<
  *                     except Exception as e:
  *                         LoggerSingleton().log('joblib ' + str(e))
  */
             goto __pyx_L18_try_break;
 
-            /* "resources/svm.py":328
- *                 attempts = 0
+            /* "resources/svm.py":329
+ *                 cache = target_cache.pop()
  *                 while attempts < 10:
  *                     try:             # <<<<<<<<<<<<<<
- *                         target = joblib.load(os.path.join(os.getenv("INSPECTION_CLIENT_FOLDERS_PATH"), 'temp_files', self.barcode ,target_cache.pop()))
+ *                         target = joblib.load(os.path.join(os.getenv("INSPECTION_CLIENT_FOLDERS_PATH"), 'temp_files', self.barcode, cache))
  *                         break
  */
           }
           __pyx_L13_error:;
           __Pyx_XDECREF(__pyx_t_17); __pyx_t_17 = 0;
           __Pyx_XDECREF(__pyx_t_18); __pyx_t_18 = 0;
-          __Pyx_XDECREF(__pyx_t_19); __pyx_t_19 = 0;
           __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
           __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
           __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
           __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
           __Pyx_XDECREF(__pyx_t_8); __pyx_t_8 = 0;
 
-          /* "resources/svm.py":331
- *                         target = joblib.load(os.path.join(os.getenv("INSPECTION_CLIENT_FOLDERS_PATH"), 'temp_files', self.barcode ,target_cache.pop()))
+          /* "resources/svm.py":332
+ *                         target = joblib.load(os.path.join(os.getenv("INSPECTION_CLIENT_FOLDERS_PATH"), 'temp_files', self.barcode, cache))
  *                         break
  *                     except Exception as e:             # <<<<<<<<<<<<<<
  *                         LoggerSingleton().log('joblib ' + str(e))
  *                         attempts += 1
  */
-          __pyx_t_20 = __Pyx_PyErr_ExceptionMatches(((PyObject *)(&((PyTypeObject*)PyExc_Exception)[0])));
-          if (__pyx_t_20) {
+          __pyx_t_19 = __Pyx_PyErr_ExceptionMatches(((PyObject *)(&((PyTypeObject*)PyExc_Exception)[0])));
+          if (__pyx_t_19) {
             __Pyx_AddTraceback("resources.svm.CollageHandler.finish", __pyx_clineno, __pyx_lineno, __pyx_filename);
-            if (__Pyx_GetException(&__pyx_t_5, &__pyx_t_4, &__pyx_t_2) < 0) __PYX_ERR(0, 331, __pyx_L15_except_error)
+            if (__Pyx_GetException(&__pyx_t_5, &__pyx_t_4, &__pyx_t_2) < 0) __PYX_ERR(0, 332, __pyx_L15_except_error)
             __Pyx_XGOTREF(__pyx_t_5);
             __Pyx_XGOTREF(__pyx_t_4);
             __Pyx_XGOTREF(__pyx_t_2);
@@ -15052,98 +15065,49 @@ static PyObject *__pyx_pf_9resources_3svm_14CollageHandler_10finish(CYTHON_UNUSE
             __pyx_v_e = __pyx_t_4;
             /*try:*/ {
 
-              /* "resources/svm.py":332
+              /* "resources/svm.py":333
  *                         break
  *                     except Exception as e:
  *                         LoggerSingleton().log('joblib ' + str(e))             # <<<<<<<<<<<<<<
  *                         attempts += 1
  *                         time.sleep(5)
  */
-              __Pyx_GetModuleGlobalName(__pyx_t_18, __pyx_n_s_LoggerSingleton); if (unlikely(!__pyx_t_18)) __PYX_ERR(0, 332, __pyx_L26_error)
-              __Pyx_GOTREF(__pyx_t_18);
-              __pyx_t_8 = NULL;
-              __pyx_t_11 = 0;
-              #if CYTHON_UNPACK_METHODS
-              if (unlikely(PyMethod_Check(__pyx_t_18))) {
-                __pyx_t_8 = PyMethod_GET_SELF(__pyx_t_18);
-                if (likely(__pyx_t_8)) {
-                  PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_18);
-                  __Pyx_INCREF(__pyx_t_8);
-                  __Pyx_INCREF(function);
-                  __Pyx_DECREF_SET(__pyx_t_18, function);
-                  __pyx_t_11 = 1;
-                }
-              }
-              #endif
-              {
-                PyObject *__pyx_callargs[2] = {__pyx_t_8, NULL};
-                __pyx_t_17 = __Pyx_PyObject_FastCall(__pyx_t_18, __pyx_callargs+1-__pyx_t_11, 0+__pyx_t_11);
-                __Pyx_XDECREF(__pyx_t_8); __pyx_t_8 = 0;
-                if (unlikely(!__pyx_t_17)) __PYX_ERR(0, 332, __pyx_L26_error)
-                __Pyx_GOTREF(__pyx_t_17);
-                __Pyx_DECREF(__pyx_t_18); __pyx_t_18 = 0;
-              }
-              __pyx_t_18 = __Pyx_PyObject_GetAttrStr(__pyx_t_17, __pyx_n_s_log); if (unlikely(!__pyx_t_18)) __PYX_ERR(0, 332, __pyx_L26_error)
-              __Pyx_GOTREF(__pyx_t_18);
-              __Pyx_DECREF(__pyx_t_17); __pyx_t_17 = 0;
-              __pyx_t_17 = __Pyx_PyObject_Unicode(__pyx_v_e); if (unlikely(!__pyx_t_17)) __PYX_ERR(0, 332, __pyx_L26_error)
-              __Pyx_GOTREF(__pyx_t_17);
-              __pyx_t_8 = __Pyx_PyUnicode_Concat(__pyx_kp_u_joblib_2, __pyx_t_17); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 332, __pyx_L26_error)
+              __Pyx_GetModuleGlobalName(__pyx_t_8, __pyx_n_s_LoggerSingleton); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 333, __pyx_L26_error)
               __Pyx_GOTREF(__pyx_t_8);
-              __Pyx_DECREF(__pyx_t_17); __pyx_t_17 = 0;
               __pyx_t_17 = NULL;
               __pyx_t_11 = 0;
               #if CYTHON_UNPACK_METHODS
-              if (likely(PyMethod_Check(__pyx_t_18))) {
-                __pyx_t_17 = PyMethod_GET_SELF(__pyx_t_18);
+              if (unlikely(PyMethod_Check(__pyx_t_8))) {
+                __pyx_t_17 = PyMethod_GET_SELF(__pyx_t_8);
                 if (likely(__pyx_t_17)) {
-                  PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_18);
+                  PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_8);
                   __Pyx_INCREF(__pyx_t_17);
                   __Pyx_INCREF(function);
-                  __Pyx_DECREF_SET(__pyx_t_18, function);
+                  __Pyx_DECREF_SET(__pyx_t_8, function);
                   __pyx_t_11 = 1;
                 }
               }
               #endif
               {
-                PyObject *__pyx_callargs[2] = {__pyx_t_17, __pyx_t_8};
-                __pyx_t_3 = __Pyx_PyObject_FastCall(__pyx_t_18, __pyx_callargs+1-__pyx_t_11, 1+__pyx_t_11);
+                PyObject *__pyx_callargs[2] = {__pyx_t_17, NULL};
+                __pyx_t_18 = __Pyx_PyObject_FastCall(__pyx_t_8, __pyx_callargs+1-__pyx_t_11, 0+__pyx_t_11);
                 __Pyx_XDECREF(__pyx_t_17); __pyx_t_17 = 0;
+                if (unlikely(!__pyx_t_18)) __PYX_ERR(0, 333, __pyx_L26_error)
+                __Pyx_GOTREF(__pyx_t_18);
                 __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-                if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 332, __pyx_L26_error)
-                __Pyx_GOTREF(__pyx_t_3);
-                __Pyx_DECREF(__pyx_t_18); __pyx_t_18 = 0;
               }
-              __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-
-              /* "resources/svm.py":333
- *                     except Exception as e:
- *                         LoggerSingleton().log('joblib ' + str(e))
- *                         attempts += 1             # <<<<<<<<<<<<<<
- *                         time.sleep(5)
- * 
- */
-              __pyx_t_3 = __Pyx_PyInt_AddObjC(__pyx_v_attempts, __pyx_int_1, 1, 1, 0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 333, __pyx_L26_error)
-              __Pyx_GOTREF(__pyx_t_3);
-              __Pyx_DECREF_SET(__pyx_v_attempts, __pyx_t_3);
-              __pyx_t_3 = 0;
-
-              /* "resources/svm.py":334
- *                         LoggerSingleton().log('joblib ' + str(e))
- *                         attempts += 1
- *                         time.sleep(5)             # <<<<<<<<<<<<<<
- * 
- *             self.save_batch_as_image(cnn_results, f'{patch_class}_cnn')
- */
-              __Pyx_GetModuleGlobalName(__pyx_t_18, __pyx_n_s_time); if (unlikely(!__pyx_t_18)) __PYX_ERR(0, 334, __pyx_L26_error)
-              __Pyx_GOTREF(__pyx_t_18);
-              __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_t_18, __pyx_n_s_sleep); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 334, __pyx_L26_error)
+              __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_t_18, __pyx_n_s_log); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 333, __pyx_L26_error)
               __Pyx_GOTREF(__pyx_t_8);
+              __Pyx_DECREF(__pyx_t_18); __pyx_t_18 = 0;
+              __pyx_t_18 = __Pyx_PyObject_Unicode(__pyx_v_e); if (unlikely(!__pyx_t_18)) __PYX_ERR(0, 333, __pyx_L26_error)
+              __Pyx_GOTREF(__pyx_t_18);
+              __pyx_t_17 = __Pyx_PyUnicode_Concat(__pyx_kp_u_joblib_2, __pyx_t_18); if (unlikely(!__pyx_t_17)) __PYX_ERR(0, 333, __pyx_L26_error)
+              __Pyx_GOTREF(__pyx_t_17);
               __Pyx_DECREF(__pyx_t_18); __pyx_t_18 = 0;
               __pyx_t_18 = NULL;
               __pyx_t_11 = 0;
               #if CYTHON_UNPACK_METHODS
-              if (unlikely(PyMethod_Check(__pyx_t_8))) {
+              if (likely(PyMethod_Check(__pyx_t_8))) {
                 __pyx_t_18 = PyMethod_GET_SELF(__pyx_t_8);
                 if (likely(__pyx_t_18)) {
                   PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_8);
@@ -15155,18 +15119,67 @@ static PyObject *__pyx_pf_9resources_3svm_14CollageHandler_10finish(CYTHON_UNUSE
               }
               #endif
               {
-                PyObject *__pyx_callargs[2] = {__pyx_t_18, __pyx_int_5};
+                PyObject *__pyx_callargs[2] = {__pyx_t_18, __pyx_t_17};
                 __pyx_t_3 = __Pyx_PyObject_FastCall(__pyx_t_8, __pyx_callargs+1-__pyx_t_11, 1+__pyx_t_11);
                 __Pyx_XDECREF(__pyx_t_18); __pyx_t_18 = 0;
-                if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 334, __pyx_L26_error)
+                __Pyx_DECREF(__pyx_t_17); __pyx_t_17 = 0;
+                if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 333, __pyx_L26_error)
                 __Pyx_GOTREF(__pyx_t_3);
                 __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
               }
               __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+
+              /* "resources/svm.py":334
+ *                     except Exception as e:
+ *                         LoggerSingleton().log('joblib ' + str(e))
+ *                         attempts += 1             # <<<<<<<<<<<<<<
+ *                         time.sleep(5)
+ * 
+ */
+              __pyx_t_3 = __Pyx_PyInt_AddObjC(__pyx_v_attempts, __pyx_int_1, 1, 1, 0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 334, __pyx_L26_error)
+              __Pyx_GOTREF(__pyx_t_3);
+              __Pyx_DECREF_SET(__pyx_v_attempts, __pyx_t_3);
+              __pyx_t_3 = 0;
+
+              /* "resources/svm.py":335
+ *                         LoggerSingleton().log('joblib ' + str(e))
+ *                         attempts += 1
+ *                         time.sleep(5)             # <<<<<<<<<<<<<<
+ * 
+ *             self.save_batch_as_image(cnn_results, f'{patch_class}_cnn')
+ */
+              __Pyx_GetModuleGlobalName(__pyx_t_8, __pyx_n_s_time); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 335, __pyx_L26_error)
+              __Pyx_GOTREF(__pyx_t_8);
+              __pyx_t_17 = __Pyx_PyObject_GetAttrStr(__pyx_t_8, __pyx_n_s_sleep); if (unlikely(!__pyx_t_17)) __PYX_ERR(0, 335, __pyx_L26_error)
+              __Pyx_GOTREF(__pyx_t_17);
+              __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
+              __pyx_t_8 = NULL;
+              __pyx_t_11 = 0;
+              #if CYTHON_UNPACK_METHODS
+              if (unlikely(PyMethod_Check(__pyx_t_17))) {
+                __pyx_t_8 = PyMethod_GET_SELF(__pyx_t_17);
+                if (likely(__pyx_t_8)) {
+                  PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_17);
+                  __Pyx_INCREF(__pyx_t_8);
+                  __Pyx_INCREF(function);
+                  __Pyx_DECREF_SET(__pyx_t_17, function);
+                  __pyx_t_11 = 1;
+                }
+              }
+              #endif
+              {
+                PyObject *__pyx_callargs[2] = {__pyx_t_8, __pyx_int_5};
+                __pyx_t_3 = __Pyx_PyObject_FastCall(__pyx_t_17, __pyx_callargs+1-__pyx_t_11, 1+__pyx_t_11);
+                __Pyx_XDECREF(__pyx_t_8); __pyx_t_8 = 0;
+                if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 335, __pyx_L26_error)
+                __Pyx_GOTREF(__pyx_t_3);
+                __Pyx_DECREF(__pyx_t_17); __pyx_t_17 = 0;
+              }
+              __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
             }
 
-            /* "resources/svm.py":331
- *                         target = joblib.load(os.path.join(os.getenv("INSPECTION_CLIENT_FOLDERS_PATH"), 'temp_files', self.barcode ,target_cache.pop()))
+            /* "resources/svm.py":332
+ *                         target = joblib.load(os.path.join(os.getenv("INSPECTION_CLIENT_FOLDERS_PATH"), 'temp_files', self.barcode, cache))
  *                         break
  *                     except Exception as e:             # <<<<<<<<<<<<<<
  *                         LoggerSingleton().log('joblib ' + str(e))
@@ -15181,36 +15194,35 @@ static PyObject *__pyx_pf_9resources_3svm_14CollageHandler_10finish(CYTHON_UNUSE
               /*exception exit:*/{
                 __Pyx_PyThreadState_declare
                 __Pyx_PyThreadState_assign
-                __pyx_t_23 = 0; __pyx_t_24 = 0; __pyx_t_25 = 0; __pyx_t_26 = 0; __pyx_t_27 = 0; __pyx_t_28 = 0;
+                __pyx_t_22 = 0; __pyx_t_23 = 0; __pyx_t_24 = 0; __pyx_t_25 = 0; __pyx_t_26 = 0; __pyx_t_27 = 0;
                 __Pyx_XDECREF(__pyx_t_17); __pyx_t_17 = 0;
                 __Pyx_XDECREF(__pyx_t_18); __pyx_t_18 = 0;
-                __Pyx_XDECREF(__pyx_t_19); __pyx_t_19 = 0;
                 __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
                 __Pyx_XDECREF(__pyx_t_8); __pyx_t_8 = 0;
-                if (PY_MAJOR_VERSION >= 3) __Pyx_ExceptionSwap(&__pyx_t_26, &__pyx_t_27, &__pyx_t_28);
-                if ((PY_MAJOR_VERSION < 3) || unlikely(__Pyx_GetException(&__pyx_t_23, &__pyx_t_24, &__pyx_t_25) < 0)) __Pyx_ErrFetch(&__pyx_t_23, &__pyx_t_24, &__pyx_t_25);
+                if (PY_MAJOR_VERSION >= 3) __Pyx_ExceptionSwap(&__pyx_t_25, &__pyx_t_26, &__pyx_t_27);
+                if ((PY_MAJOR_VERSION < 3) || unlikely(__Pyx_GetException(&__pyx_t_22, &__pyx_t_23, &__pyx_t_24) < 0)) __Pyx_ErrFetch(&__pyx_t_22, &__pyx_t_23, &__pyx_t_24);
+                __Pyx_XGOTREF(__pyx_t_22);
                 __Pyx_XGOTREF(__pyx_t_23);
                 __Pyx_XGOTREF(__pyx_t_24);
                 __Pyx_XGOTREF(__pyx_t_25);
                 __Pyx_XGOTREF(__pyx_t_26);
                 __Pyx_XGOTREF(__pyx_t_27);
-                __Pyx_XGOTREF(__pyx_t_28);
-                __pyx_t_20 = __pyx_lineno; __pyx_t_21 = __pyx_clineno; __pyx_t_22 = __pyx_filename;
+                __pyx_t_19 = __pyx_lineno; __pyx_t_20 = __pyx_clineno; __pyx_t_21 = __pyx_filename;
                 {
                   __Pyx_DECREF(__pyx_v_e); __pyx_v_e = 0;
                 }
                 if (PY_MAJOR_VERSION >= 3) {
+                  __Pyx_XGIVEREF(__pyx_t_25);
                   __Pyx_XGIVEREF(__pyx_t_26);
                   __Pyx_XGIVEREF(__pyx_t_27);
-                  __Pyx_XGIVEREF(__pyx_t_28);
-                  __Pyx_ExceptionReset(__pyx_t_26, __pyx_t_27, __pyx_t_28);
+                  __Pyx_ExceptionReset(__pyx_t_25, __pyx_t_26, __pyx_t_27);
                 }
+                __Pyx_XGIVEREF(__pyx_t_22);
                 __Pyx_XGIVEREF(__pyx_t_23);
                 __Pyx_XGIVEREF(__pyx_t_24);
-                __Pyx_XGIVEREF(__pyx_t_25);
-                __Pyx_ErrRestore(__pyx_t_23, __pyx_t_24, __pyx_t_25);
-                __pyx_t_23 = 0; __pyx_t_24 = 0; __pyx_t_25 = 0; __pyx_t_26 = 0; __pyx_t_27 = 0; __pyx_t_28 = 0;
-                __pyx_lineno = __pyx_t_20; __pyx_clineno = __pyx_t_21; __pyx_filename = __pyx_t_22;
+                __Pyx_ErrRestore(__pyx_t_22, __pyx_t_23, __pyx_t_24);
+                __pyx_t_22 = 0; __pyx_t_23 = 0; __pyx_t_24 = 0; __pyx_t_25 = 0; __pyx_t_26 = 0; __pyx_t_27 = 0;
+                __pyx_lineno = __pyx_t_19; __pyx_clineno = __pyx_t_20; __pyx_filename = __pyx_t_21;
                 goto __pyx_L15_except_error;
               }
               __pyx_L27:;
@@ -15222,11 +15234,11 @@ static PyObject *__pyx_pf_9resources_3svm_14CollageHandler_10finish(CYTHON_UNUSE
           }
           goto __pyx_L15_except_error;
 
-          /* "resources/svm.py":328
- *                 attempts = 0
+          /* "resources/svm.py":329
+ *                 cache = target_cache.pop()
  *                 while attempts < 10:
  *                     try:             # <<<<<<<<<<<<<<
- *                         target = joblib.load(os.path.join(os.getenv("INSPECTION_CLIENT_FOLDERS_PATH"), 'temp_files', self.barcode ,target_cache.pop()))
+ *                         target = joblib.load(os.path.join(os.getenv("INSPECTION_CLIENT_FOLDERS_PATH"), 'temp_files', self.barcode, cache))
  *                         break
  */
           __pyx_L15_except_error:;
@@ -15252,18 +15264,18 @@ static PyObject *__pyx_pf_9resources_3svm_14CollageHandler_10finish(CYTHON_UNUSE
     }
     __pyx_L9_break:;
 
-    /* "resources/svm.py":336
+    /* "resources/svm.py":337
  *                         time.sleep(5)
  * 
  *             self.save_batch_as_image(cnn_results, f'{patch_class}_cnn')             # <<<<<<<<<<<<<<
  * 
  *             self.add_to_cut_page_coordinates_dict(cnn_results)
  */
-    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_save_batch_as_image); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 336, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_save_batch_as_image); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 337, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
-    __pyx_t_5 = __Pyx_PyObject_FormatSimple(__pyx_v_patch_class, __pyx_empty_unicode); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 336, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_PyObject_FormatSimple(__pyx_v_patch_class, __pyx_empty_unicode); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 337, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
-    __pyx_t_3 = __Pyx_PyUnicode_ConcatInPlace(__pyx_t_5, __pyx_n_u_cnn_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 336, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyUnicode_ConcatInPlace(__pyx_t_5, __pyx_n_u_cnn_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 337, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     __pyx_t_5 = NULL;
@@ -15285,20 +15297,20 @@ static PyObject *__pyx_pf_9resources_3svm_14CollageHandler_10finish(CYTHON_UNUSE
       __pyx_t_2 = __Pyx_PyObject_FastCall(__pyx_t_4, __pyx_callargs+1-__pyx_t_11, 2+__pyx_t_11);
       __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-      if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 336, __pyx_L1_error)
+      if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 337, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     }
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-    /* "resources/svm.py":338
+    /* "resources/svm.py":339
  *             self.save_batch_as_image(cnn_results, f'{patch_class}_cnn')
  * 
  *             self.add_to_cut_page_coordinates_dict(cnn_results)             # <<<<<<<<<<<<<<
  * 
  *         self.save_patches_to_xml(self.cut_page_coordinates_dict)
  */
-    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_add_to_cut_page_coordinates_dict); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 338, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_add_to_cut_page_coordinates_dict); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 339, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
     __pyx_t_3 = NULL;
     __pyx_t_11 = 0;
@@ -15318,7 +15330,7 @@ static PyObject *__pyx_pf_9resources_3svm_14CollageHandler_10finish(CYTHON_UNUSE
       PyObject *__pyx_callargs[2] = {__pyx_t_3, __pyx_v_cnn_results};
       __pyx_t_2 = __Pyx_PyObject_FastCall(__pyx_t_4, __pyx_callargs+1-__pyx_t_11, 1+__pyx_t_11);
       __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-      if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 338, __pyx_L1_error)
+      if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 339, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     }
@@ -15335,16 +15347,16 @@ static PyObject *__pyx_pf_9resources_3svm_14CollageHandler_10finish(CYTHON_UNUSE
   }
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "resources/svm.py":340
+  /* "resources/svm.py":341
  *             self.add_to_cut_page_coordinates_dict(cnn_results)
  * 
  *         self.save_patches_to_xml(self.cut_page_coordinates_dict)             # <<<<<<<<<<<<<<
  * 
  *     def add_to_cut_page_coordinates_dict(self, target):
  */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_save_patches_to_xml); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 340, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_save_patches_to_xml); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 341, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_cut_page_coordinates_dict); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 340, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_cut_page_coordinates_dict); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 341, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __pyx_t_3 = NULL;
   __pyx_t_11 = 0;
@@ -15365,7 +15377,7 @@ static PyObject *__pyx_pf_9resources_3svm_14CollageHandler_10finish(CYTHON_UNUSE
     __pyx_t_1 = __Pyx_PyObject_FastCall(__pyx_t_2, __pyx_callargs+1-__pyx_t_11, 1+__pyx_t_11);
     __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 340, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 341, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   }
@@ -15391,7 +15403,6 @@ static PyObject *__pyx_pf_9resources_3svm_14CollageHandler_10finish(CYTHON_UNUSE
   __Pyx_XDECREF(__pyx_t_8);
   __Pyx_XDECREF(__pyx_t_17);
   __Pyx_XDECREF(__pyx_t_18);
-  __Pyx_XDECREF(__pyx_t_19);
   __Pyx_AddTraceback("resources.svm.CollageHandler.finish", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
@@ -15400,13 +15411,14 @@ static PyObject *__pyx_pf_9resources_3svm_14CollageHandler_10finish(CYTHON_UNUSE
   __Pyx_XDECREF(__pyx_v_target_cache);
   __Pyx_XDECREF(__pyx_v_cnn_results);
   __Pyx_XDECREF(__pyx_v_attempts);
+  __Pyx_XDECREF(__pyx_v_cache);
   __Pyx_XDECREF(__pyx_v_e);
   __Pyx_XGIVEREF(__pyx_r);
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-/* "resources/svm.py":342
+/* "resources/svm.py":343
  *         self.save_patches_to_xml(self.cut_page_coordinates_dict)
  * 
  *     def add_to_cut_page_coordinates_dict(self, target):             # <<<<<<<<<<<<<<
@@ -15470,7 +15482,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
           (void)__Pyx_Arg_NewRef_FASTCALL(values[0]);
           kw_args--;
         }
-        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 342, __pyx_L3_error)
+        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 343, __pyx_L3_error)
         else goto __pyx_L5_argtuple_error;
         CYTHON_FALLTHROUGH;
         case  1:
@@ -15478,14 +15490,14 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
           (void)__Pyx_Arg_NewRef_FASTCALL(values[1]);
           kw_args--;
         }
-        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 342, __pyx_L3_error)
+        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 343, __pyx_L3_error)
         else {
-          __Pyx_RaiseArgtupleInvalid("add_to_cut_page_coordinates_dict", 1, 2, 2, 1); __PYX_ERR(0, 342, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("add_to_cut_page_coordinates_dict", 1, 2, 2, 1); __PYX_ERR(0, 343, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
         const Py_ssize_t kwd_pos_args = __pyx_nargs;
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "add_to_cut_page_coordinates_dict") < 0)) __PYX_ERR(0, 342, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "add_to_cut_page_coordinates_dict") < 0)) __PYX_ERR(0, 343, __pyx_L3_error)
       }
     } else if (unlikely(__pyx_nargs != 2)) {
       goto __pyx_L5_argtuple_error;
@@ -15498,7 +15510,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("add_to_cut_page_coordinates_dict", 1, 2, 2, __pyx_nargs); __PYX_ERR(0, 342, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("add_to_cut_page_coordinates_dict", 1, 2, 2, __pyx_nargs); __PYX_ERR(0, 343, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -15554,7 +15566,7 @@ static PyObject *__pyx_pf_9resources_3svm_14CollageHandler_12add_to_cut_page_coo
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("add_to_cut_page_coordinates_dict", 1);
 
-  /* "resources/svm.py":343
+  /* "resources/svm.py":344
  * 
  *     def add_to_cut_page_coordinates_dict(self, target):
  *         for labeled_patch in target:             # <<<<<<<<<<<<<<
@@ -15566,9 +15578,9 @@ static PyObject *__pyx_pf_9resources_3svm_14CollageHandler_12add_to_cut_page_coo
     __pyx_t_2 = 0;
     __pyx_t_3 = NULL;
   } else {
-    __pyx_t_2 = -1; __pyx_t_1 = PyObject_GetIter(__pyx_v_target); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 343, __pyx_L1_error)
+    __pyx_t_2 = -1; __pyx_t_1 = PyObject_GetIter(__pyx_v_target); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 344, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_3 = __Pyx_PyObject_GetIterNextFunc(__pyx_t_1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 343, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyObject_GetIterNextFunc(__pyx_t_1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 344, __pyx_L1_error)
   }
   for (;;) {
     if (likely(!__pyx_t_3)) {
@@ -15576,28 +15588,28 @@ static PyObject *__pyx_pf_9resources_3svm_14CollageHandler_12add_to_cut_page_coo
         {
           Py_ssize_t __pyx_temp = __Pyx_PyList_GET_SIZE(__pyx_t_1);
           #if !CYTHON_ASSUME_SAFE_MACROS
-          if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 343, __pyx_L1_error)
+          if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 344, __pyx_L1_error)
           #endif
           if (__pyx_t_2 >= __pyx_temp) break;
         }
         #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-        __pyx_t_4 = PyList_GET_ITEM(__pyx_t_1, __pyx_t_2); __Pyx_INCREF(__pyx_t_4); __pyx_t_2++; if (unlikely((0 < 0))) __PYX_ERR(0, 343, __pyx_L1_error)
+        __pyx_t_4 = PyList_GET_ITEM(__pyx_t_1, __pyx_t_2); __Pyx_INCREF(__pyx_t_4); __pyx_t_2++; if (unlikely((0 < 0))) __PYX_ERR(0, 344, __pyx_L1_error)
         #else
-        __pyx_t_4 = __Pyx_PySequence_ITEM(__pyx_t_1, __pyx_t_2); __pyx_t_2++; if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 343, __pyx_L1_error)
+        __pyx_t_4 = __Pyx_PySequence_ITEM(__pyx_t_1, __pyx_t_2); __pyx_t_2++; if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 344, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_4);
         #endif
       } else {
         {
           Py_ssize_t __pyx_temp = __Pyx_PyTuple_GET_SIZE(__pyx_t_1);
           #if !CYTHON_ASSUME_SAFE_MACROS
-          if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 343, __pyx_L1_error)
+          if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 344, __pyx_L1_error)
           #endif
           if (__pyx_t_2 >= __pyx_temp) break;
         }
         #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-        __pyx_t_4 = PyTuple_GET_ITEM(__pyx_t_1, __pyx_t_2); __Pyx_INCREF(__pyx_t_4); __pyx_t_2++; if (unlikely((0 < 0))) __PYX_ERR(0, 343, __pyx_L1_error)
+        __pyx_t_4 = PyTuple_GET_ITEM(__pyx_t_1, __pyx_t_2); __Pyx_INCREF(__pyx_t_4); __pyx_t_2++; if (unlikely((0 < 0))) __PYX_ERR(0, 344, __pyx_L1_error)
         #else
-        __pyx_t_4 = __Pyx_PySequence_ITEM(__pyx_t_1, __pyx_t_2); __pyx_t_2++; if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 343, __pyx_L1_error)
+        __pyx_t_4 = __Pyx_PySequence_ITEM(__pyx_t_1, __pyx_t_2); __pyx_t_2++; if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 344, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_4);
         #endif
       }
@@ -15607,7 +15619,7 @@ static PyObject *__pyx_pf_9resources_3svm_14CollageHandler_12add_to_cut_page_coo
         PyObject* exc_type = PyErr_Occurred();
         if (exc_type) {
           if (likely(__Pyx_PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) PyErr_Clear();
-          else __PYX_ERR(0, 343, __pyx_L1_error)
+          else __PYX_ERR(0, 344, __pyx_L1_error)
         }
         break;
       }
@@ -15616,40 +15628,40 @@ static PyObject *__pyx_pf_9resources_3svm_14CollageHandler_12add_to_cut_page_coo
     __Pyx_XDECREF_SET(__pyx_v_labeled_patch, __pyx_t_4);
     __pyx_t_4 = 0;
 
-    /* "resources/svm.py":344
+    /* "resources/svm.py":345
  *     def add_to_cut_page_coordinates_dict(self, target):
  *         for labeled_patch in target:
  *             num_of_page = labeled_patch[1]             # <<<<<<<<<<<<<<
  *             path = labeled_patch[5]
  * 
  */
-    __pyx_t_4 = __Pyx_GetItemInt(__pyx_v_labeled_patch, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 344, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_GetItemInt(__pyx_v_labeled_patch, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 345, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_XDECREF_SET(__pyx_v_num_of_page, __pyx_t_4);
     __pyx_t_4 = 0;
 
-    /* "resources/svm.py":345
+    /* "resources/svm.py":346
  *         for labeled_patch in target:
  *             num_of_page = labeled_patch[1]
  *             path = labeled_patch[5]             # <<<<<<<<<<<<<<
  * 
  *             # add patch to coord dict
  */
-    __pyx_t_4 = __Pyx_GetItemInt(__pyx_v_labeled_patch, 5, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 345, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_GetItemInt(__pyx_v_labeled_patch, 5, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 346, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_XDECREF_SET(__pyx_v_path, __pyx_t_4);
     __pyx_t_4 = 0;
 
-    /* "resources/svm.py":348
+    /* "resources/svm.py":349
  * 
  *             # add patch to coord dict
  *             if not num_of_page in self.cut_page_coordinates_dict.keys():             # <<<<<<<<<<<<<<
  *                 self.cut_page_coordinates_dict[num_of_page] = []
  * 
  */
-    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_cut_page_coordinates_dict); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 348, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_cut_page_coordinates_dict); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 349, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
-    __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_n_s_keys); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 348, __pyx_L1_error)
+    __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_n_s_keys); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 349, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     __pyx_t_5 = NULL;
@@ -15670,30 +15682,30 @@ static PyObject *__pyx_pf_9resources_3svm_14CollageHandler_12add_to_cut_page_coo
       PyObject *__pyx_callargs[2] = {__pyx_t_5, NULL};
       __pyx_t_4 = __Pyx_PyObject_FastCall(__pyx_t_6, __pyx_callargs+1-__pyx_t_7, 0+__pyx_t_7);
       __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
-      if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 348, __pyx_L1_error)
+      if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 349, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_4);
       __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
     }
-    __pyx_t_8 = (__Pyx_PySequence_ContainsTF(__pyx_v_num_of_page, __pyx_t_4, Py_NE)); if (unlikely((__pyx_t_8 < 0))) __PYX_ERR(0, 348, __pyx_L1_error)
+    __pyx_t_8 = (__Pyx_PySequence_ContainsTF(__pyx_v_num_of_page, __pyx_t_4, Py_NE)); if (unlikely((__pyx_t_8 < 0))) __PYX_ERR(0, 349, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     if (__pyx_t_8) {
 
-      /* "resources/svm.py":349
+      /* "resources/svm.py":350
  *             # add patch to coord dict
  *             if not num_of_page in self.cut_page_coordinates_dict.keys():
  *                 self.cut_page_coordinates_dict[num_of_page] = []             # <<<<<<<<<<<<<<
  * 
  *             xp = labeled_patch[4][0]
  */
-      __pyx_t_4 = PyList_New(0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 349, __pyx_L1_error)
+      __pyx_t_4 = PyList_New(0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 350, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_4);
-      __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_cut_page_coordinates_dict); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 349, __pyx_L1_error)
+      __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_cut_page_coordinates_dict); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 350, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_6);
-      if (unlikely((PyObject_SetItem(__pyx_t_6, __pyx_v_num_of_page, __pyx_t_4) < 0))) __PYX_ERR(0, 349, __pyx_L1_error)
+      if (unlikely((PyObject_SetItem(__pyx_t_6, __pyx_v_num_of_page, __pyx_t_4) < 0))) __PYX_ERR(0, 350, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-      /* "resources/svm.py":348
+      /* "resources/svm.py":349
  * 
  *             # add patch to coord dict
  *             if not num_of_page in self.cut_page_coordinates_dict.keys():             # <<<<<<<<<<<<<<
@@ -15702,171 +15714,171 @@ static PyObject *__pyx_pf_9resources_3svm_14CollageHandler_12add_to_cut_page_coo
  */
     }
 
-    /* "resources/svm.py":351
+    /* "resources/svm.py":352
  *                 self.cut_page_coordinates_dict[num_of_page] = []
  * 
  *             xp = labeled_patch[4][0]             # <<<<<<<<<<<<<<
  *             yp = labeled_patch[4][1]
  *             xa = self.page_paths_to_coord_scales_dict[path][0][0]
  */
-    __pyx_t_4 = __Pyx_GetItemInt(__pyx_v_labeled_patch, 4, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 351, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_GetItemInt(__pyx_v_labeled_patch, 4, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 352, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
-    __pyx_t_6 = __Pyx_GetItemInt(__pyx_t_4, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 351, __pyx_L1_error)
+    __pyx_t_6 = __Pyx_GetItemInt(__pyx_t_4, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 352, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     __Pyx_XDECREF_SET(__pyx_v_xp, __pyx_t_6);
     __pyx_t_6 = 0;
 
-    /* "resources/svm.py":352
+    /* "resources/svm.py":353
  * 
  *             xp = labeled_patch[4][0]
  *             yp = labeled_patch[4][1]             # <<<<<<<<<<<<<<
  *             xa = self.page_paths_to_coord_scales_dict[path][0][0]
  *             ya = self.page_paths_to_coord_scales_dict[path][0][1]
  */
-    __pyx_t_6 = __Pyx_GetItemInt(__pyx_v_labeled_patch, 4, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 352, __pyx_L1_error)
+    __pyx_t_6 = __Pyx_GetItemInt(__pyx_v_labeled_patch, 4, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 353, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
-    __pyx_t_4 = __Pyx_GetItemInt(__pyx_t_6, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 352, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_GetItemInt(__pyx_t_6, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 353, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
     __Pyx_XDECREF_SET(__pyx_v_yp, __pyx_t_4);
     __pyx_t_4 = 0;
 
-    /* "resources/svm.py":353
+    /* "resources/svm.py":354
  *             xp = labeled_patch[4][0]
  *             yp = labeled_patch[4][1]
  *             xa = self.page_paths_to_coord_scales_dict[path][0][0]             # <<<<<<<<<<<<<<
  *             ya = self.page_paths_to_coord_scales_dict[path][0][1]
  * 
  */
-    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_page_paths_to_coord_scales_dict); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 353, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_page_paths_to_coord_scales_dict); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 354, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
-    __pyx_t_6 = __Pyx_PyObject_GetItem(__pyx_t_4, __pyx_v_path); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 353, __pyx_L1_error)
+    __pyx_t_6 = __Pyx_PyObject_GetItem(__pyx_t_4, __pyx_v_path); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 354, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    __pyx_t_4 = __Pyx_GetItemInt(__pyx_t_6, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 353, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_GetItemInt(__pyx_t_6, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 354, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-    __pyx_t_6 = __Pyx_GetItemInt(__pyx_t_4, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 353, __pyx_L1_error)
+    __pyx_t_6 = __Pyx_GetItemInt(__pyx_t_4, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 354, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     __Pyx_XDECREF_SET(__pyx_v_xa, __pyx_t_6);
     __pyx_t_6 = 0;
 
-    /* "resources/svm.py":354
+    /* "resources/svm.py":355
  *             yp = labeled_patch[4][1]
  *             xa = self.page_paths_to_coord_scales_dict[path][0][0]
  *             ya = self.page_paths_to_coord_scales_dict[path][0][1]             # <<<<<<<<<<<<<<
  * 
  *             scale_x = self.page_paths_to_coord_scales_dict[path][1]
  */
-    __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_page_paths_to_coord_scales_dict); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 354, __pyx_L1_error)
+    __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_page_paths_to_coord_scales_dict); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 355, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
-    __pyx_t_4 = __Pyx_PyObject_GetItem(__pyx_t_6, __pyx_v_path); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 354, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_PyObject_GetItem(__pyx_t_6, __pyx_v_path); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 355, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-    __pyx_t_6 = __Pyx_GetItemInt(__pyx_t_4, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 354, __pyx_L1_error)
+    __pyx_t_6 = __Pyx_GetItemInt(__pyx_t_4, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 355, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    __pyx_t_4 = __Pyx_GetItemInt(__pyx_t_6, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 354, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_GetItemInt(__pyx_t_6, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 355, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
     __Pyx_XDECREF_SET(__pyx_v_ya, __pyx_t_4);
     __pyx_t_4 = 0;
 
-    /* "resources/svm.py":356
+    /* "resources/svm.py":357
  *             ya = self.page_paths_to_coord_scales_dict[path][0][1]
  * 
  *             scale_x = self.page_paths_to_coord_scales_dict[path][1]             # <<<<<<<<<<<<<<
  *             scale_y = self.page_paths_to_coord_scales_dict[path][2]
  * 
  */
-    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_page_paths_to_coord_scales_dict); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 356, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_page_paths_to_coord_scales_dict); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 357, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
-    __pyx_t_6 = __Pyx_PyObject_GetItem(__pyx_t_4, __pyx_v_path); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 356, __pyx_L1_error)
+    __pyx_t_6 = __Pyx_PyObject_GetItem(__pyx_t_4, __pyx_v_path); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 357, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    __pyx_t_4 = __Pyx_GetItemInt(__pyx_t_6, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 356, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_GetItemInt(__pyx_t_6, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 357, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
     __Pyx_XDECREF_SET(__pyx_v_scale_x, __pyx_t_4);
     __pyx_t_4 = 0;
 
-    /* "resources/svm.py":357
+    /* "resources/svm.py":358
  * 
  *             scale_x = self.page_paths_to_coord_scales_dict[path][1]
  *             scale_y = self.page_paths_to_coord_scales_dict[path][2]             # <<<<<<<<<<<<<<
  * 
  *             self.cut_page_coordinates_dict[num_of_page].append((int(xa + xp * scale_x), int(ya + yp * scale_y) , int(200 * scale_x), int(200 * scale_y)))
  */
-    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_page_paths_to_coord_scales_dict); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 357, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_page_paths_to_coord_scales_dict); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 358, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
-    __pyx_t_6 = __Pyx_PyObject_GetItem(__pyx_t_4, __pyx_v_path); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 357, __pyx_L1_error)
+    __pyx_t_6 = __Pyx_PyObject_GetItem(__pyx_t_4, __pyx_v_path); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 358, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    __pyx_t_4 = __Pyx_GetItemInt(__pyx_t_6, 2, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 357, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_GetItemInt(__pyx_t_6, 2, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 358, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
     __Pyx_XDECREF_SET(__pyx_v_scale_y, __pyx_t_4);
     __pyx_t_4 = 0;
 
-    /* "resources/svm.py":359
+    /* "resources/svm.py":360
  *             scale_y = self.page_paths_to_coord_scales_dict[path][2]
  * 
  *             self.cut_page_coordinates_dict[num_of_page].append((int(xa + xp * scale_x), int(ya + yp * scale_y) , int(200 * scale_x), int(200 * scale_y)))             # <<<<<<<<<<<<<<
  * 
  *     def finish_old(self):
  */
-    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_cut_page_coordinates_dict); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 359, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_cut_page_coordinates_dict); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 360, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
-    __pyx_t_6 = __Pyx_PyObject_GetItem(__pyx_t_4, __pyx_v_num_of_page); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 359, __pyx_L1_error)
+    __pyx_t_6 = __Pyx_PyObject_GetItem(__pyx_t_4, __pyx_v_num_of_page); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 360, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    __pyx_t_4 = PyNumber_Multiply(__pyx_v_xp, __pyx_v_scale_x); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 359, __pyx_L1_error)
+    __pyx_t_4 = PyNumber_Multiply(__pyx_v_xp, __pyx_v_scale_x); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 360, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
-    __pyx_t_5 = PyNumber_Add(__pyx_v_xa, __pyx_t_4); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 359, __pyx_L1_error)
+    __pyx_t_5 = PyNumber_Add(__pyx_v_xa, __pyx_t_4); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 360, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    __pyx_t_4 = __Pyx_PyNumber_Int(__pyx_t_5); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 359, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_PyNumber_Int(__pyx_t_5); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 360, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-    __pyx_t_5 = PyNumber_Multiply(__pyx_v_yp, __pyx_v_scale_y); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 359, __pyx_L1_error)
+    __pyx_t_5 = PyNumber_Multiply(__pyx_v_yp, __pyx_v_scale_y); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 360, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
-    __pyx_t_9 = PyNumber_Add(__pyx_v_ya, __pyx_t_5); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 359, __pyx_L1_error)
+    __pyx_t_9 = PyNumber_Add(__pyx_v_ya, __pyx_t_5); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 360, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_9);
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-    __pyx_t_5 = __Pyx_PyNumber_Int(__pyx_t_9); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 359, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_PyNumber_Int(__pyx_t_9); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 360, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
-    __pyx_t_9 = __Pyx_PyInt_MultiplyCObj(__pyx_int_200, __pyx_v_scale_x, 0xC8, 0, 0); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 359, __pyx_L1_error)
+    __pyx_t_9 = __Pyx_PyInt_MultiplyCObj(__pyx_int_200, __pyx_v_scale_x, 0xC8, 0, 0); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 360, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_9);
-    __pyx_t_10 = __Pyx_PyNumber_Int(__pyx_t_9); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 359, __pyx_L1_error)
+    __pyx_t_10 = __Pyx_PyNumber_Int(__pyx_t_9); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 360, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_10);
     __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
-    __pyx_t_9 = __Pyx_PyInt_MultiplyCObj(__pyx_int_200, __pyx_v_scale_y, 0xC8, 0, 0); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 359, __pyx_L1_error)
+    __pyx_t_9 = __Pyx_PyInt_MultiplyCObj(__pyx_int_200, __pyx_v_scale_y, 0xC8, 0, 0); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 360, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_9);
-    __pyx_t_11 = __Pyx_PyNumber_Int(__pyx_t_9); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 359, __pyx_L1_error)
+    __pyx_t_11 = __Pyx_PyNumber_Int(__pyx_t_9); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 360, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_11);
     __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
-    __pyx_t_9 = PyTuple_New(4); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 359, __pyx_L1_error)
+    __pyx_t_9 = PyTuple_New(4); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 360, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_9);
     __Pyx_GIVEREF(__pyx_t_4);
-    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_9, 0, __pyx_t_4)) __PYX_ERR(0, 359, __pyx_L1_error);
+    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_9, 0, __pyx_t_4)) __PYX_ERR(0, 360, __pyx_L1_error);
     __Pyx_GIVEREF(__pyx_t_5);
-    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_9, 1, __pyx_t_5)) __PYX_ERR(0, 359, __pyx_L1_error);
+    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_9, 1, __pyx_t_5)) __PYX_ERR(0, 360, __pyx_L1_error);
     __Pyx_GIVEREF(__pyx_t_10);
-    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_9, 2, __pyx_t_10)) __PYX_ERR(0, 359, __pyx_L1_error);
+    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_9, 2, __pyx_t_10)) __PYX_ERR(0, 360, __pyx_L1_error);
     __Pyx_GIVEREF(__pyx_t_11);
-    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_9, 3, __pyx_t_11)) __PYX_ERR(0, 359, __pyx_L1_error);
+    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_9, 3, __pyx_t_11)) __PYX_ERR(0, 360, __pyx_L1_error);
     __pyx_t_4 = 0;
     __pyx_t_5 = 0;
     __pyx_t_10 = 0;
     __pyx_t_11 = 0;
-    __pyx_t_12 = __Pyx_PyObject_Append(__pyx_t_6, __pyx_t_9); if (unlikely(__pyx_t_12 == ((int)-1))) __PYX_ERR(0, 359, __pyx_L1_error)
+    __pyx_t_12 = __Pyx_PyObject_Append(__pyx_t_6, __pyx_t_9); if (unlikely(__pyx_t_12 == ((int)-1))) __PYX_ERR(0, 360, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
     __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
 
-    /* "resources/svm.py":343
+    /* "resources/svm.py":344
  * 
  *     def add_to_cut_page_coordinates_dict(self, target):
  *         for labeled_patch in target:             # <<<<<<<<<<<<<<
@@ -15876,7 +15888,7 @@ static PyObject *__pyx_pf_9resources_3svm_14CollageHandler_12add_to_cut_page_coo
   }
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "resources/svm.py":342
+  /* "resources/svm.py":343
  *         self.save_patches_to_xml(self.cut_page_coordinates_dict)
  * 
  *     def add_to_cut_page_coordinates_dict(self, target):             # <<<<<<<<<<<<<<
@@ -15912,7 +15924,7 @@ static PyObject *__pyx_pf_9resources_3svm_14CollageHandler_12add_to_cut_page_coo
   return __pyx_r;
 }
 
-/* "resources/svm.py":361
+/* "resources/svm.py":362
  *             self.cut_page_coordinates_dict[num_of_page].append((int(xa + xp * scale_x), int(ya + yp * scale_y) , int(200 * scale_x), int(200 * scale_y)))
  * 
  *     def finish_old(self):             # <<<<<<<<<<<<<<
@@ -15973,12 +15985,12 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
           (void)__Pyx_Arg_NewRef_FASTCALL(values[0]);
           kw_args--;
         }
-        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 361, __pyx_L3_error)
+        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 362, __pyx_L3_error)
         else goto __pyx_L5_argtuple_error;
       }
       if (unlikely(kw_args > 0)) {
         const Py_ssize_t kwd_pos_args = __pyx_nargs;
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "finish_old") < 0)) __PYX_ERR(0, 361, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "finish_old") < 0)) __PYX_ERR(0, 362, __pyx_L3_error)
       }
     } else if (unlikely(__pyx_nargs != 1)) {
       goto __pyx_L5_argtuple_error;
@@ -15989,7 +16001,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("finish_old", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 361, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("finish_old", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 362, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -16052,68 +16064,68 @@ static PyObject *__pyx_pf_9resources_3svm_14CollageHandler_14finish_old(CYTHON_U
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("finish_old", 1);
 
-  /* "resources/svm.py":362
+  /* "resources/svm.py":363
  * 
  *     def finish_old(self):
  *         for target, patch_class, target_cache in zip([self.blurry_patches, self.empty_patches, self.indeterminate_patches], ['blurry', 'empty', 'indeterminate'], [self.blurry_batch_paths, None, self.indeterminate_batch_paths]):             # <<<<<<<<<<<<<<
  *             if patch_class == 'empty': continue
  * 
  */
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_blurry_patches); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 362, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_blurry_patches); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 363, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_empty_patches); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 362, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_empty_patches); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 363, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_indeterminate_patches); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 362, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_indeterminate_patches); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 363, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_4 = PyList_New(3); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 362, __pyx_L1_error)
+  __pyx_t_4 = PyList_New(3); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 363, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_GIVEREF(__pyx_t_1);
-  if (__Pyx_PyList_SET_ITEM(__pyx_t_4, 0, __pyx_t_1)) __PYX_ERR(0, 362, __pyx_L1_error);
+  if (__Pyx_PyList_SET_ITEM(__pyx_t_4, 0, __pyx_t_1)) __PYX_ERR(0, 363, __pyx_L1_error);
   __Pyx_GIVEREF(__pyx_t_2);
-  if (__Pyx_PyList_SET_ITEM(__pyx_t_4, 1, __pyx_t_2)) __PYX_ERR(0, 362, __pyx_L1_error);
+  if (__Pyx_PyList_SET_ITEM(__pyx_t_4, 1, __pyx_t_2)) __PYX_ERR(0, 363, __pyx_L1_error);
   __Pyx_GIVEREF(__pyx_t_3);
-  if (__Pyx_PyList_SET_ITEM(__pyx_t_4, 2, __pyx_t_3)) __PYX_ERR(0, 362, __pyx_L1_error);
+  if (__Pyx_PyList_SET_ITEM(__pyx_t_4, 2, __pyx_t_3)) __PYX_ERR(0, 363, __pyx_L1_error);
   __pyx_t_1 = 0;
   __pyx_t_2 = 0;
   __pyx_t_3 = 0;
-  __pyx_t_3 = PyList_New(3); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 362, __pyx_L1_error)
+  __pyx_t_3 = PyList_New(3); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 363, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_INCREF(__pyx_n_u_blurry);
   __Pyx_GIVEREF(__pyx_n_u_blurry);
-  if (__Pyx_PyList_SET_ITEM(__pyx_t_3, 0, __pyx_n_u_blurry)) __PYX_ERR(0, 362, __pyx_L1_error);
+  if (__Pyx_PyList_SET_ITEM(__pyx_t_3, 0, __pyx_n_u_blurry)) __PYX_ERR(0, 363, __pyx_L1_error);
   __Pyx_INCREF(__pyx_n_u_empty);
   __Pyx_GIVEREF(__pyx_n_u_empty);
-  if (__Pyx_PyList_SET_ITEM(__pyx_t_3, 1, __pyx_n_u_empty)) __PYX_ERR(0, 362, __pyx_L1_error);
+  if (__Pyx_PyList_SET_ITEM(__pyx_t_3, 1, __pyx_n_u_empty)) __PYX_ERR(0, 363, __pyx_L1_error);
   __Pyx_INCREF(__pyx_n_u_indeterminate);
   __Pyx_GIVEREF(__pyx_n_u_indeterminate);
-  if (__Pyx_PyList_SET_ITEM(__pyx_t_3, 2, __pyx_n_u_indeterminate)) __PYX_ERR(0, 362, __pyx_L1_error);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_blurry_batch_paths); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 362, __pyx_L1_error)
+  if (__Pyx_PyList_SET_ITEM(__pyx_t_3, 2, __pyx_n_u_indeterminate)) __PYX_ERR(0, 363, __pyx_L1_error);
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_blurry_batch_paths); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 363, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_indeterminate_batch_paths); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 362, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_indeterminate_batch_paths); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 363, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_5 = PyList_New(3); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 362, __pyx_L1_error)
+  __pyx_t_5 = PyList_New(3); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 363, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_GIVEREF(__pyx_t_2);
-  if (__Pyx_PyList_SET_ITEM(__pyx_t_5, 0, __pyx_t_2)) __PYX_ERR(0, 362, __pyx_L1_error);
+  if (__Pyx_PyList_SET_ITEM(__pyx_t_5, 0, __pyx_t_2)) __PYX_ERR(0, 363, __pyx_L1_error);
   __Pyx_INCREF(Py_None);
   __Pyx_GIVEREF(Py_None);
-  if (__Pyx_PyList_SET_ITEM(__pyx_t_5, 1, Py_None)) __PYX_ERR(0, 362, __pyx_L1_error);
+  if (__Pyx_PyList_SET_ITEM(__pyx_t_5, 1, Py_None)) __PYX_ERR(0, 363, __pyx_L1_error);
   __Pyx_GIVEREF(__pyx_t_1);
-  if (__Pyx_PyList_SET_ITEM(__pyx_t_5, 2, __pyx_t_1)) __PYX_ERR(0, 362, __pyx_L1_error);
+  if (__Pyx_PyList_SET_ITEM(__pyx_t_5, 2, __pyx_t_1)) __PYX_ERR(0, 363, __pyx_L1_error);
   __pyx_t_2 = 0;
   __pyx_t_1 = 0;
-  __pyx_t_1 = PyTuple_New(3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 362, __pyx_L1_error)
+  __pyx_t_1 = PyTuple_New(3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 363, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_GIVEREF(__pyx_t_4);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_t_4)) __PYX_ERR(0, 362, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_t_4)) __PYX_ERR(0, 363, __pyx_L1_error);
   __Pyx_GIVEREF(__pyx_t_3);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_1, 1, __pyx_t_3)) __PYX_ERR(0, 362, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_1, 1, __pyx_t_3)) __PYX_ERR(0, 363, __pyx_L1_error);
   __Pyx_GIVEREF(__pyx_t_5);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_1, 2, __pyx_t_5)) __PYX_ERR(0, 362, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_1, 2, __pyx_t_5)) __PYX_ERR(0, 363, __pyx_L1_error);
   __pyx_t_4 = 0;
   __pyx_t_3 = 0;
   __pyx_t_5 = 0;
-  __pyx_t_5 = __Pyx_PyObject_Call(__pyx_builtin_zip, __pyx_t_1, NULL); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 362, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyObject_Call(__pyx_builtin_zip, __pyx_t_1, NULL); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 363, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   if (likely(PyList_CheckExact(__pyx_t_5)) || PyTuple_CheckExact(__pyx_t_5)) {
@@ -16121,9 +16133,9 @@ static PyObject *__pyx_pf_9resources_3svm_14CollageHandler_14finish_old(CYTHON_U
     __pyx_t_6 = 0;
     __pyx_t_7 = NULL;
   } else {
-    __pyx_t_6 = -1; __pyx_t_1 = PyObject_GetIter(__pyx_t_5); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 362, __pyx_L1_error)
+    __pyx_t_6 = -1; __pyx_t_1 = PyObject_GetIter(__pyx_t_5); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 363, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_7 = __Pyx_PyObject_GetIterNextFunc(__pyx_t_1); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 362, __pyx_L1_error)
+    __pyx_t_7 = __Pyx_PyObject_GetIterNextFunc(__pyx_t_1); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 363, __pyx_L1_error)
   }
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   for (;;) {
@@ -16132,28 +16144,28 @@ static PyObject *__pyx_pf_9resources_3svm_14CollageHandler_14finish_old(CYTHON_U
         {
           Py_ssize_t __pyx_temp = __Pyx_PyList_GET_SIZE(__pyx_t_1);
           #if !CYTHON_ASSUME_SAFE_MACROS
-          if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 362, __pyx_L1_error)
+          if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 363, __pyx_L1_error)
           #endif
           if (__pyx_t_6 >= __pyx_temp) break;
         }
         #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-        __pyx_t_5 = PyList_GET_ITEM(__pyx_t_1, __pyx_t_6); __Pyx_INCREF(__pyx_t_5); __pyx_t_6++; if (unlikely((0 < 0))) __PYX_ERR(0, 362, __pyx_L1_error)
+        __pyx_t_5 = PyList_GET_ITEM(__pyx_t_1, __pyx_t_6); __Pyx_INCREF(__pyx_t_5); __pyx_t_6++; if (unlikely((0 < 0))) __PYX_ERR(0, 363, __pyx_L1_error)
         #else
-        __pyx_t_5 = __Pyx_PySequence_ITEM(__pyx_t_1, __pyx_t_6); __pyx_t_6++; if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 362, __pyx_L1_error)
+        __pyx_t_5 = __Pyx_PySequence_ITEM(__pyx_t_1, __pyx_t_6); __pyx_t_6++; if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 363, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_5);
         #endif
       } else {
         {
           Py_ssize_t __pyx_temp = __Pyx_PyTuple_GET_SIZE(__pyx_t_1);
           #if !CYTHON_ASSUME_SAFE_MACROS
-          if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 362, __pyx_L1_error)
+          if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 363, __pyx_L1_error)
           #endif
           if (__pyx_t_6 >= __pyx_temp) break;
         }
         #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-        __pyx_t_5 = PyTuple_GET_ITEM(__pyx_t_1, __pyx_t_6); __Pyx_INCREF(__pyx_t_5); __pyx_t_6++; if (unlikely((0 < 0))) __PYX_ERR(0, 362, __pyx_L1_error)
+        __pyx_t_5 = PyTuple_GET_ITEM(__pyx_t_1, __pyx_t_6); __Pyx_INCREF(__pyx_t_5); __pyx_t_6++; if (unlikely((0 < 0))) __PYX_ERR(0, 363, __pyx_L1_error)
         #else
-        __pyx_t_5 = __Pyx_PySequence_ITEM(__pyx_t_1, __pyx_t_6); __pyx_t_6++; if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 362, __pyx_L1_error)
+        __pyx_t_5 = __Pyx_PySequence_ITEM(__pyx_t_1, __pyx_t_6); __pyx_t_6++; if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 363, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_5);
         #endif
       }
@@ -16163,7 +16175,7 @@ static PyObject *__pyx_pf_9resources_3svm_14CollageHandler_14finish_old(CYTHON_U
         PyObject* exc_type = PyErr_Occurred();
         if (exc_type) {
           if (likely(__Pyx_PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) PyErr_Clear();
-          else __PYX_ERR(0, 362, __pyx_L1_error)
+          else __PYX_ERR(0, 363, __pyx_L1_error)
         }
         break;
       }
@@ -16175,7 +16187,7 @@ static PyObject *__pyx_pf_9resources_3svm_14CollageHandler_14finish_old(CYTHON_U
       if (unlikely(size != 3)) {
         if (size > 3) __Pyx_RaiseTooManyValuesError(3);
         else if (size >= 0) __Pyx_RaiseNeedMoreValuesError(size);
-        __PYX_ERR(0, 362, __pyx_L1_error)
+        __PYX_ERR(0, 363, __pyx_L1_error)
       }
       #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
       if (likely(PyTuple_CheckExact(sequence))) {
@@ -16191,17 +16203,17 @@ static PyObject *__pyx_pf_9resources_3svm_14CollageHandler_14finish_old(CYTHON_U
       __Pyx_INCREF(__pyx_t_4);
       __Pyx_INCREF(__pyx_t_2);
       #else
-      __pyx_t_3 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 362, __pyx_L1_error)
+      __pyx_t_3 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 363, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_3);
-      __pyx_t_4 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 362, __pyx_L1_error)
+      __pyx_t_4 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 363, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_4);
-      __pyx_t_2 = PySequence_ITEM(sequence, 2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 362, __pyx_L1_error)
+      __pyx_t_2 = PySequence_ITEM(sequence, 2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 363, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
       #endif
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     } else {
       Py_ssize_t index = -1;
-      __pyx_t_8 = PyObject_GetIter(__pyx_t_5); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 362, __pyx_L1_error)
+      __pyx_t_8 = PyObject_GetIter(__pyx_t_5); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 363, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_8);
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
       __pyx_t_9 = __Pyx_PyObject_GetIterNextFunc(__pyx_t_8);
@@ -16211,7 +16223,7 @@ static PyObject *__pyx_pf_9resources_3svm_14CollageHandler_14finish_old(CYTHON_U
       __Pyx_GOTREF(__pyx_t_4);
       index = 2; __pyx_t_2 = __pyx_t_9(__pyx_t_8); if (unlikely(!__pyx_t_2)) goto __pyx_L5_unpacking_failed;
       __Pyx_GOTREF(__pyx_t_2);
-      if (__Pyx_IternextUnpackEndCheck(__pyx_t_9(__pyx_t_8), 3) < 0) __PYX_ERR(0, 362, __pyx_L1_error)
+      if (__Pyx_IternextUnpackEndCheck(__pyx_t_9(__pyx_t_8), 3) < 0) __PYX_ERR(0, 363, __pyx_L1_error)
       __pyx_t_9 = NULL;
       __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
       goto __pyx_L6_unpacking_done;
@@ -16219,7 +16231,7 @@ static PyObject *__pyx_pf_9resources_3svm_14CollageHandler_14finish_old(CYTHON_U
       __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
       __pyx_t_9 = NULL;
       if (__Pyx_IterFinish() == 0) __Pyx_RaiseNeedMoreValuesError(index);
-      __PYX_ERR(0, 362, __pyx_L1_error)
+      __PYX_ERR(0, 363, __pyx_L1_error)
       __pyx_L6_unpacking_done:;
     }
     __Pyx_XDECREF_SET(__pyx_v_target, __pyx_t_3);
@@ -16229,28 +16241,28 @@ static PyObject *__pyx_pf_9resources_3svm_14CollageHandler_14finish_old(CYTHON_U
     __Pyx_XDECREF_SET(__pyx_v_target_cache, __pyx_t_2);
     __pyx_t_2 = 0;
 
-    /* "resources/svm.py":363
+    /* "resources/svm.py":364
  *     def finish_old(self):
  *         for target, patch_class, target_cache in zip([self.blurry_patches, self.empty_patches, self.indeterminate_patches], ['blurry', 'empty', 'indeterminate'], [self.blurry_batch_paths, None, self.indeterminate_batch_paths]):
  *             if patch_class == 'empty': continue             # <<<<<<<<<<<<<<
  * 
  *             self.save_batch_as_image(target, patch_class + f'_svm')
  */
-    __pyx_t_10 = (__Pyx_PyUnicode_Equals(__pyx_v_patch_class, __pyx_n_u_empty, Py_EQ)); if (unlikely((__pyx_t_10 < 0))) __PYX_ERR(0, 363, __pyx_L1_error)
+    __pyx_t_10 = (__Pyx_PyUnicode_Equals(__pyx_v_patch_class, __pyx_n_u_empty, Py_EQ)); if (unlikely((__pyx_t_10 < 0))) __PYX_ERR(0, 364, __pyx_L1_error)
     if (__pyx_t_10) {
       goto __pyx_L3_continue;
     }
 
-    /* "resources/svm.py":365
+    /* "resources/svm.py":366
  *             if patch_class == 'empty': continue
  * 
  *             self.save_batch_as_image(target, patch_class + f'_svm')             # <<<<<<<<<<<<<<
  *             self.filter_non_blurry(target)
  *             self.save_batch_as_image(target, patch_class + f'_cnn')
  */
-    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_save_batch_as_image); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 365, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_save_batch_as_image); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 366, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_4 = PyNumber_Add(__pyx_v_patch_class, __pyx_n_u_svm_2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 365, __pyx_L1_error)
+    __pyx_t_4 = PyNumber_Add(__pyx_v_patch_class, __pyx_n_u_svm_2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 366, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
     __pyx_t_3 = NULL;
     __pyx_t_11 = 0;
@@ -16271,20 +16283,20 @@ static PyObject *__pyx_pf_9resources_3svm_14CollageHandler_14finish_old(CYTHON_U
       __pyx_t_5 = __Pyx_PyObject_FastCall(__pyx_t_2, __pyx_callargs+1-__pyx_t_11, 2+__pyx_t_11);
       __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-      if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 365, __pyx_L1_error)
+      if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 366, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_5);
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     }
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-    /* "resources/svm.py":366
+    /* "resources/svm.py":367
  * 
  *             self.save_batch_as_image(target, patch_class + f'_svm')
  *             self.filter_non_blurry(target)             # <<<<<<<<<<<<<<
  *             self.save_batch_as_image(target, patch_class + f'_cnn')
  * 
  */
-    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_filter_non_blurry); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 366, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_filter_non_blurry); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 367, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __pyx_t_4 = NULL;
     __pyx_t_11 = 0;
@@ -16304,22 +16316,22 @@ static PyObject *__pyx_pf_9resources_3svm_14CollageHandler_14finish_old(CYTHON_U
       PyObject *__pyx_callargs[2] = {__pyx_t_4, __pyx_v_target};
       __pyx_t_5 = __Pyx_PyObject_FastCall(__pyx_t_2, __pyx_callargs+1-__pyx_t_11, 1+__pyx_t_11);
       __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-      if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 366, __pyx_L1_error)
+      if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 367, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_5);
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     }
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-    /* "resources/svm.py":367
+    /* "resources/svm.py":368
  *             self.save_batch_as_image(target, patch_class + f'_svm')
  *             self.filter_non_blurry(target)
  *             self.save_batch_as_image(target, patch_class + f'_cnn')             # <<<<<<<<<<<<<<
  * 
  *             # create dict
  */
-    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_save_batch_as_image); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 367, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_save_batch_as_image); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 368, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_4 = PyNumber_Add(__pyx_v_patch_class, __pyx_n_u_cnn_2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 367, __pyx_L1_error)
+    __pyx_t_4 = PyNumber_Add(__pyx_v_patch_class, __pyx_n_u_cnn_2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 368, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
     __pyx_t_3 = NULL;
     __pyx_t_11 = 0;
@@ -16340,13 +16352,13 @@ static PyObject *__pyx_pf_9resources_3svm_14CollageHandler_14finish_old(CYTHON_U
       __pyx_t_5 = __Pyx_PyObject_FastCall(__pyx_t_2, __pyx_callargs+1-__pyx_t_11, 2+__pyx_t_11);
       __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-      if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 367, __pyx_L1_error)
+      if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 368, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_5);
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     }
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-    /* "resources/svm.py":370
+    /* "resources/svm.py":371
  * 
  *             # create dict
  *             for labeled_patch in target:             # <<<<<<<<<<<<<<
@@ -16358,9 +16370,9 @@ static PyObject *__pyx_pf_9resources_3svm_14CollageHandler_14finish_old(CYTHON_U
       __pyx_t_12 = 0;
       __pyx_t_13 = NULL;
     } else {
-      __pyx_t_12 = -1; __pyx_t_5 = PyObject_GetIter(__pyx_v_target); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 370, __pyx_L1_error)
+      __pyx_t_12 = -1; __pyx_t_5 = PyObject_GetIter(__pyx_v_target); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 371, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_5);
-      __pyx_t_13 = __Pyx_PyObject_GetIterNextFunc(__pyx_t_5); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 370, __pyx_L1_error)
+      __pyx_t_13 = __Pyx_PyObject_GetIterNextFunc(__pyx_t_5); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 371, __pyx_L1_error)
     }
     for (;;) {
       if (likely(!__pyx_t_13)) {
@@ -16368,28 +16380,28 @@ static PyObject *__pyx_pf_9resources_3svm_14CollageHandler_14finish_old(CYTHON_U
           {
             Py_ssize_t __pyx_temp = __Pyx_PyList_GET_SIZE(__pyx_t_5);
             #if !CYTHON_ASSUME_SAFE_MACROS
-            if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 370, __pyx_L1_error)
+            if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 371, __pyx_L1_error)
             #endif
             if (__pyx_t_12 >= __pyx_temp) break;
           }
           #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-          __pyx_t_2 = PyList_GET_ITEM(__pyx_t_5, __pyx_t_12); __Pyx_INCREF(__pyx_t_2); __pyx_t_12++; if (unlikely((0 < 0))) __PYX_ERR(0, 370, __pyx_L1_error)
+          __pyx_t_2 = PyList_GET_ITEM(__pyx_t_5, __pyx_t_12); __Pyx_INCREF(__pyx_t_2); __pyx_t_12++; if (unlikely((0 < 0))) __PYX_ERR(0, 371, __pyx_L1_error)
           #else
-          __pyx_t_2 = __Pyx_PySequence_ITEM(__pyx_t_5, __pyx_t_12); __pyx_t_12++; if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 370, __pyx_L1_error)
+          __pyx_t_2 = __Pyx_PySequence_ITEM(__pyx_t_5, __pyx_t_12); __pyx_t_12++; if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 371, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_2);
           #endif
         } else {
           {
             Py_ssize_t __pyx_temp = __Pyx_PyTuple_GET_SIZE(__pyx_t_5);
             #if !CYTHON_ASSUME_SAFE_MACROS
-            if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 370, __pyx_L1_error)
+            if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 371, __pyx_L1_error)
             #endif
             if (__pyx_t_12 >= __pyx_temp) break;
           }
           #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-          __pyx_t_2 = PyTuple_GET_ITEM(__pyx_t_5, __pyx_t_12); __Pyx_INCREF(__pyx_t_2); __pyx_t_12++; if (unlikely((0 < 0))) __PYX_ERR(0, 370, __pyx_L1_error)
+          __pyx_t_2 = PyTuple_GET_ITEM(__pyx_t_5, __pyx_t_12); __Pyx_INCREF(__pyx_t_2); __pyx_t_12++; if (unlikely((0 < 0))) __PYX_ERR(0, 371, __pyx_L1_error)
           #else
-          __pyx_t_2 = __Pyx_PySequence_ITEM(__pyx_t_5, __pyx_t_12); __pyx_t_12++; if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 370, __pyx_L1_error)
+          __pyx_t_2 = __Pyx_PySequence_ITEM(__pyx_t_5, __pyx_t_12); __pyx_t_12++; if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 371, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_2);
           #endif
         }
@@ -16399,7 +16411,7 @@ static PyObject *__pyx_pf_9resources_3svm_14CollageHandler_14finish_old(CYTHON_U
           PyObject* exc_type = PyErr_Occurred();
           if (exc_type) {
             if (likely(__Pyx_PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) PyErr_Clear();
-            else __PYX_ERR(0, 370, __pyx_L1_error)
+            else __PYX_ERR(0, 371, __pyx_L1_error)
           }
           break;
         }
@@ -16408,40 +16420,40 @@ static PyObject *__pyx_pf_9resources_3svm_14CollageHandler_14finish_old(CYTHON_U
       __Pyx_XDECREF_SET(__pyx_v_labeled_patch, __pyx_t_2);
       __pyx_t_2 = 0;
 
-      /* "resources/svm.py":371
+      /* "resources/svm.py":372
  *             # create dict
  *             for labeled_patch in target:
  *                 num_of_page = labeled_patch[1]             # <<<<<<<<<<<<<<
  *                 path = labeled_patch[5]
  * 
  */
-      __pyx_t_2 = __Pyx_GetItemInt(__pyx_v_labeled_patch, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 371, __pyx_L1_error)
+      __pyx_t_2 = __Pyx_GetItemInt(__pyx_v_labeled_patch, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 372, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_XDECREF_SET(__pyx_v_num_of_page, __pyx_t_2);
       __pyx_t_2 = 0;
 
-      /* "resources/svm.py":372
+      /* "resources/svm.py":373
  *             for labeled_patch in target:
  *                 num_of_page = labeled_patch[1]
  *                 path = labeled_patch[5]             # <<<<<<<<<<<<<<
  * 
  *                 # add patch to coord dict
  */
-      __pyx_t_2 = __Pyx_GetItemInt(__pyx_v_labeled_patch, 5, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 372, __pyx_L1_error)
+      __pyx_t_2 = __Pyx_GetItemInt(__pyx_v_labeled_patch, 5, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 373, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_XDECREF_SET(__pyx_v_path, __pyx_t_2);
       __pyx_t_2 = 0;
 
-      /* "resources/svm.py":375
+      /* "resources/svm.py":376
  * 
  *                 # add patch to coord dict
  *                 if not num_of_page in self.cut_page_coordinates_dict.keys():             # <<<<<<<<<<<<<<
  *                     self.cut_page_coordinates_dict[num_of_page] = []
  * 
  */
-      __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_cut_page_coordinates_dict); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 375, __pyx_L1_error)
+      __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_cut_page_coordinates_dict); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 376, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_4);
-      __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_keys); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 375, __pyx_L1_error)
+      __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_keys); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 376, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_3);
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
       __pyx_t_4 = NULL;
@@ -16462,30 +16474,30 @@ static PyObject *__pyx_pf_9resources_3svm_14CollageHandler_14finish_old(CYTHON_U
         PyObject *__pyx_callargs[2] = {__pyx_t_4, NULL};
         __pyx_t_2 = __Pyx_PyObject_FastCall(__pyx_t_3, __pyx_callargs+1-__pyx_t_11, 0+__pyx_t_11);
         __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-        if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 375, __pyx_L1_error)
+        if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 376, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_2);
         __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
       }
-      __pyx_t_10 = (__Pyx_PySequence_ContainsTF(__pyx_v_num_of_page, __pyx_t_2, Py_NE)); if (unlikely((__pyx_t_10 < 0))) __PYX_ERR(0, 375, __pyx_L1_error)
+      __pyx_t_10 = (__Pyx_PySequence_ContainsTF(__pyx_v_num_of_page, __pyx_t_2, Py_NE)); if (unlikely((__pyx_t_10 < 0))) __PYX_ERR(0, 376, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
       if (__pyx_t_10) {
 
-        /* "resources/svm.py":376
+        /* "resources/svm.py":377
  *                 # add patch to coord dict
  *                 if not num_of_page in self.cut_page_coordinates_dict.keys():
  *                     self.cut_page_coordinates_dict[num_of_page] = []             # <<<<<<<<<<<<<<
  * 
  *                 xp = labeled_patch[4][0]
  */
-        __pyx_t_2 = PyList_New(0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 376, __pyx_L1_error)
+        __pyx_t_2 = PyList_New(0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 377, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_2);
-        __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_cut_page_coordinates_dict); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 376, __pyx_L1_error)
+        __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_cut_page_coordinates_dict); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 377, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_3);
-        if (unlikely((PyObject_SetItem(__pyx_t_3, __pyx_v_num_of_page, __pyx_t_2) < 0))) __PYX_ERR(0, 376, __pyx_L1_error)
+        if (unlikely((PyObject_SetItem(__pyx_t_3, __pyx_v_num_of_page, __pyx_t_2) < 0))) __PYX_ERR(0, 377, __pyx_L1_error)
         __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
         __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-        /* "resources/svm.py":375
+        /* "resources/svm.py":376
  * 
  *                 # add patch to coord dict
  *                 if not num_of_page in self.cut_page_coordinates_dict.keys():             # <<<<<<<<<<<<<<
@@ -16494,171 +16506,171 @@ static PyObject *__pyx_pf_9resources_3svm_14CollageHandler_14finish_old(CYTHON_U
  */
       }
 
-      /* "resources/svm.py":378
+      /* "resources/svm.py":379
  *                     self.cut_page_coordinates_dict[num_of_page] = []
  * 
  *                 xp = labeled_patch[4][0]             # <<<<<<<<<<<<<<
  *                 yp = labeled_patch[4][1]
  *                 xa = self.page_paths_to_coord_scales_dict[path][0][0]
  */
-      __pyx_t_2 = __Pyx_GetItemInt(__pyx_v_labeled_patch, 4, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 378, __pyx_L1_error)
+      __pyx_t_2 = __Pyx_GetItemInt(__pyx_v_labeled_patch, 4, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 379, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
-      __pyx_t_3 = __Pyx_GetItemInt(__pyx_t_2, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 378, __pyx_L1_error)
+      __pyx_t_3 = __Pyx_GetItemInt(__pyx_t_2, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 379, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_3);
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
       __Pyx_XDECREF_SET(__pyx_v_xp, __pyx_t_3);
       __pyx_t_3 = 0;
 
-      /* "resources/svm.py":379
+      /* "resources/svm.py":380
  * 
  *                 xp = labeled_patch[4][0]
  *                 yp = labeled_patch[4][1]             # <<<<<<<<<<<<<<
  *                 xa = self.page_paths_to_coord_scales_dict[path][0][0]
  *                 ya = self.page_paths_to_coord_scales_dict[path][0][1]
  */
-      __pyx_t_3 = __Pyx_GetItemInt(__pyx_v_labeled_patch, 4, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 379, __pyx_L1_error)
+      __pyx_t_3 = __Pyx_GetItemInt(__pyx_v_labeled_patch, 4, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 380, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_3);
-      __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 379, __pyx_L1_error)
+      __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 380, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
       __Pyx_XDECREF_SET(__pyx_v_yp, __pyx_t_2);
       __pyx_t_2 = 0;
 
-      /* "resources/svm.py":380
+      /* "resources/svm.py":381
  *                 xp = labeled_patch[4][0]
  *                 yp = labeled_patch[4][1]
  *                 xa = self.page_paths_to_coord_scales_dict[path][0][0]             # <<<<<<<<<<<<<<
  *                 ya = self.page_paths_to_coord_scales_dict[path][0][1]
  * 
  */
-      __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_page_paths_to_coord_scales_dict); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 380, __pyx_L1_error)
+      __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_page_paths_to_coord_scales_dict); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 381, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
-      __pyx_t_3 = __Pyx_PyObject_GetItem(__pyx_t_2, __pyx_v_path); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 380, __pyx_L1_error)
+      __pyx_t_3 = __Pyx_PyObject_GetItem(__pyx_t_2, __pyx_v_path); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 381, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_3);
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-      __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 380, __pyx_L1_error)
+      __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 381, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-      __pyx_t_3 = __Pyx_GetItemInt(__pyx_t_2, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 380, __pyx_L1_error)
+      __pyx_t_3 = __Pyx_GetItemInt(__pyx_t_2, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 381, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_3);
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
       __Pyx_XDECREF_SET(__pyx_v_xa, __pyx_t_3);
       __pyx_t_3 = 0;
 
-      /* "resources/svm.py":381
+      /* "resources/svm.py":382
  *                 yp = labeled_patch[4][1]
  *                 xa = self.page_paths_to_coord_scales_dict[path][0][0]
  *                 ya = self.page_paths_to_coord_scales_dict[path][0][1]             # <<<<<<<<<<<<<<
  * 
  *                 scale_x = self.page_paths_to_coord_scales_dict[path][1]
  */
-      __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_page_paths_to_coord_scales_dict); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 381, __pyx_L1_error)
+      __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_page_paths_to_coord_scales_dict); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 382, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_3);
-      __pyx_t_2 = __Pyx_PyObject_GetItem(__pyx_t_3, __pyx_v_path); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 381, __pyx_L1_error)
+      __pyx_t_2 = __Pyx_PyObject_GetItem(__pyx_t_3, __pyx_v_path); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 382, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-      __pyx_t_3 = __Pyx_GetItemInt(__pyx_t_2, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 381, __pyx_L1_error)
+      __pyx_t_3 = __Pyx_GetItemInt(__pyx_t_2, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 382, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_3);
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-      __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 381, __pyx_L1_error)
+      __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 382, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
       __Pyx_XDECREF_SET(__pyx_v_ya, __pyx_t_2);
       __pyx_t_2 = 0;
 
-      /* "resources/svm.py":383
+      /* "resources/svm.py":384
  *                 ya = self.page_paths_to_coord_scales_dict[path][0][1]
  * 
  *                 scale_x = self.page_paths_to_coord_scales_dict[path][1]             # <<<<<<<<<<<<<<
  *                 scale_y = self.page_paths_to_coord_scales_dict[path][2]
  * 
  */
-      __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_page_paths_to_coord_scales_dict); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 383, __pyx_L1_error)
+      __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_page_paths_to_coord_scales_dict); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 384, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
-      __pyx_t_3 = __Pyx_PyObject_GetItem(__pyx_t_2, __pyx_v_path); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 383, __pyx_L1_error)
+      __pyx_t_3 = __Pyx_PyObject_GetItem(__pyx_t_2, __pyx_v_path); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 384, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_3);
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-      __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 383, __pyx_L1_error)
+      __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 384, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
       __Pyx_XDECREF_SET(__pyx_v_scale_x, __pyx_t_2);
       __pyx_t_2 = 0;
 
-      /* "resources/svm.py":384
+      /* "resources/svm.py":385
  * 
  *                 scale_x = self.page_paths_to_coord_scales_dict[path][1]
  *                 scale_y = self.page_paths_to_coord_scales_dict[path][2]             # <<<<<<<<<<<<<<
  * 
  *                 self.cut_page_coordinates_dict[num_of_page].append(( int(xa + xp * scale_x), int(ya + yp * scale_y) , int(200 * scale_x), int(200 * scale_y)))
  */
-      __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_page_paths_to_coord_scales_dict); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 384, __pyx_L1_error)
+      __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_page_paths_to_coord_scales_dict); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 385, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
-      __pyx_t_3 = __Pyx_PyObject_GetItem(__pyx_t_2, __pyx_v_path); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 384, __pyx_L1_error)
+      __pyx_t_3 = __Pyx_PyObject_GetItem(__pyx_t_2, __pyx_v_path); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 385, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_3);
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-      __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 2, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 384, __pyx_L1_error)
+      __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_3, 2, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 385, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
       __Pyx_XDECREF_SET(__pyx_v_scale_y, __pyx_t_2);
       __pyx_t_2 = 0;
 
-      /* "resources/svm.py":386
+      /* "resources/svm.py":387
  *                 scale_y = self.page_paths_to_coord_scales_dict[path][2]
  * 
  *                 self.cut_page_coordinates_dict[num_of_page].append(( int(xa + xp * scale_x), int(ya + yp * scale_y) , int(200 * scale_x), int(200 * scale_y)))             # <<<<<<<<<<<<<<
  *             target.clear()
  * 
  */
-      __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_cut_page_coordinates_dict); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 386, __pyx_L1_error)
+      __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_cut_page_coordinates_dict); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 387, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
-      __pyx_t_3 = __Pyx_PyObject_GetItem(__pyx_t_2, __pyx_v_num_of_page); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 386, __pyx_L1_error)
+      __pyx_t_3 = __Pyx_PyObject_GetItem(__pyx_t_2, __pyx_v_num_of_page); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 387, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_3);
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-      __pyx_t_2 = PyNumber_Multiply(__pyx_v_xp, __pyx_v_scale_x); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 386, __pyx_L1_error)
+      __pyx_t_2 = PyNumber_Multiply(__pyx_v_xp, __pyx_v_scale_x); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 387, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
-      __pyx_t_4 = PyNumber_Add(__pyx_v_xa, __pyx_t_2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 386, __pyx_L1_error)
+      __pyx_t_4 = PyNumber_Add(__pyx_v_xa, __pyx_t_2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 387, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_4);
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-      __pyx_t_2 = __Pyx_PyNumber_Int(__pyx_t_4); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 386, __pyx_L1_error)
+      __pyx_t_2 = __Pyx_PyNumber_Int(__pyx_t_4); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 387, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-      __pyx_t_4 = PyNumber_Multiply(__pyx_v_yp, __pyx_v_scale_y); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 386, __pyx_L1_error)
+      __pyx_t_4 = PyNumber_Multiply(__pyx_v_yp, __pyx_v_scale_y); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 387, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_4);
-      __pyx_t_8 = PyNumber_Add(__pyx_v_ya, __pyx_t_4); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 386, __pyx_L1_error)
+      __pyx_t_8 = PyNumber_Add(__pyx_v_ya, __pyx_t_4); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 387, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_8);
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-      __pyx_t_4 = __Pyx_PyNumber_Int(__pyx_t_8); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 386, __pyx_L1_error)
+      __pyx_t_4 = __Pyx_PyNumber_Int(__pyx_t_8); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 387, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_4);
       __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-      __pyx_t_8 = __Pyx_PyInt_MultiplyCObj(__pyx_int_200, __pyx_v_scale_x, 0xC8, 0, 0); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 386, __pyx_L1_error)
+      __pyx_t_8 = __Pyx_PyInt_MultiplyCObj(__pyx_int_200, __pyx_v_scale_x, 0xC8, 0, 0); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 387, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_8);
-      __pyx_t_14 = __Pyx_PyNumber_Int(__pyx_t_8); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 386, __pyx_L1_error)
+      __pyx_t_14 = __Pyx_PyNumber_Int(__pyx_t_8); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 387, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_14);
       __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-      __pyx_t_8 = __Pyx_PyInt_MultiplyCObj(__pyx_int_200, __pyx_v_scale_y, 0xC8, 0, 0); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 386, __pyx_L1_error)
+      __pyx_t_8 = __Pyx_PyInt_MultiplyCObj(__pyx_int_200, __pyx_v_scale_y, 0xC8, 0, 0); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 387, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_8);
-      __pyx_t_15 = __Pyx_PyNumber_Int(__pyx_t_8); if (unlikely(!__pyx_t_15)) __PYX_ERR(0, 386, __pyx_L1_error)
+      __pyx_t_15 = __Pyx_PyNumber_Int(__pyx_t_8); if (unlikely(!__pyx_t_15)) __PYX_ERR(0, 387, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_15);
       __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-      __pyx_t_8 = PyTuple_New(4); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 386, __pyx_L1_error)
+      __pyx_t_8 = PyTuple_New(4); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 387, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_8);
       __Pyx_GIVEREF(__pyx_t_2);
-      if (__Pyx_PyTuple_SET_ITEM(__pyx_t_8, 0, __pyx_t_2)) __PYX_ERR(0, 386, __pyx_L1_error);
+      if (__Pyx_PyTuple_SET_ITEM(__pyx_t_8, 0, __pyx_t_2)) __PYX_ERR(0, 387, __pyx_L1_error);
       __Pyx_GIVEREF(__pyx_t_4);
-      if (__Pyx_PyTuple_SET_ITEM(__pyx_t_8, 1, __pyx_t_4)) __PYX_ERR(0, 386, __pyx_L1_error);
+      if (__Pyx_PyTuple_SET_ITEM(__pyx_t_8, 1, __pyx_t_4)) __PYX_ERR(0, 387, __pyx_L1_error);
       __Pyx_GIVEREF(__pyx_t_14);
-      if (__Pyx_PyTuple_SET_ITEM(__pyx_t_8, 2, __pyx_t_14)) __PYX_ERR(0, 386, __pyx_L1_error);
+      if (__Pyx_PyTuple_SET_ITEM(__pyx_t_8, 2, __pyx_t_14)) __PYX_ERR(0, 387, __pyx_L1_error);
       __Pyx_GIVEREF(__pyx_t_15);
-      if (__Pyx_PyTuple_SET_ITEM(__pyx_t_8, 3, __pyx_t_15)) __PYX_ERR(0, 386, __pyx_L1_error);
+      if (__Pyx_PyTuple_SET_ITEM(__pyx_t_8, 3, __pyx_t_15)) __PYX_ERR(0, 387, __pyx_L1_error);
       __pyx_t_2 = 0;
       __pyx_t_4 = 0;
       __pyx_t_14 = 0;
       __pyx_t_15 = 0;
-      __pyx_t_16 = __Pyx_PyObject_Append(__pyx_t_3, __pyx_t_8); if (unlikely(__pyx_t_16 == ((int)-1))) __PYX_ERR(0, 386, __pyx_L1_error)
+      __pyx_t_16 = __Pyx_PyObject_Append(__pyx_t_3, __pyx_t_8); if (unlikely(__pyx_t_16 == ((int)-1))) __PYX_ERR(0, 387, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
       __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
 
-      /* "resources/svm.py":370
+      /* "resources/svm.py":371
  * 
  *             # create dict
  *             for labeled_patch in target:             # <<<<<<<<<<<<<<
@@ -16668,14 +16680,14 @@ static PyObject *__pyx_pf_9resources_3svm_14CollageHandler_14finish_old(CYTHON_U
     }
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-    /* "resources/svm.py":387
+    /* "resources/svm.py":388
  * 
  *                 self.cut_page_coordinates_dict[num_of_page].append(( int(xa + xp * scale_x), int(ya + yp * scale_y) , int(200 * scale_x), int(200 * scale_y)))
  *             target.clear()             # <<<<<<<<<<<<<<
  * 
  *         self.save_patches_to_xml(self.cut_page_coordinates_dict)
  */
-    __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_v_target, __pyx_n_s_clear); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 387, __pyx_L1_error)
+    __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_v_target, __pyx_n_s_clear); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 388, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_8);
     __pyx_t_3 = NULL;
     __pyx_t_11 = 0;
@@ -16695,13 +16707,13 @@ static PyObject *__pyx_pf_9resources_3svm_14CollageHandler_14finish_old(CYTHON_U
       PyObject *__pyx_callargs[2] = {__pyx_t_3, NULL};
       __pyx_t_5 = __Pyx_PyObject_FastCall(__pyx_t_8, __pyx_callargs+1-__pyx_t_11, 0+__pyx_t_11);
       __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-      if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 387, __pyx_L1_error)
+      if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 388, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_5);
       __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
     }
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-    /* "resources/svm.py":362
+    /* "resources/svm.py":363
  * 
  *     def finish_old(self):
  *         for target, patch_class, target_cache in zip([self.blurry_patches, self.empty_patches, self.indeterminate_patches], ['blurry', 'empty', 'indeterminate'], [self.blurry_batch_paths, None, self.indeterminate_batch_paths]):             # <<<<<<<<<<<<<<
@@ -16712,16 +16724,16 @@ static PyObject *__pyx_pf_9resources_3svm_14CollageHandler_14finish_old(CYTHON_U
   }
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "resources/svm.py":389
+  /* "resources/svm.py":390
  *             target.clear()
  * 
  *         self.save_patches_to_xml(self.cut_page_coordinates_dict)             # <<<<<<<<<<<<<<
  * 
  *     def save_patches_to_xml(self, patches_dict : dict):
  */
-  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_save_patches_to_xml); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 389, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_save_patches_to_xml); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 390, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
-  __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_cut_page_coordinates_dict); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 389, __pyx_L1_error)
+  __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_cut_page_coordinates_dict); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 390, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_8);
   __pyx_t_3 = NULL;
   __pyx_t_11 = 0;
@@ -16742,13 +16754,13 @@ static PyObject *__pyx_pf_9resources_3svm_14CollageHandler_14finish_old(CYTHON_U
     __pyx_t_1 = __Pyx_PyObject_FastCall(__pyx_t_5, __pyx_callargs+1-__pyx_t_11, 1+__pyx_t_11);
     __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 389, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 390, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   }
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "resources/svm.py":361
+  /* "resources/svm.py":362
  *             self.cut_page_coordinates_dict[num_of_page].append((int(xa + xp * scale_x), int(ya + yp * scale_y) , int(200 * scale_x), int(200 * scale_y)))
  * 
  *     def finish_old(self):             # <<<<<<<<<<<<<<
@@ -16788,7 +16800,7 @@ static PyObject *__pyx_pf_9resources_3svm_14CollageHandler_14finish_old(CYTHON_U
   return __pyx_r;
 }
 
-/* "resources/svm.py":391
+/* "resources/svm.py":392
  *         self.save_patches_to_xml(self.cut_page_coordinates_dict)
  * 
  *     def save_patches_to_xml(self, patches_dict : dict):             # <<<<<<<<<<<<<<
@@ -16852,7 +16864,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
           (void)__Pyx_Arg_NewRef_FASTCALL(values[0]);
           kw_args--;
         }
-        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 391, __pyx_L3_error)
+        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 392, __pyx_L3_error)
         else goto __pyx_L5_argtuple_error;
         CYTHON_FALLTHROUGH;
         case  1:
@@ -16860,14 +16872,14 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
           (void)__Pyx_Arg_NewRef_FASTCALL(values[1]);
           kw_args--;
         }
-        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 391, __pyx_L3_error)
+        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 392, __pyx_L3_error)
         else {
-          __Pyx_RaiseArgtupleInvalid("save_patches_to_xml", 1, 2, 2, 1); __PYX_ERR(0, 391, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("save_patches_to_xml", 1, 2, 2, 1); __PYX_ERR(0, 392, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
         const Py_ssize_t kwd_pos_args = __pyx_nargs;
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "save_patches_to_xml") < 0)) __PYX_ERR(0, 391, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "save_patches_to_xml") < 0)) __PYX_ERR(0, 392, __pyx_L3_error)
       }
     } else if (unlikely(__pyx_nargs != 2)) {
       goto __pyx_L5_argtuple_error;
@@ -16880,7 +16892,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("save_patches_to_xml", 1, 2, 2, __pyx_nargs); __PYX_ERR(0, 391, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("save_patches_to_xml", 1, 2, 2, __pyx_nargs); __PYX_ERR(0, 392, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -16894,7 +16906,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_patches_dict), (&PyDict_Type), 0, "patches_dict", 1))) __PYX_ERR(0, 391, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_patches_dict), (&PyDict_Type), 0, "patches_dict", 1))) __PYX_ERR(0, 392, __pyx_L1_error)
   __pyx_r = __pyx_pf_9resources_3svm_14CollageHandler_16save_patches_to_xml(__pyx_self, __pyx_v_self, __pyx_v_patches_dict);
 
   /* function exit code */
@@ -16950,24 +16962,24 @@ static PyObject *__pyx_pf_9resources_3svm_14CollageHandler_16save_patches_to_xml
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("save_patches_to_xml", 1);
 
-  /* "resources/svm.py":392
+  /* "resources/svm.py":393
  * 
  *     def save_patches_to_xml(self, patches_dict : dict):
  *         folder_path = os.path.join(os.getenv("INSPECTION_CLIENT_FOLDERS_PATH"), 'collages')             # <<<<<<<<<<<<<<
  *         xml_filename = os.path.join(folder_path, f'{self.barcode}_patches.xml')
  *         book = ET.Element("book", barcode=str(self.barcode))
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_os); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 392, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_os); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 393, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_path); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 392, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_path); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 393, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_join); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 392, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_join); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 393, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_os); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 392, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_os); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 393, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_getenv); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 392, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_getenv); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 393, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __pyx_t_4 = NULL;
@@ -16988,7 +17000,7 @@ static PyObject *__pyx_pf_9resources_3svm_14CollageHandler_16save_patches_to_xml
     PyObject *__pyx_callargs[2] = {__pyx_t_4, __pyx_n_u_INSPECTION_CLIENT_FOLDERS_PATH};
     __pyx_t_3 = __Pyx_PyObject_FastCall(__pyx_t_5, __pyx_callargs+1-__pyx_t_6, 1+__pyx_t_6);
     __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-    if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 392, __pyx_L1_error)
+    if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 393, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   }
@@ -17011,34 +17023,34 @@ static PyObject *__pyx_pf_9resources_3svm_14CollageHandler_16save_patches_to_xml
     __pyx_t_1 = __Pyx_PyObject_FastCall(__pyx_t_2, __pyx_callargs+1-__pyx_t_6, 2+__pyx_t_6);
     __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 392, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 393, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   }
   __pyx_v_folder_path = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "resources/svm.py":393
+  /* "resources/svm.py":394
  *     def save_patches_to_xml(self, patches_dict : dict):
  *         folder_path = os.path.join(os.getenv("INSPECTION_CLIENT_FOLDERS_PATH"), 'collages')
  *         xml_filename = os.path.join(folder_path, f'{self.barcode}_patches.xml')             # <<<<<<<<<<<<<<
  *         book = ET.Element("book", barcode=str(self.barcode))
  * 
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_os); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 393, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_os); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 394, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_path); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 393, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_path); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 394, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_join); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 393, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_join); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 394, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_barcode); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 393, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_barcode); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 394, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_5 = __Pyx_PyObject_FormatSimple(__pyx_t_3, __pyx_empty_unicode); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 393, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyObject_FormatSimple(__pyx_t_3, __pyx_empty_unicode); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 394, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_3 = __Pyx_PyUnicode_ConcatInPlace(__pyx_t_5, __pyx_kp_u_patches_xml); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 393, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyUnicode_ConcatInPlace(__pyx_t_5, __pyx_kp_u_patches_xml); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 394, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   __pyx_t_5 = NULL;
@@ -17060,42 +17072,42 @@ static PyObject *__pyx_pf_9resources_3svm_14CollageHandler_16save_patches_to_xml
     __pyx_t_1 = __Pyx_PyObject_FastCall(__pyx_t_2, __pyx_callargs+1-__pyx_t_6, 2+__pyx_t_6);
     __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 393, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 394, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   }
   __pyx_v_xml_filename = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "resources/svm.py":394
+  /* "resources/svm.py":395
  *         folder_path = os.path.join(os.getenv("INSPECTION_CLIENT_FOLDERS_PATH"), 'collages')
  *         xml_filename = os.path.join(folder_path, f'{self.barcode}_patches.xml')
  *         book = ET.Element("book", barcode=str(self.barcode))             # <<<<<<<<<<<<<<
  * 
  *         for page_number, patches in patches_dict.items():
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_ET); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 394, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_ET); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 395, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_Element); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 394, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_Element); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 395, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 394, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 395, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_barcode); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 394, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_barcode); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 395, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_5 = __Pyx_PyObject_Unicode(__pyx_t_3); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 394, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyObject_Unicode(__pyx_t_3); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 395, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_barcode, __pyx_t_5) < 0) __PYX_ERR(0, 394, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_barcode, __pyx_t_5) < 0) __PYX_ERR(0, 395, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  __pyx_t_5 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_tuple__13, __pyx_t_1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 394, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_tuple__13, __pyx_t_1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 395, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_v_book = __pyx_t_5;
   __pyx_t_5 = 0;
 
-  /* "resources/svm.py":396
+  /* "resources/svm.py":397
  *         book = ET.Element("book", barcode=str(self.barcode))
  * 
  *         for page_number, patches in patches_dict.items():             # <<<<<<<<<<<<<<
@@ -17103,7 +17115,7 @@ static PyObject *__pyx_pf_9resources_3svm_14CollageHandler_16save_patches_to_xml
  *             for x, y, w, h in patches:
  */
   __pyx_t_7 = 0;
-  __pyx_t_1 = __Pyx_dict_iterator(__pyx_v_patches_dict, 1, __pyx_n_s_items, (&__pyx_t_8), (&__pyx_t_9)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 396, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_dict_iterator(__pyx_v_patches_dict, 1, __pyx_n_s_items, (&__pyx_t_8), (&__pyx_t_9)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 397, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_XDECREF(__pyx_t_5);
   __pyx_t_5 = __pyx_t_1;
@@ -17111,7 +17123,7 @@ static PyObject *__pyx_pf_9resources_3svm_14CollageHandler_16save_patches_to_xml
   while (1) {
     __pyx_t_10 = __Pyx_dict_iter_next(__pyx_t_5, __pyx_t_8, &__pyx_t_7, &__pyx_t_1, &__pyx_t_2, NULL, __pyx_t_9);
     if (unlikely(__pyx_t_10 == 0)) break;
-    if (unlikely(__pyx_t_10 == -1)) __PYX_ERR(0, 396, __pyx_L1_error)
+    if (unlikely(__pyx_t_10 == -1)) __PYX_ERR(0, 397, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_XDECREF_SET(__pyx_v_page_number, __pyx_t_1);
@@ -17119,7 +17131,7 @@ static PyObject *__pyx_pf_9resources_3svm_14CollageHandler_16save_patches_to_xml
     __Pyx_XDECREF_SET(__pyx_v_patches, __pyx_t_2);
     __pyx_t_2 = 0;
 
-    /* "resources/svm.py":398
+    /* "resources/svm.py":399
  *         for page_number, patches in patches_dict.items():
  *             # BAD code!
  *             for x, y, w, h in patches:             # <<<<<<<<<<<<<<
@@ -17131,9 +17143,9 @@ static PyObject *__pyx_pf_9resources_3svm_14CollageHandler_16save_patches_to_xml
       __pyx_t_11 = 0;
       __pyx_t_12 = NULL;
     } else {
-      __pyx_t_11 = -1; __pyx_t_2 = PyObject_GetIter(__pyx_v_patches); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 398, __pyx_L1_error)
+      __pyx_t_11 = -1; __pyx_t_2 = PyObject_GetIter(__pyx_v_patches); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 399, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
-      __pyx_t_12 = __Pyx_PyObject_GetIterNextFunc(__pyx_t_2); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 398, __pyx_L1_error)
+      __pyx_t_12 = __Pyx_PyObject_GetIterNextFunc(__pyx_t_2); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 399, __pyx_L1_error)
     }
     for (;;) {
       if (likely(!__pyx_t_12)) {
@@ -17141,28 +17153,28 @@ static PyObject *__pyx_pf_9resources_3svm_14CollageHandler_16save_patches_to_xml
           {
             Py_ssize_t __pyx_temp = __Pyx_PyList_GET_SIZE(__pyx_t_2);
             #if !CYTHON_ASSUME_SAFE_MACROS
-            if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 398, __pyx_L1_error)
+            if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 399, __pyx_L1_error)
             #endif
             if (__pyx_t_11 >= __pyx_temp) break;
           }
           #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-          __pyx_t_1 = PyList_GET_ITEM(__pyx_t_2, __pyx_t_11); __Pyx_INCREF(__pyx_t_1); __pyx_t_11++; if (unlikely((0 < 0))) __PYX_ERR(0, 398, __pyx_L1_error)
+          __pyx_t_1 = PyList_GET_ITEM(__pyx_t_2, __pyx_t_11); __Pyx_INCREF(__pyx_t_1); __pyx_t_11++; if (unlikely((0 < 0))) __PYX_ERR(0, 399, __pyx_L1_error)
           #else
-          __pyx_t_1 = __Pyx_PySequence_ITEM(__pyx_t_2, __pyx_t_11); __pyx_t_11++; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 398, __pyx_L1_error)
+          __pyx_t_1 = __Pyx_PySequence_ITEM(__pyx_t_2, __pyx_t_11); __pyx_t_11++; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 399, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_1);
           #endif
         } else {
           {
             Py_ssize_t __pyx_temp = __Pyx_PyTuple_GET_SIZE(__pyx_t_2);
             #if !CYTHON_ASSUME_SAFE_MACROS
-            if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 398, __pyx_L1_error)
+            if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 399, __pyx_L1_error)
             #endif
             if (__pyx_t_11 >= __pyx_temp) break;
           }
           #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-          __pyx_t_1 = PyTuple_GET_ITEM(__pyx_t_2, __pyx_t_11); __Pyx_INCREF(__pyx_t_1); __pyx_t_11++; if (unlikely((0 < 0))) __PYX_ERR(0, 398, __pyx_L1_error)
+          __pyx_t_1 = PyTuple_GET_ITEM(__pyx_t_2, __pyx_t_11); __Pyx_INCREF(__pyx_t_1); __pyx_t_11++; if (unlikely((0 < 0))) __PYX_ERR(0, 399, __pyx_L1_error)
           #else
-          __pyx_t_1 = __Pyx_PySequence_ITEM(__pyx_t_2, __pyx_t_11); __pyx_t_11++; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 398, __pyx_L1_error)
+          __pyx_t_1 = __Pyx_PySequence_ITEM(__pyx_t_2, __pyx_t_11); __pyx_t_11++; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 399, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_1);
           #endif
         }
@@ -17172,7 +17184,7 @@ static PyObject *__pyx_pf_9resources_3svm_14CollageHandler_16save_patches_to_xml
           PyObject* exc_type = PyErr_Occurred();
           if (exc_type) {
             if (likely(__Pyx_PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) PyErr_Clear();
-            else __PYX_ERR(0, 398, __pyx_L1_error)
+            else __PYX_ERR(0, 399, __pyx_L1_error)
           }
           break;
         }
@@ -17184,7 +17196,7 @@ static PyObject *__pyx_pf_9resources_3svm_14CollageHandler_16save_patches_to_xml
         if (unlikely(size != 4)) {
           if (size > 4) __Pyx_RaiseTooManyValuesError(4);
           else if (size >= 0) __Pyx_RaiseNeedMoreValuesError(size);
-          __PYX_ERR(0, 398, __pyx_L1_error)
+          __PYX_ERR(0, 399, __pyx_L1_error)
         }
         #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
         if (likely(PyTuple_CheckExact(sequence))) {
@@ -17207,7 +17219,7 @@ static PyObject *__pyx_pf_9resources_3svm_14CollageHandler_16save_patches_to_xml
           Py_ssize_t i;
           PyObject** temps[4] = {&__pyx_t_3,&__pyx_t_4,&__pyx_t_13,&__pyx_t_14};
           for (i=0; i < 4; i++) {
-            PyObject* item = PySequence_ITEM(sequence, i); if (unlikely(!item)) __PYX_ERR(0, 398, __pyx_L1_error)
+            PyObject* item = PySequence_ITEM(sequence, i); if (unlikely(!item)) __PYX_ERR(0, 399, __pyx_L1_error)
             __Pyx_GOTREF(item);
             *(temps[i]) = item;
           }
@@ -17217,7 +17229,7 @@ static PyObject *__pyx_pf_9resources_3svm_14CollageHandler_16save_patches_to_xml
       } else {
         Py_ssize_t index = -1;
         PyObject** temps[4] = {&__pyx_t_3,&__pyx_t_4,&__pyx_t_13,&__pyx_t_14};
-        __pyx_t_15 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_15)) __PYX_ERR(0, 398, __pyx_L1_error)
+        __pyx_t_15 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_15)) __PYX_ERR(0, 399, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_15);
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
         __pyx_t_16 = __Pyx_PyObject_GetIterNextFunc(__pyx_t_15);
@@ -17226,7 +17238,7 @@ static PyObject *__pyx_pf_9resources_3svm_14CollageHandler_16save_patches_to_xml
           __Pyx_GOTREF(item);
           *(temps[index]) = item;
         }
-        if (__Pyx_IternextUnpackEndCheck(__pyx_t_16(__pyx_t_15), 4) < 0) __PYX_ERR(0, 398, __pyx_L1_error)
+        if (__Pyx_IternextUnpackEndCheck(__pyx_t_16(__pyx_t_15), 4) < 0) __PYX_ERR(0, 399, __pyx_L1_error)
         __pyx_t_16 = NULL;
         __Pyx_DECREF(__pyx_t_15); __pyx_t_15 = 0;
         goto __pyx_L8_unpacking_done;
@@ -17234,7 +17246,7 @@ static PyObject *__pyx_pf_9resources_3svm_14CollageHandler_16save_patches_to_xml
         __Pyx_DECREF(__pyx_t_15); __pyx_t_15 = 0;
         __pyx_t_16 = NULL;
         if (__Pyx_IterFinish() == 0) __Pyx_RaiseNeedMoreValuesError(index);
-        __PYX_ERR(0, 398, __pyx_L1_error)
+        __PYX_ERR(0, 399, __pyx_L1_error)
         __pyx_L8_unpacking_done:;
       }
       __Pyx_XDECREF_SET(__pyx_v_x, __pyx_t_3);
@@ -17246,7 +17258,7 @@ static PyObject *__pyx_pf_9resources_3svm_14CollageHandler_16save_patches_to_xml
       __Pyx_XDECREF_SET(__pyx_v_h, __pyx_t_14);
       __pyx_t_14 = 0;
 
-      /* "resources/svm.py":399
+      /* "resources/svm.py":400
  *             # BAD code!
  *             for x, y, w, h in patches:
  *                 width = w             # <<<<<<<<<<<<<<
@@ -17256,7 +17268,7 @@ static PyObject *__pyx_pf_9resources_3svm_14CollageHandler_16save_patches_to_xml
       __Pyx_INCREF(__pyx_v_w);
       __Pyx_XDECREF_SET(__pyx_v_width, __pyx_v_w);
 
-      /* "resources/svm.py":400
+      /* "resources/svm.py":401
  *             for x, y, w, h in patches:
  *                 width = w
  *                 height = h             # <<<<<<<<<<<<<<
@@ -17266,7 +17278,7 @@ static PyObject *__pyx_pf_9resources_3svm_14CollageHandler_16save_patches_to_xml
       __Pyx_INCREF(__pyx_v_h);
       __Pyx_XDECREF_SET(__pyx_v_height, __pyx_v_h);
 
-      /* "resources/svm.py":401
+      /* "resources/svm.py":402
  *                 width = w
  *                 height = h
  *                 break             # <<<<<<<<<<<<<<
@@ -17275,7 +17287,7 @@ static PyObject *__pyx_pf_9resources_3svm_14CollageHandler_16save_patches_to_xml
  */
       goto __pyx_L6_break;
 
-      /* "resources/svm.py":398
+      /* "resources/svm.py":399
  *         for page_number, patches in patches_dict.items():
  *             # BAD code!
  *             for x, y, w, h in patches:             # <<<<<<<<<<<<<<
@@ -17290,43 +17302,43 @@ static PyObject *__pyx_pf_9resources_3svm_14CollageHandler_16save_patches_to_xml
     goto __pyx_L9_for_end;
     __pyx_L9_for_end:;
 
-    /* "resources/svm.py":403
+    /* "resources/svm.py":404
  *                 break
  * 
  *             page = ET.SubElement(book, "page", number=str(page_number), patch_width=str(width), patch_height=str(height))             # <<<<<<<<<<<<<<
  * 
  *             for x, y, width, height in patches:
  */
-    __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_ET); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 403, __pyx_L1_error)
+    __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_ET); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 404, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_SubElement); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 403, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_SubElement); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 404, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __pyx_t_2 = PyTuple_New(2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 403, __pyx_L1_error)
+    __pyx_t_2 = PyTuple_New(2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 404, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_INCREF(__pyx_v_book);
     __Pyx_GIVEREF(__pyx_v_book);
-    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_v_book)) __PYX_ERR(0, 403, __pyx_L1_error);
+    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_v_book)) __PYX_ERR(0, 404, __pyx_L1_error);
     __Pyx_INCREF(__pyx_n_u_page);
     __Pyx_GIVEREF(__pyx_n_u_page);
-    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_2, 1, __pyx_n_u_page)) __PYX_ERR(0, 403, __pyx_L1_error);
-    __pyx_t_14 = __Pyx_PyDict_NewPresized(3); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 403, __pyx_L1_error)
+    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_2, 1, __pyx_n_u_page)) __PYX_ERR(0, 404, __pyx_L1_error);
+    __pyx_t_14 = __Pyx_PyDict_NewPresized(3); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 404, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_14);
-    __pyx_t_13 = __Pyx_PyObject_Unicode(__pyx_v_page_number); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 403, __pyx_L1_error)
+    __pyx_t_13 = __Pyx_PyObject_Unicode(__pyx_v_page_number); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 404, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_13);
-    if (PyDict_SetItem(__pyx_t_14, __pyx_n_s_number, __pyx_t_13) < 0) __PYX_ERR(0, 403, __pyx_L1_error)
+    if (PyDict_SetItem(__pyx_t_14, __pyx_n_s_number, __pyx_t_13) < 0) __PYX_ERR(0, 404, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_13); __pyx_t_13 = 0;
-    if (unlikely(!__pyx_v_width)) { __Pyx_RaiseUnboundLocalError("width"); __PYX_ERR(0, 403, __pyx_L1_error) }
-    __pyx_t_13 = __Pyx_PyObject_Unicode(__pyx_v_width); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 403, __pyx_L1_error)
+    if (unlikely(!__pyx_v_width)) { __Pyx_RaiseUnboundLocalError("width"); __PYX_ERR(0, 404, __pyx_L1_error) }
+    __pyx_t_13 = __Pyx_PyObject_Unicode(__pyx_v_width); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 404, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_13);
-    if (PyDict_SetItem(__pyx_t_14, __pyx_n_s_patch_width, __pyx_t_13) < 0) __PYX_ERR(0, 403, __pyx_L1_error)
+    if (PyDict_SetItem(__pyx_t_14, __pyx_n_s_patch_width, __pyx_t_13) < 0) __PYX_ERR(0, 404, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_13); __pyx_t_13 = 0;
-    if (unlikely(!__pyx_v_height)) { __Pyx_RaiseUnboundLocalError("height"); __PYX_ERR(0, 403, __pyx_L1_error) }
-    __pyx_t_13 = __Pyx_PyObject_Unicode(__pyx_v_height); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 403, __pyx_L1_error)
+    if (unlikely(!__pyx_v_height)) { __Pyx_RaiseUnboundLocalError("height"); __PYX_ERR(0, 404, __pyx_L1_error) }
+    __pyx_t_13 = __Pyx_PyObject_Unicode(__pyx_v_height); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 404, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_13);
-    if (PyDict_SetItem(__pyx_t_14, __pyx_n_s_patch_height, __pyx_t_13) < 0) __PYX_ERR(0, 403, __pyx_L1_error)
+    if (PyDict_SetItem(__pyx_t_14, __pyx_n_s_patch_height, __pyx_t_13) < 0) __PYX_ERR(0, 404, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_13); __pyx_t_13 = 0;
-    __pyx_t_13 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_2, __pyx_t_14); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 403, __pyx_L1_error)
+    __pyx_t_13 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_2, __pyx_t_14); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 404, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_13);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
@@ -17334,7 +17346,7 @@ static PyObject *__pyx_pf_9resources_3svm_14CollageHandler_16save_patches_to_xml
     __Pyx_XDECREF_SET(__pyx_v_page, __pyx_t_13);
     __pyx_t_13 = 0;
 
-    /* "resources/svm.py":405
+    /* "resources/svm.py":406
  *             page = ET.SubElement(book, "page", number=str(page_number), patch_width=str(width), patch_height=str(height))
  * 
  *             for x, y, width, height in patches:             # <<<<<<<<<<<<<<
@@ -17346,9 +17358,9 @@ static PyObject *__pyx_pf_9resources_3svm_14CollageHandler_16save_patches_to_xml
       __pyx_t_11 = 0;
       __pyx_t_12 = NULL;
     } else {
-      __pyx_t_11 = -1; __pyx_t_13 = PyObject_GetIter(__pyx_v_patches); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 405, __pyx_L1_error)
+      __pyx_t_11 = -1; __pyx_t_13 = PyObject_GetIter(__pyx_v_patches); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 406, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_13);
-      __pyx_t_12 = __Pyx_PyObject_GetIterNextFunc(__pyx_t_13); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 405, __pyx_L1_error)
+      __pyx_t_12 = __Pyx_PyObject_GetIterNextFunc(__pyx_t_13); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 406, __pyx_L1_error)
     }
     for (;;) {
       if (likely(!__pyx_t_12)) {
@@ -17356,28 +17368,28 @@ static PyObject *__pyx_pf_9resources_3svm_14CollageHandler_16save_patches_to_xml
           {
             Py_ssize_t __pyx_temp = __Pyx_PyList_GET_SIZE(__pyx_t_13);
             #if !CYTHON_ASSUME_SAFE_MACROS
-            if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 405, __pyx_L1_error)
+            if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 406, __pyx_L1_error)
             #endif
             if (__pyx_t_11 >= __pyx_temp) break;
           }
           #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-          __pyx_t_14 = PyList_GET_ITEM(__pyx_t_13, __pyx_t_11); __Pyx_INCREF(__pyx_t_14); __pyx_t_11++; if (unlikely((0 < 0))) __PYX_ERR(0, 405, __pyx_L1_error)
+          __pyx_t_14 = PyList_GET_ITEM(__pyx_t_13, __pyx_t_11); __Pyx_INCREF(__pyx_t_14); __pyx_t_11++; if (unlikely((0 < 0))) __PYX_ERR(0, 406, __pyx_L1_error)
           #else
-          __pyx_t_14 = __Pyx_PySequence_ITEM(__pyx_t_13, __pyx_t_11); __pyx_t_11++; if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 405, __pyx_L1_error)
+          __pyx_t_14 = __Pyx_PySequence_ITEM(__pyx_t_13, __pyx_t_11); __pyx_t_11++; if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 406, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_14);
           #endif
         } else {
           {
             Py_ssize_t __pyx_temp = __Pyx_PyTuple_GET_SIZE(__pyx_t_13);
             #if !CYTHON_ASSUME_SAFE_MACROS
-            if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 405, __pyx_L1_error)
+            if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 406, __pyx_L1_error)
             #endif
             if (__pyx_t_11 >= __pyx_temp) break;
           }
           #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-          __pyx_t_14 = PyTuple_GET_ITEM(__pyx_t_13, __pyx_t_11); __Pyx_INCREF(__pyx_t_14); __pyx_t_11++; if (unlikely((0 < 0))) __PYX_ERR(0, 405, __pyx_L1_error)
+          __pyx_t_14 = PyTuple_GET_ITEM(__pyx_t_13, __pyx_t_11); __Pyx_INCREF(__pyx_t_14); __pyx_t_11++; if (unlikely((0 < 0))) __PYX_ERR(0, 406, __pyx_L1_error)
           #else
-          __pyx_t_14 = __Pyx_PySequence_ITEM(__pyx_t_13, __pyx_t_11); __pyx_t_11++; if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 405, __pyx_L1_error)
+          __pyx_t_14 = __Pyx_PySequence_ITEM(__pyx_t_13, __pyx_t_11); __pyx_t_11++; if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 406, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_14);
           #endif
         }
@@ -17387,7 +17399,7 @@ static PyObject *__pyx_pf_9resources_3svm_14CollageHandler_16save_patches_to_xml
           PyObject* exc_type = PyErr_Occurred();
           if (exc_type) {
             if (likely(__Pyx_PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) PyErr_Clear();
-            else __PYX_ERR(0, 405, __pyx_L1_error)
+            else __PYX_ERR(0, 406, __pyx_L1_error)
           }
           break;
         }
@@ -17399,7 +17411,7 @@ static PyObject *__pyx_pf_9resources_3svm_14CollageHandler_16save_patches_to_xml
         if (unlikely(size != 4)) {
           if (size > 4) __Pyx_RaiseTooManyValuesError(4);
           else if (size >= 0) __Pyx_RaiseNeedMoreValuesError(size);
-          __PYX_ERR(0, 405, __pyx_L1_error)
+          __PYX_ERR(0, 406, __pyx_L1_error)
         }
         #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
         if (likely(PyTuple_CheckExact(sequence))) {
@@ -17422,7 +17434,7 @@ static PyObject *__pyx_pf_9resources_3svm_14CollageHandler_16save_patches_to_xml
           Py_ssize_t i;
           PyObject** temps[4] = {&__pyx_t_2,&__pyx_t_1,&__pyx_t_4,&__pyx_t_3};
           for (i=0; i < 4; i++) {
-            PyObject* item = PySequence_ITEM(sequence, i); if (unlikely(!item)) __PYX_ERR(0, 405, __pyx_L1_error)
+            PyObject* item = PySequence_ITEM(sequence, i); if (unlikely(!item)) __PYX_ERR(0, 406, __pyx_L1_error)
             __Pyx_GOTREF(item);
             *(temps[i]) = item;
           }
@@ -17432,7 +17444,7 @@ static PyObject *__pyx_pf_9resources_3svm_14CollageHandler_16save_patches_to_xml
       } else {
         Py_ssize_t index = -1;
         PyObject** temps[4] = {&__pyx_t_2,&__pyx_t_1,&__pyx_t_4,&__pyx_t_3};
-        __pyx_t_15 = PyObject_GetIter(__pyx_t_14); if (unlikely(!__pyx_t_15)) __PYX_ERR(0, 405, __pyx_L1_error)
+        __pyx_t_15 = PyObject_GetIter(__pyx_t_14); if (unlikely(!__pyx_t_15)) __PYX_ERR(0, 406, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_15);
         __Pyx_DECREF(__pyx_t_14); __pyx_t_14 = 0;
         __pyx_t_16 = __Pyx_PyObject_GetIterNextFunc(__pyx_t_15);
@@ -17441,7 +17453,7 @@ static PyObject *__pyx_pf_9resources_3svm_14CollageHandler_16save_patches_to_xml
           __Pyx_GOTREF(item);
           *(temps[index]) = item;
         }
-        if (__Pyx_IternextUnpackEndCheck(__pyx_t_16(__pyx_t_15), 4) < 0) __PYX_ERR(0, 405, __pyx_L1_error)
+        if (__Pyx_IternextUnpackEndCheck(__pyx_t_16(__pyx_t_15), 4) < 0) __PYX_ERR(0, 406, __pyx_L1_error)
         __pyx_t_16 = NULL;
         __Pyx_DECREF(__pyx_t_15); __pyx_t_15 = 0;
         goto __pyx_L13_unpacking_done;
@@ -17449,7 +17461,7 @@ static PyObject *__pyx_pf_9resources_3svm_14CollageHandler_16save_patches_to_xml
         __Pyx_DECREF(__pyx_t_15); __pyx_t_15 = 0;
         __pyx_t_16 = NULL;
         if (__Pyx_IterFinish() == 0) __Pyx_RaiseNeedMoreValuesError(index);
-        __PYX_ERR(0, 405, __pyx_L1_error)
+        __PYX_ERR(0, 406, __pyx_L1_error)
         __pyx_L13_unpacking_done:;
       }
       __Pyx_XDECREF_SET(__pyx_v_x, __pyx_t_2);
@@ -17461,37 +17473,37 @@ static PyObject *__pyx_pf_9resources_3svm_14CollageHandler_16save_patches_to_xml
       __Pyx_XDECREF_SET(__pyx_v_height, __pyx_t_3);
       __pyx_t_3 = 0;
 
-      /* "resources/svm.py":407
+      /* "resources/svm.py":408
  *             for x, y, width, height in patches:
  *                 #patch = ET.SubElement(page, "patch", x=str(x), y=str(y), label=label)
  *                 patch = ET.SubElement(page, "patch", x=str(x), y=str(y))             # <<<<<<<<<<<<<<
  *         tree = ET.ElementTree(book)
  *         tree.write(xml_filename, encoding='utf-8', xml_declaration=True)
  */
-      __Pyx_GetModuleGlobalName(__pyx_t_14, __pyx_n_s_ET); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 407, __pyx_L1_error)
+      __Pyx_GetModuleGlobalName(__pyx_t_14, __pyx_n_s_ET); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 408, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_14);
-      __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_14, __pyx_n_s_SubElement); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 407, __pyx_L1_error)
+      __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_14, __pyx_n_s_SubElement); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 408, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_3);
       __Pyx_DECREF(__pyx_t_14); __pyx_t_14 = 0;
-      __pyx_t_14 = PyTuple_New(2); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 407, __pyx_L1_error)
+      __pyx_t_14 = PyTuple_New(2); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 408, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_14);
       __Pyx_INCREF(__pyx_v_page);
       __Pyx_GIVEREF(__pyx_v_page);
-      if (__Pyx_PyTuple_SET_ITEM(__pyx_t_14, 0, __pyx_v_page)) __PYX_ERR(0, 407, __pyx_L1_error);
+      if (__Pyx_PyTuple_SET_ITEM(__pyx_t_14, 0, __pyx_v_page)) __PYX_ERR(0, 408, __pyx_L1_error);
       __Pyx_INCREF(__pyx_n_u_patch);
       __Pyx_GIVEREF(__pyx_n_u_patch);
-      if (__Pyx_PyTuple_SET_ITEM(__pyx_t_14, 1, __pyx_n_u_patch)) __PYX_ERR(0, 407, __pyx_L1_error);
-      __pyx_t_4 = __Pyx_PyDict_NewPresized(2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 407, __pyx_L1_error)
+      if (__Pyx_PyTuple_SET_ITEM(__pyx_t_14, 1, __pyx_n_u_patch)) __PYX_ERR(0, 408, __pyx_L1_error);
+      __pyx_t_4 = __Pyx_PyDict_NewPresized(2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 408, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_4);
-      __pyx_t_1 = __Pyx_PyObject_Unicode(__pyx_v_x); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 407, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_Unicode(__pyx_v_x); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 408, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
-      if (PyDict_SetItem(__pyx_t_4, __pyx_n_s_x, __pyx_t_1) < 0) __PYX_ERR(0, 407, __pyx_L1_error)
+      if (PyDict_SetItem(__pyx_t_4, __pyx_n_s_x, __pyx_t_1) < 0) __PYX_ERR(0, 408, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-      __pyx_t_1 = __Pyx_PyObject_Unicode(__pyx_v_y); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 407, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_Unicode(__pyx_v_y); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 408, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
-      if (PyDict_SetItem(__pyx_t_4, __pyx_n_s_y, __pyx_t_1) < 0) __PYX_ERR(0, 407, __pyx_L1_error)
+      if (PyDict_SetItem(__pyx_t_4, __pyx_n_s_y, __pyx_t_1) < 0) __PYX_ERR(0, 408, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-      __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_14, __pyx_t_4); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 407, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_14, __pyx_t_4); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 408, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
       __Pyx_DECREF(__pyx_t_14); __pyx_t_14 = 0;
@@ -17499,7 +17511,7 @@ static PyObject *__pyx_pf_9resources_3svm_14CollageHandler_16save_patches_to_xml
       __Pyx_XDECREF_SET(__pyx_v_patch, __pyx_t_1);
       __pyx_t_1 = 0;
 
-      /* "resources/svm.py":405
+      /* "resources/svm.py":406
  *             page = ET.SubElement(book, "page", number=str(page_number), patch_width=str(width), patch_height=str(height))
  * 
  *             for x, y, width, height in patches:             # <<<<<<<<<<<<<<
@@ -17511,16 +17523,16 @@ static PyObject *__pyx_pf_9resources_3svm_14CollageHandler_16save_patches_to_xml
   }
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "resources/svm.py":408
+  /* "resources/svm.py":409
  *                 #patch = ET.SubElement(page, "patch", x=str(x), y=str(y), label=label)
  *                 patch = ET.SubElement(page, "patch", x=str(x), y=str(y))
  *         tree = ET.ElementTree(book)             # <<<<<<<<<<<<<<
  *         tree.write(xml_filename, encoding='utf-8', xml_declaration=True)
  * 
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_13, __pyx_n_s_ET); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 408, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_13, __pyx_n_s_ET); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 409, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_13);
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_13, __pyx_n_s_ElementTree); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 408, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_13, __pyx_n_s_ElementTree); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 409, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_13); __pyx_t_13 = 0;
   __pyx_t_13 = NULL;
@@ -17541,39 +17553,39 @@ static PyObject *__pyx_pf_9resources_3svm_14CollageHandler_16save_patches_to_xml
     PyObject *__pyx_callargs[2] = {__pyx_t_13, __pyx_v_book};
     __pyx_t_5 = __Pyx_PyObject_FastCall(__pyx_t_1, __pyx_callargs+1-__pyx_t_6, 1+__pyx_t_6);
     __Pyx_XDECREF(__pyx_t_13); __pyx_t_13 = 0;
-    if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 408, __pyx_L1_error)
+    if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 409, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   }
   __pyx_v_tree = __pyx_t_5;
   __pyx_t_5 = 0;
 
-  /* "resources/svm.py":409
+  /* "resources/svm.py":410
  *                 patch = ET.SubElement(page, "patch", x=str(x), y=str(y))
  *         tree = ET.ElementTree(book)
  *         tree.write(xml_filename, encoding='utf-8', xml_declaration=True)             # <<<<<<<<<<<<<<
  * 
  * 
  */
-  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_tree, __pyx_n_s_write); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 409, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_tree, __pyx_n_s_write); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 410, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
-  __pyx_t_1 = PyTuple_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 409, __pyx_L1_error)
+  __pyx_t_1 = PyTuple_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 410, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_INCREF(__pyx_v_xml_filename);
   __Pyx_GIVEREF(__pyx_v_xml_filename);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_v_xml_filename)) __PYX_ERR(0, 409, __pyx_L1_error);
-  __pyx_t_13 = __Pyx_PyDict_NewPresized(2); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 409, __pyx_L1_error)
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_v_xml_filename)) __PYX_ERR(0, 410, __pyx_L1_error);
+  __pyx_t_13 = __Pyx_PyDict_NewPresized(2); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 410, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_13);
-  if (PyDict_SetItem(__pyx_t_13, __pyx_n_s_encoding, __pyx_kp_u_utf_8) < 0) __PYX_ERR(0, 409, __pyx_L1_error)
-  if (PyDict_SetItem(__pyx_t_13, __pyx_n_s_xml_declaration, Py_True) < 0) __PYX_ERR(0, 409, __pyx_L1_error)
-  __pyx_t_4 = __Pyx_PyObject_Call(__pyx_t_5, __pyx_t_1, __pyx_t_13); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 409, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_13, __pyx_n_s_encoding, __pyx_kp_u_utf_8) < 0) __PYX_ERR(0, 410, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_13, __pyx_n_s_xml_declaration, Py_True) < 0) __PYX_ERR(0, 410, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_Call(__pyx_t_5, __pyx_t_1, __pyx_t_13); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 410, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF(__pyx_t_13); __pyx_t_13 = 0;
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "resources/svm.py":391
+  /* "resources/svm.py":392
  *         self.save_patches_to_xml(self.cut_page_coordinates_dict)
  * 
  *     def save_patches_to_xml(self, patches_dict : dict):             # <<<<<<<<<<<<<<
@@ -17615,7 +17627,7 @@ static PyObject *__pyx_pf_9resources_3svm_14CollageHandler_16save_patches_to_xml
   return __pyx_r;
 }
 
-/* "resources/svm.py":412
+/* "resources/svm.py":413
  * 
  * 
  *     def add_patch(self, labeled_patch):             # <<<<<<<<<<<<<<
@@ -17679,7 +17691,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
           (void)__Pyx_Arg_NewRef_FASTCALL(values[0]);
           kw_args--;
         }
-        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 412, __pyx_L3_error)
+        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 413, __pyx_L3_error)
         else goto __pyx_L5_argtuple_error;
         CYTHON_FALLTHROUGH;
         case  1:
@@ -17687,14 +17699,14 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
           (void)__Pyx_Arg_NewRef_FASTCALL(values[1]);
           kw_args--;
         }
-        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 412, __pyx_L3_error)
+        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 413, __pyx_L3_error)
         else {
-          __Pyx_RaiseArgtupleInvalid("add_patch", 1, 2, 2, 1); __PYX_ERR(0, 412, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("add_patch", 1, 2, 2, 1); __PYX_ERR(0, 413, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
         const Py_ssize_t kwd_pos_args = __pyx_nargs;
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "add_patch") < 0)) __PYX_ERR(0, 412, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "add_patch") < 0)) __PYX_ERR(0, 413, __pyx_L3_error)
       }
     } else if (unlikely(__pyx_nargs != 2)) {
       goto __pyx_L5_argtuple_error;
@@ -17707,7 +17719,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("add_patch", 1, 2, 2, __pyx_nargs); __PYX_ERR(0, 412, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("add_patch", 1, 2, 2, __pyx_nargs); __PYX_ERR(0, 413, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -17765,7 +17777,7 @@ static PyObject *__pyx_pf_9resources_3svm_14CollageHandler_18add_patch(CYTHON_UN
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("add_patch", 1);
 
-  /* "resources/svm.py":413
+  /* "resources/svm.py":414
  * 
  *     def add_patch(self, labeled_patch):
  *         with self.lock:  # Ensure thread-safe access             # <<<<<<<<<<<<<<
@@ -17773,11 +17785,11 @@ static PyObject *__pyx_pf_9resources_3svm_14CollageHandler_18add_patch(CYTHON_UN
  *             patch_class = labeled_patch[2]
  */
   /*with:*/ {
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_lock); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 413, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_lock); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 414, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_2 = __Pyx_PyObject_LookupSpecial(__pyx_t_1, __pyx_n_s_exit); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 413, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyObject_LookupSpecial(__pyx_t_1, __pyx_n_s_exit); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 414, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_4 = __Pyx_PyObject_LookupSpecial(__pyx_t_1, __pyx_n_s_enter); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 413, __pyx_L3_error)
+    __pyx_t_4 = __Pyx_PyObject_LookupSpecial(__pyx_t_1, __pyx_n_s_enter); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 414, __pyx_L3_error)
     __Pyx_GOTREF(__pyx_t_4);
     __pyx_t_5 = NULL;
     __pyx_t_6 = 0;
@@ -17797,7 +17809,7 @@ static PyObject *__pyx_pf_9resources_3svm_14CollageHandler_18add_patch(CYTHON_UN
       PyObject *__pyx_callargs[2] = {__pyx_t_5, NULL};
       __pyx_t_3 = __Pyx_PyObject_FastCall(__pyx_t_4, __pyx_callargs+1-__pyx_t_6, 0+__pyx_t_6);
       __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
-      if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 413, __pyx_L3_error)
+      if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 414, __pyx_L3_error)
       __Pyx_GOTREF(__pyx_t_3);
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     }
@@ -17813,7 +17825,7 @@ static PyObject *__pyx_pf_9resources_3svm_14CollageHandler_18add_patch(CYTHON_UN
         __Pyx_XGOTREF(__pyx_t_9);
         /*try:*/ {
 
-          /* "resources/svm.py":414
+          /* "resources/svm.py":415
  *     def add_patch(self, labeled_patch):
  *         with self.lock:  # Ensure thread-safe access
  *             target = None             # <<<<<<<<<<<<<<
@@ -17823,41 +17835,41 @@ static PyObject *__pyx_pf_9resources_3svm_14CollageHandler_18add_patch(CYTHON_UN
           __Pyx_INCREF(Py_None);
           __pyx_v_target = Py_None;
 
-          /* "resources/svm.py":415
+          /* "resources/svm.py":416
  *         with self.lock:  # Ensure thread-safe access
  *             target = None
  *             patch_class = labeled_patch[2]             # <<<<<<<<<<<<<<
  * 
  *             if patch_class == 'blurry':
  */
-          __pyx_t_1 = __Pyx_GetItemInt(__pyx_v_labeled_patch, 2, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 415, __pyx_L7_error)
+          __pyx_t_1 = __Pyx_GetItemInt(__pyx_v_labeled_patch, 2, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 416, __pyx_L7_error)
           __Pyx_GOTREF(__pyx_t_1);
           __pyx_v_patch_class = __pyx_t_1;
           __pyx_t_1 = 0;
 
-          /* "resources/svm.py":417
+          /* "resources/svm.py":418
  *             patch_class = labeled_patch[2]
  * 
  *             if patch_class == 'blurry':             # <<<<<<<<<<<<<<
  *                 target = self.blurry_patches
  *             elif patch_class == 'empty':
  */
-          __pyx_t_10 = (__Pyx_PyUnicode_Equals(__pyx_v_patch_class, __pyx_n_u_blurry, Py_EQ)); if (unlikely((__pyx_t_10 < 0))) __PYX_ERR(0, 417, __pyx_L7_error)
+          __pyx_t_10 = (__Pyx_PyUnicode_Equals(__pyx_v_patch_class, __pyx_n_u_blurry, Py_EQ)); if (unlikely((__pyx_t_10 < 0))) __PYX_ERR(0, 418, __pyx_L7_error)
           if (__pyx_t_10) {
 
-            /* "resources/svm.py":418
+            /* "resources/svm.py":419
  * 
  *             if patch_class == 'blurry':
  *                 target = self.blurry_patches             # <<<<<<<<<<<<<<
  *             elif patch_class == 'empty':
  *                 target = self.empty_patches
  */
-            __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_blurry_patches); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 418, __pyx_L7_error)
+            __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_blurry_patches); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 419, __pyx_L7_error)
             __Pyx_GOTREF(__pyx_t_1);
             __Pyx_DECREF_SET(__pyx_v_target, __pyx_t_1);
             __pyx_t_1 = 0;
 
-            /* "resources/svm.py":417
+            /* "resources/svm.py":418
  *             patch_class = labeled_patch[2]
  * 
  *             if patch_class == 'blurry':             # <<<<<<<<<<<<<<
@@ -17867,29 +17879,29 @@ static PyObject *__pyx_pf_9resources_3svm_14CollageHandler_18add_patch(CYTHON_UN
             goto __pyx_L13;
           }
 
-          /* "resources/svm.py":419
+          /* "resources/svm.py":420
  *             if patch_class == 'blurry':
  *                 target = self.blurry_patches
  *             elif patch_class == 'empty':             # <<<<<<<<<<<<<<
  *                 target = self.empty_patches
  *             elif patch_class == 'indeterminate':
  */
-          __pyx_t_10 = (__Pyx_PyUnicode_Equals(__pyx_v_patch_class, __pyx_n_u_empty, Py_EQ)); if (unlikely((__pyx_t_10 < 0))) __PYX_ERR(0, 419, __pyx_L7_error)
+          __pyx_t_10 = (__Pyx_PyUnicode_Equals(__pyx_v_patch_class, __pyx_n_u_empty, Py_EQ)); if (unlikely((__pyx_t_10 < 0))) __PYX_ERR(0, 420, __pyx_L7_error)
           if (__pyx_t_10) {
 
-            /* "resources/svm.py":420
+            /* "resources/svm.py":421
  *                 target = self.blurry_patches
  *             elif patch_class == 'empty':
  *                 target = self.empty_patches             # <<<<<<<<<<<<<<
  *             elif patch_class == 'indeterminate':
  *                 target = self.indeterminate_patches
  */
-            __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_empty_patches); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 420, __pyx_L7_error)
+            __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_empty_patches); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 421, __pyx_L7_error)
             __Pyx_GOTREF(__pyx_t_1);
             __Pyx_DECREF_SET(__pyx_v_target, __pyx_t_1);
             __pyx_t_1 = 0;
 
-            /* "resources/svm.py":419
+            /* "resources/svm.py":420
  *             if patch_class == 'blurry':
  *                 target = self.blurry_patches
  *             elif patch_class == 'empty':             # <<<<<<<<<<<<<<
@@ -17899,29 +17911,29 @@ static PyObject *__pyx_pf_9resources_3svm_14CollageHandler_18add_patch(CYTHON_UN
             goto __pyx_L13;
           }
 
-          /* "resources/svm.py":421
+          /* "resources/svm.py":422
  *             elif patch_class == 'empty':
  *                 target = self.empty_patches
  *             elif patch_class == 'indeterminate':             # <<<<<<<<<<<<<<
  *                 target = self.indeterminate_patches
  * 
  */
-          __pyx_t_10 = (__Pyx_PyUnicode_Equals(__pyx_v_patch_class, __pyx_n_u_indeterminate, Py_EQ)); if (unlikely((__pyx_t_10 < 0))) __PYX_ERR(0, 421, __pyx_L7_error)
+          __pyx_t_10 = (__Pyx_PyUnicode_Equals(__pyx_v_patch_class, __pyx_n_u_indeterminate, Py_EQ)); if (unlikely((__pyx_t_10 < 0))) __PYX_ERR(0, 422, __pyx_L7_error)
           if (__pyx_t_10) {
 
-            /* "resources/svm.py":422
+            /* "resources/svm.py":423
  *                 target = self.empty_patches
  *             elif patch_class == 'indeterminate':
  *                 target = self.indeterminate_patches             # <<<<<<<<<<<<<<
  * 
  *             if target is None:
  */
-            __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_indeterminate_patches); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 422, __pyx_L7_error)
+            __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_indeterminate_patches); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 423, __pyx_L7_error)
             __Pyx_GOTREF(__pyx_t_1);
             __Pyx_DECREF_SET(__pyx_v_target, __pyx_t_1);
             __pyx_t_1 = 0;
 
-            /* "resources/svm.py":421
+            /* "resources/svm.py":422
  *             elif patch_class == 'empty':
  *                 target = self.empty_patches
  *             elif patch_class == 'indeterminate':             # <<<<<<<<<<<<<<
@@ -17931,7 +17943,7 @@ static PyObject *__pyx_pf_9resources_3svm_14CollageHandler_18add_patch(CYTHON_UN
           }
           __pyx_L13:;
 
-          /* "resources/svm.py":424
+          /* "resources/svm.py":425
  *                 target = self.indeterminate_patches
  * 
  *             if target is None:             # <<<<<<<<<<<<<<
@@ -17941,7 +17953,7 @@ static PyObject *__pyx_pf_9resources_3svm_14CollageHandler_18add_patch(CYTHON_UN
           __pyx_t_10 = (__pyx_v_target == Py_None);
           if (__pyx_t_10) {
 
-            /* "resources/svm.py":425
+            /* "resources/svm.py":426
  * 
  *             if target is None:
  *                 return 0  # Didn't add anything             # <<<<<<<<<<<<<<
@@ -17953,7 +17965,7 @@ static PyObject *__pyx_pf_9resources_3svm_14CollageHandler_18add_patch(CYTHON_UN
             __pyx_r = __pyx_int_0;
             goto __pyx_L11_try_return;
 
-            /* "resources/svm.py":424
+            /* "resources/svm.py":425
  *                 target = self.indeterminate_patches
  * 
  *             if target is None:             # <<<<<<<<<<<<<<
@@ -17962,17 +17974,17 @@ static PyObject *__pyx_pf_9resources_3svm_14CollageHandler_18add_patch(CYTHON_UN
  */
           }
 
-          /* "resources/svm.py":427
+          /* "resources/svm.py":428
  *                 return 0  # Didn't add anything
  * 
  *             if patch_class == 'empty':             # <<<<<<<<<<<<<<
  *                 return 1  # added empty
  * 
  */
-          __pyx_t_10 = (__Pyx_PyUnicode_Equals(__pyx_v_patch_class, __pyx_n_u_empty, Py_EQ)); if (unlikely((__pyx_t_10 < 0))) __PYX_ERR(0, 427, __pyx_L7_error)
+          __pyx_t_10 = (__Pyx_PyUnicode_Equals(__pyx_v_patch_class, __pyx_n_u_empty, Py_EQ)); if (unlikely((__pyx_t_10 < 0))) __PYX_ERR(0, 428, __pyx_L7_error)
           if (__pyx_t_10) {
 
-            /* "resources/svm.py":428
+            /* "resources/svm.py":429
  * 
  *             if patch_class == 'empty':
  *                 return 1  # added empty             # <<<<<<<<<<<<<<
@@ -17984,7 +17996,7 @@ static PyObject *__pyx_pf_9resources_3svm_14CollageHandler_18add_patch(CYTHON_UN
             __pyx_r = __pyx_int_1;
             goto __pyx_L11_try_return;
 
-            /* "resources/svm.py":427
+            /* "resources/svm.py":428
  *                 return 0  # Didn't add anything
  * 
  *             if patch_class == 'empty':             # <<<<<<<<<<<<<<
@@ -17993,41 +18005,41 @@ static PyObject *__pyx_pf_9resources_3svm_14CollageHandler_18add_patch(CYTHON_UN
  */
           }
 
-          /* "resources/svm.py":430
+          /* "resources/svm.py":431
  *                 return 1  # added empty
  * 
  *             target.append(labeled_patch)             # <<<<<<<<<<<<<<
  * 
  *             if len(target) >= 10000:
  */
-          __pyx_t_11 = __Pyx_PyObject_Append(__pyx_v_target, __pyx_v_labeled_patch); if (unlikely(__pyx_t_11 == ((int)-1))) __PYX_ERR(0, 430, __pyx_L7_error)
+          __pyx_t_11 = __Pyx_PyObject_Append(__pyx_v_target, __pyx_v_labeled_patch); if (unlikely(__pyx_t_11 == ((int)-1))) __PYX_ERR(0, 431, __pyx_L7_error)
 
-          /* "resources/svm.py":432
+          /* "resources/svm.py":433
  *             target.append(labeled_patch)
  * 
  *             if len(target) >= 10000:             # <<<<<<<<<<<<<<
  *                 cache_list = self.blurry_batch_paths if patch_class == 'blurry' else self.indeterminate_batch_paths
  *                 cache_path = os.path.join(os.getenv("INSPECTION_CLIENT_FOLDERS_PATH"), 'temp_files', self.barcode, f'{patch_class}_{len(cache_list)}.pkl')
  */
-          __pyx_t_12 = PyObject_Length(__pyx_v_target); if (unlikely(__pyx_t_12 == ((Py_ssize_t)-1))) __PYX_ERR(0, 432, __pyx_L7_error)
+          __pyx_t_12 = PyObject_Length(__pyx_v_target); if (unlikely(__pyx_t_12 == ((Py_ssize_t)-1))) __PYX_ERR(0, 433, __pyx_L7_error)
           __pyx_t_10 = (__pyx_t_12 >= 0x2710);
           if (__pyx_t_10) {
 
-            /* "resources/svm.py":433
+            /* "resources/svm.py":434
  * 
  *             if len(target) >= 10000:
  *                 cache_list = self.blurry_batch_paths if patch_class == 'blurry' else self.indeterminate_batch_paths             # <<<<<<<<<<<<<<
  *                 cache_path = os.path.join(os.getenv("INSPECTION_CLIENT_FOLDERS_PATH"), 'temp_files', self.barcode, f'{patch_class}_{len(cache_list)}.pkl')
  *                 retry_makedirs(os.path.join(os.getenv("INSPECTION_CLIENT_FOLDERS_PATH"), 'temp_files', self.barcode))
  */
-            __pyx_t_10 = (__Pyx_PyUnicode_Equals(__pyx_v_patch_class, __pyx_n_u_blurry, Py_EQ)); if (unlikely((__pyx_t_10 < 0))) __PYX_ERR(0, 433, __pyx_L7_error)
+            __pyx_t_10 = (__Pyx_PyUnicode_Equals(__pyx_v_patch_class, __pyx_n_u_blurry, Py_EQ)); if (unlikely((__pyx_t_10 < 0))) __PYX_ERR(0, 434, __pyx_L7_error)
             if (__pyx_t_10) {
-              __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_blurry_batch_paths); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 433, __pyx_L7_error)
+              __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_blurry_batch_paths); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 434, __pyx_L7_error)
               __Pyx_GOTREF(__pyx_t_3);
               __pyx_t_1 = __pyx_t_3;
               __pyx_t_3 = 0;
             } else {
-              __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_indeterminate_batch_paths); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 433, __pyx_L7_error)
+              __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_indeterminate_batch_paths); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 434, __pyx_L7_error)
               __Pyx_GOTREF(__pyx_t_3);
               __pyx_t_1 = __pyx_t_3;
               __pyx_t_3 = 0;
@@ -18035,24 +18047,24 @@ static PyObject *__pyx_pf_9resources_3svm_14CollageHandler_18add_patch(CYTHON_UN
             __pyx_v_cache_list = __pyx_t_1;
             __pyx_t_1 = 0;
 
-            /* "resources/svm.py":434
+            /* "resources/svm.py":435
  *             if len(target) >= 10000:
  *                 cache_list = self.blurry_batch_paths if patch_class == 'blurry' else self.indeterminate_batch_paths
  *                 cache_path = os.path.join(os.getenv("INSPECTION_CLIENT_FOLDERS_PATH"), 'temp_files', self.barcode, f'{patch_class}_{len(cache_list)}.pkl')             # <<<<<<<<<<<<<<
  *                 retry_makedirs(os.path.join(os.getenv("INSPECTION_CLIENT_FOLDERS_PATH"), 'temp_files', self.barcode))
  *                 joblib.dump(target, cache_path)
  */
-            __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_os); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 434, __pyx_L7_error)
+            __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_os); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 435, __pyx_L7_error)
             __Pyx_GOTREF(__pyx_t_3);
-            __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_path); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 434, __pyx_L7_error)
+            __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_path); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 435, __pyx_L7_error)
             __Pyx_GOTREF(__pyx_t_4);
             __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-            __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_join); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 434, __pyx_L7_error)
+            __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_join); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 435, __pyx_L7_error)
             __Pyx_GOTREF(__pyx_t_3);
             __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-            __Pyx_GetModuleGlobalName(__pyx_t_5, __pyx_n_s_os); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 434, __pyx_L7_error)
+            __Pyx_GetModuleGlobalName(__pyx_t_5, __pyx_n_s_os); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 435, __pyx_L7_error)
             __Pyx_GOTREF(__pyx_t_5);
-            __pyx_t_13 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_n_s_getenv); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 434, __pyx_L7_error)
+            __pyx_t_13 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_n_s_getenv); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 435, __pyx_L7_error)
             __Pyx_GOTREF(__pyx_t_13);
             __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
             __pyx_t_5 = NULL;
@@ -18073,17 +18085,17 @@ static PyObject *__pyx_pf_9resources_3svm_14CollageHandler_18add_patch(CYTHON_UN
               PyObject *__pyx_callargs[2] = {__pyx_t_5, __pyx_n_u_INSPECTION_CLIENT_FOLDERS_PATH};
               __pyx_t_4 = __Pyx_PyObject_FastCall(__pyx_t_13, __pyx_callargs+1-__pyx_t_6, 1+__pyx_t_6);
               __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
-              if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 434, __pyx_L7_error)
+              if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 435, __pyx_L7_error)
               __Pyx_GOTREF(__pyx_t_4);
               __Pyx_DECREF(__pyx_t_13); __pyx_t_13 = 0;
             }
-            __pyx_t_13 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_barcode); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 434, __pyx_L7_error)
+            __pyx_t_13 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_barcode); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 435, __pyx_L7_error)
             __Pyx_GOTREF(__pyx_t_13);
-            __pyx_t_5 = PyTuple_New(4); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 434, __pyx_L7_error)
+            __pyx_t_5 = PyTuple_New(4); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 435, __pyx_L7_error)
             __Pyx_GOTREF(__pyx_t_5);
             __pyx_t_12 = 0;
             __pyx_t_14 = 127;
-            __pyx_t_15 = __Pyx_PyObject_FormatSimple(__pyx_v_patch_class, __pyx_empty_unicode); if (unlikely(!__pyx_t_15)) __PYX_ERR(0, 434, __pyx_L7_error)
+            __pyx_t_15 = __Pyx_PyObject_FormatSimple(__pyx_v_patch_class, __pyx_empty_unicode); if (unlikely(!__pyx_t_15)) __PYX_ERR(0, 435, __pyx_L7_error)
             __Pyx_GOTREF(__pyx_t_15);
             __pyx_t_14 = (__Pyx_PyUnicode_MAX_CHAR_VALUE(__pyx_t_15) > __pyx_t_14) ? __Pyx_PyUnicode_MAX_CHAR_VALUE(__pyx_t_15) : __pyx_t_14;
             __pyx_t_12 += __Pyx_PyUnicode_GET_LENGTH(__pyx_t_15);
@@ -18094,8 +18106,8 @@ static PyObject *__pyx_pf_9resources_3svm_14CollageHandler_18add_patch(CYTHON_UN
             __pyx_t_12 += 1;
             __Pyx_GIVEREF(__pyx_n_u__14);
             PyTuple_SET_ITEM(__pyx_t_5, 1, __pyx_n_u__14);
-            __pyx_t_16 = PyObject_Length(__pyx_v_cache_list); if (unlikely(__pyx_t_16 == ((Py_ssize_t)-1))) __PYX_ERR(0, 434, __pyx_L7_error)
-            __pyx_t_15 = __Pyx_PyUnicode_From_Py_ssize_t(__pyx_t_16, 0, ' ', 'd'); if (unlikely(!__pyx_t_15)) __PYX_ERR(0, 434, __pyx_L7_error)
+            __pyx_t_16 = PyObject_Length(__pyx_v_cache_list); if (unlikely(__pyx_t_16 == ((Py_ssize_t)-1))) __PYX_ERR(0, 435, __pyx_L7_error)
+            __pyx_t_15 = __Pyx_PyUnicode_From_Py_ssize_t(__pyx_t_16, 0, ' ', 'd'); if (unlikely(!__pyx_t_15)) __PYX_ERR(0, 435, __pyx_L7_error)
             __Pyx_GOTREF(__pyx_t_15);
             __pyx_t_12 += __Pyx_PyUnicode_GET_LENGTH(__pyx_t_15);
             __Pyx_GIVEREF(__pyx_t_15);
@@ -18105,7 +18117,7 @@ static PyObject *__pyx_pf_9resources_3svm_14CollageHandler_18add_patch(CYTHON_UN
             __pyx_t_12 += 4;
             __Pyx_GIVEREF(__pyx_kp_u_pkl);
             PyTuple_SET_ITEM(__pyx_t_5, 3, __pyx_kp_u_pkl);
-            __pyx_t_15 = __Pyx_PyUnicode_Join(__pyx_t_5, 4, __pyx_t_12, __pyx_t_14); if (unlikely(!__pyx_t_15)) __PYX_ERR(0, 434, __pyx_L7_error)
+            __pyx_t_15 = __Pyx_PyUnicode_Join(__pyx_t_5, 4, __pyx_t_12, __pyx_t_14); if (unlikely(!__pyx_t_15)) __PYX_ERR(0, 435, __pyx_L7_error)
             __Pyx_GOTREF(__pyx_t_15);
             __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
             __pyx_t_5 = NULL;
@@ -18129,33 +18141,33 @@ static PyObject *__pyx_pf_9resources_3svm_14CollageHandler_18add_patch(CYTHON_UN
               __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
               __Pyx_DECREF(__pyx_t_13); __pyx_t_13 = 0;
               __Pyx_DECREF(__pyx_t_15); __pyx_t_15 = 0;
-              if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 434, __pyx_L7_error)
+              if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 435, __pyx_L7_error)
               __Pyx_GOTREF(__pyx_t_1);
               __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
             }
             __pyx_v_cache_path = __pyx_t_1;
             __pyx_t_1 = 0;
 
-            /* "resources/svm.py":435
+            /* "resources/svm.py":436
  *                 cache_list = self.blurry_batch_paths if patch_class == 'blurry' else self.indeterminate_batch_paths
  *                 cache_path = os.path.join(os.getenv("INSPECTION_CLIENT_FOLDERS_PATH"), 'temp_files', self.barcode, f'{patch_class}_{len(cache_list)}.pkl')
  *                 retry_makedirs(os.path.join(os.getenv("INSPECTION_CLIENT_FOLDERS_PATH"), 'temp_files', self.barcode))             # <<<<<<<<<<<<<<
  *                 joblib.dump(target, cache_path)
  *                 cache_list.append(cache_path)
  */
-            __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_retry_makedirs); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 435, __pyx_L7_error)
+            __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_retry_makedirs); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 436, __pyx_L7_error)
             __Pyx_GOTREF(__pyx_t_3);
-            __Pyx_GetModuleGlobalName(__pyx_t_13, __pyx_n_s_os); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 435, __pyx_L7_error)
+            __Pyx_GetModuleGlobalName(__pyx_t_13, __pyx_n_s_os); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 436, __pyx_L7_error)
             __Pyx_GOTREF(__pyx_t_13);
-            __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_13, __pyx_n_s_path); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 435, __pyx_L7_error)
+            __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_13, __pyx_n_s_path); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 436, __pyx_L7_error)
             __Pyx_GOTREF(__pyx_t_4);
             __Pyx_DECREF(__pyx_t_13); __pyx_t_13 = 0;
-            __pyx_t_13 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_join); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 435, __pyx_L7_error)
+            __pyx_t_13 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_join); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 436, __pyx_L7_error)
             __Pyx_GOTREF(__pyx_t_13);
             __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-            __Pyx_GetModuleGlobalName(__pyx_t_5, __pyx_n_s_os); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 435, __pyx_L7_error)
+            __Pyx_GetModuleGlobalName(__pyx_t_5, __pyx_n_s_os); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 436, __pyx_L7_error)
             __Pyx_GOTREF(__pyx_t_5);
-            __pyx_t_17 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_n_s_getenv); if (unlikely(!__pyx_t_17)) __PYX_ERR(0, 435, __pyx_L7_error)
+            __pyx_t_17 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_n_s_getenv); if (unlikely(!__pyx_t_17)) __PYX_ERR(0, 436, __pyx_L7_error)
             __Pyx_GOTREF(__pyx_t_17);
             __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
             __pyx_t_5 = NULL;
@@ -18176,11 +18188,11 @@ static PyObject *__pyx_pf_9resources_3svm_14CollageHandler_18add_patch(CYTHON_UN
               PyObject *__pyx_callargs[2] = {__pyx_t_5, __pyx_n_u_INSPECTION_CLIENT_FOLDERS_PATH};
               __pyx_t_4 = __Pyx_PyObject_FastCall(__pyx_t_17, __pyx_callargs+1-__pyx_t_6, 1+__pyx_t_6);
               __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
-              if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 435, __pyx_L7_error)
+              if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 436, __pyx_L7_error)
               __Pyx_GOTREF(__pyx_t_4);
               __Pyx_DECREF(__pyx_t_17); __pyx_t_17 = 0;
             }
-            __pyx_t_17 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_barcode); if (unlikely(!__pyx_t_17)) __PYX_ERR(0, 435, __pyx_L7_error)
+            __pyx_t_17 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_barcode); if (unlikely(!__pyx_t_17)) __PYX_ERR(0, 436, __pyx_L7_error)
             __Pyx_GOTREF(__pyx_t_17);
             __pyx_t_5 = NULL;
             __pyx_t_6 = 0;
@@ -18202,7 +18214,7 @@ static PyObject *__pyx_pf_9resources_3svm_14CollageHandler_18add_patch(CYTHON_UN
               __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
               __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
               __Pyx_DECREF(__pyx_t_17); __pyx_t_17 = 0;
-              if (unlikely(!__pyx_t_15)) __PYX_ERR(0, 435, __pyx_L7_error)
+              if (unlikely(!__pyx_t_15)) __PYX_ERR(0, 436, __pyx_L7_error)
               __Pyx_GOTREF(__pyx_t_15);
               __Pyx_DECREF(__pyx_t_13); __pyx_t_13 = 0;
             }
@@ -18225,22 +18237,22 @@ static PyObject *__pyx_pf_9resources_3svm_14CollageHandler_18add_patch(CYTHON_UN
               __pyx_t_1 = __Pyx_PyObject_FastCall(__pyx_t_3, __pyx_callargs+1-__pyx_t_6, 1+__pyx_t_6);
               __Pyx_XDECREF(__pyx_t_13); __pyx_t_13 = 0;
               __Pyx_DECREF(__pyx_t_15); __pyx_t_15 = 0;
-              if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 435, __pyx_L7_error)
+              if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 436, __pyx_L7_error)
               __Pyx_GOTREF(__pyx_t_1);
               __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
             }
             __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-            /* "resources/svm.py":436
+            /* "resources/svm.py":437
  *                 cache_path = os.path.join(os.getenv("INSPECTION_CLIENT_FOLDERS_PATH"), 'temp_files', self.barcode, f'{patch_class}_{len(cache_list)}.pkl')
  *                 retry_makedirs(os.path.join(os.getenv("INSPECTION_CLIENT_FOLDERS_PATH"), 'temp_files', self.barcode))
  *                 joblib.dump(target, cache_path)             # <<<<<<<<<<<<<<
  *                 cache_list.append(cache_path)
  *                 target.clear()
  */
-            __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_joblib); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 436, __pyx_L7_error)
+            __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_joblib); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 437, __pyx_L7_error)
             __Pyx_GOTREF(__pyx_t_3);
-            __pyx_t_15 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_dump); if (unlikely(!__pyx_t_15)) __PYX_ERR(0, 436, __pyx_L7_error)
+            __pyx_t_15 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_dump); if (unlikely(!__pyx_t_15)) __PYX_ERR(0, 437, __pyx_L7_error)
             __Pyx_GOTREF(__pyx_t_15);
             __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
             __pyx_t_3 = NULL;
@@ -18261,29 +18273,29 @@ static PyObject *__pyx_pf_9resources_3svm_14CollageHandler_18add_patch(CYTHON_UN
               PyObject *__pyx_callargs[3] = {__pyx_t_3, __pyx_v_target, __pyx_v_cache_path};
               __pyx_t_1 = __Pyx_PyObject_FastCall(__pyx_t_15, __pyx_callargs+1-__pyx_t_6, 2+__pyx_t_6);
               __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-              if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 436, __pyx_L7_error)
+              if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 437, __pyx_L7_error)
               __Pyx_GOTREF(__pyx_t_1);
               __Pyx_DECREF(__pyx_t_15); __pyx_t_15 = 0;
             }
             __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-            /* "resources/svm.py":437
+            /* "resources/svm.py":438
  *                 retry_makedirs(os.path.join(os.getenv("INSPECTION_CLIENT_FOLDERS_PATH"), 'temp_files', self.barcode))
  *                 joblib.dump(target, cache_path)
  *                 cache_list.append(cache_path)             # <<<<<<<<<<<<<<
  *                 target.clear()
  * 
  */
-            __pyx_t_11 = __Pyx_PyObject_Append(__pyx_v_cache_list, __pyx_v_cache_path); if (unlikely(__pyx_t_11 == ((int)-1))) __PYX_ERR(0, 437, __pyx_L7_error)
+            __pyx_t_11 = __Pyx_PyObject_Append(__pyx_v_cache_list, __pyx_v_cache_path); if (unlikely(__pyx_t_11 == ((int)-1))) __PYX_ERR(0, 438, __pyx_L7_error)
 
-            /* "resources/svm.py":438
+            /* "resources/svm.py":439
  *                 joblib.dump(target, cache_path)
  *                 cache_list.append(cache_path)
  *                 target.clear()             # <<<<<<<<<<<<<<
  * 
  *             return 2  # added blurry
  */
-            __pyx_t_15 = __Pyx_PyObject_GetAttrStr(__pyx_v_target, __pyx_n_s_clear); if (unlikely(!__pyx_t_15)) __PYX_ERR(0, 438, __pyx_L7_error)
+            __pyx_t_15 = __Pyx_PyObject_GetAttrStr(__pyx_v_target, __pyx_n_s_clear); if (unlikely(!__pyx_t_15)) __PYX_ERR(0, 439, __pyx_L7_error)
             __Pyx_GOTREF(__pyx_t_15);
             __pyx_t_3 = NULL;
             __pyx_t_6 = 0;
@@ -18303,13 +18315,13 @@ static PyObject *__pyx_pf_9resources_3svm_14CollageHandler_18add_patch(CYTHON_UN
               PyObject *__pyx_callargs[2] = {__pyx_t_3, NULL};
               __pyx_t_1 = __Pyx_PyObject_FastCall(__pyx_t_15, __pyx_callargs+1-__pyx_t_6, 0+__pyx_t_6);
               __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-              if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 438, __pyx_L7_error)
+              if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 439, __pyx_L7_error)
               __Pyx_GOTREF(__pyx_t_1);
               __Pyx_DECREF(__pyx_t_15); __pyx_t_15 = 0;
             }
             __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-            /* "resources/svm.py":432
+            /* "resources/svm.py":433
  *             target.append(labeled_patch)
  * 
  *             if len(target) >= 10000:             # <<<<<<<<<<<<<<
@@ -18318,7 +18330,7 @@ static PyObject *__pyx_pf_9resources_3svm_14CollageHandler_18add_patch(CYTHON_UN
  */
           }
 
-          /* "resources/svm.py":440
+          /* "resources/svm.py":441
  *                 target.clear()
  * 
  *             return 2  # added blurry             # <<<<<<<<<<<<<<
@@ -18330,7 +18342,7 @@ static PyObject *__pyx_pf_9resources_3svm_14CollageHandler_18add_patch(CYTHON_UN
           __pyx_r = __pyx_int_2;
           goto __pyx_L11_try_return;
 
-          /* "resources/svm.py":413
+          /* "resources/svm.py":414
  * 
  *     def add_patch(self, labeled_patch):
  *         with self.lock:  # Ensure thread-safe access             # <<<<<<<<<<<<<<
@@ -18348,20 +18360,20 @@ static PyObject *__pyx_pf_9resources_3svm_14CollageHandler_18add_patch(CYTHON_UN
         __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
         /*except:*/ {
           __Pyx_AddTraceback("resources.svm.CollageHandler.add_patch", __pyx_clineno, __pyx_lineno, __pyx_filename);
-          if (__Pyx_GetException(&__pyx_t_1, &__pyx_t_15, &__pyx_t_3) < 0) __PYX_ERR(0, 413, __pyx_L9_except_error)
+          if (__Pyx_GetException(&__pyx_t_1, &__pyx_t_15, &__pyx_t_3) < 0) __PYX_ERR(0, 414, __pyx_L9_except_error)
           __Pyx_XGOTREF(__pyx_t_1);
           __Pyx_XGOTREF(__pyx_t_15);
           __Pyx_XGOTREF(__pyx_t_3);
-          __pyx_t_13 = PyTuple_Pack(3, __pyx_t_1, __pyx_t_15, __pyx_t_3); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 413, __pyx_L9_except_error)
+          __pyx_t_13 = PyTuple_Pack(3, __pyx_t_1, __pyx_t_15, __pyx_t_3); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 414, __pyx_L9_except_error)
           __Pyx_GOTREF(__pyx_t_13);
           __pyx_t_18 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_13, NULL);
           __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
           __Pyx_DECREF(__pyx_t_13); __pyx_t_13 = 0;
-          if (unlikely(!__pyx_t_18)) __PYX_ERR(0, 413, __pyx_L9_except_error)
+          if (unlikely(!__pyx_t_18)) __PYX_ERR(0, 414, __pyx_L9_except_error)
           __Pyx_GOTREF(__pyx_t_18);
           __pyx_t_10 = __Pyx_PyObject_IsTrue(__pyx_t_18);
           __Pyx_DECREF(__pyx_t_18); __pyx_t_18 = 0;
-          if (__pyx_t_10 < 0) __PYX_ERR(0, 413, __pyx_L9_except_error)
+          if (__pyx_t_10 < 0) __PYX_ERR(0, 414, __pyx_L9_except_error)
           __pyx_t_19 = (!__pyx_t_10);
           if (unlikely(__pyx_t_19)) {
             __Pyx_GIVEREF(__pyx_t_1);
@@ -18369,7 +18381,7 @@ static PyObject *__pyx_pf_9resources_3svm_14CollageHandler_18add_patch(CYTHON_UN
             __Pyx_XGIVEREF(__pyx_t_3);
             __Pyx_ErrRestoreWithState(__pyx_t_1, __pyx_t_15, __pyx_t_3);
             __pyx_t_1 = 0; __pyx_t_15 = 0; __pyx_t_3 = 0; 
-            __PYX_ERR(0, 413, __pyx_L9_except_error)
+            __PYX_ERR(0, 414, __pyx_L9_except_error)
           }
           __Pyx_XDECREF(__pyx_t_1); __pyx_t_1 = 0;
           __Pyx_XDECREF(__pyx_t_15); __pyx_t_15 = 0;
@@ -18400,7 +18412,7 @@ static PyObject *__pyx_pf_9resources_3svm_14CollageHandler_18add_patch(CYTHON_UN
         if (__pyx_t_2) {
           __pyx_t_9 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_tuple__4, NULL);
           __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-          if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 413, __pyx_L1_error)
+          if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 414, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_9);
           __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
         }
@@ -18412,7 +18424,7 @@ static PyObject *__pyx_pf_9resources_3svm_14CollageHandler_18add_patch(CYTHON_UN
         if (__pyx_t_2) {
           __pyx_t_8 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_tuple__4, NULL);
           __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-          if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 413, __pyx_L1_error)
+          if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 414, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_8);
           __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
         }
@@ -18429,7 +18441,7 @@ static PyObject *__pyx_pf_9resources_3svm_14CollageHandler_18add_patch(CYTHON_UN
     __pyx_L20:;
   }
 
-  /* "resources/svm.py":412
+  /* "resources/svm.py":413
  * 
  * 
  *     def add_patch(self, labeled_patch):             # <<<<<<<<<<<<<<
@@ -18460,7 +18472,7 @@ static PyObject *__pyx_pf_9resources_3svm_14CollageHandler_18add_patch(CYTHON_UN
   return __pyx_r;
 }
 
-/* "resources/svm.py":443
+/* "resources/svm.py":444
  * 
  * class PatchLoader:
  *     def __init__(self, base_folder):             # <<<<<<<<<<<<<<
@@ -18524,7 +18536,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
           (void)__Pyx_Arg_NewRef_FASTCALL(values[0]);
           kw_args--;
         }
-        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 443, __pyx_L3_error)
+        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 444, __pyx_L3_error)
         else goto __pyx_L5_argtuple_error;
         CYTHON_FALLTHROUGH;
         case  1:
@@ -18532,14 +18544,14 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
           (void)__Pyx_Arg_NewRef_FASTCALL(values[1]);
           kw_args--;
         }
-        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 443, __pyx_L3_error)
+        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 444, __pyx_L3_error)
         else {
-          __Pyx_RaiseArgtupleInvalid("__init__", 1, 2, 2, 1); __PYX_ERR(0, 443, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("__init__", 1, 2, 2, 1); __PYX_ERR(0, 444, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
         const Py_ssize_t kwd_pos_args = __pyx_nargs;
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "__init__") < 0)) __PYX_ERR(0, 443, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "__init__") < 0)) __PYX_ERR(0, 444, __pyx_L3_error)
       }
     } else if (unlikely(__pyx_nargs != 2)) {
       goto __pyx_L5_argtuple_error;
@@ -18552,7 +18564,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("__init__", 1, 2, 2, __pyx_nargs); __PYX_ERR(0, 443, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("__init__", 1, 2, 2, __pyx_nargs); __PYX_ERR(0, 444, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -18587,16 +18599,16 @@ static PyObject *__pyx_pf_9resources_3svm_11PatchLoader___init__(CYTHON_UNUSED P
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__init__", 1);
 
-  /* "resources/svm.py":444
+  /* "resources/svm.py":445
  * class PatchLoader:
  *     def __init__(self, base_folder):
  *         self.base_folder = base_folder             # <<<<<<<<<<<<<<
  * 
  *     def load_patches_with_filenames(self):
  */
-  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_base_folder, __pyx_v_base_folder) < 0) __PYX_ERR(0, 444, __pyx_L1_error)
+  if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_n_s_base_folder, __pyx_v_base_folder) < 0) __PYX_ERR(0, 445, __pyx_L1_error)
 
-  /* "resources/svm.py":443
+  /* "resources/svm.py":444
  * 
  * class PatchLoader:
  *     def __init__(self, base_folder):             # <<<<<<<<<<<<<<
@@ -18616,7 +18628,7 @@ static PyObject *__pyx_pf_9resources_3svm_11PatchLoader___init__(CYTHON_UNUSED P
   return __pyx_r;
 }
 
-/* "resources/svm.py":446
+/* "resources/svm.py":447
  *         self.base_folder = base_folder
  * 
  *     def load_patches_with_filenames(self):             # <<<<<<<<<<<<<<
@@ -18677,12 +18689,12 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
           (void)__Pyx_Arg_NewRef_FASTCALL(values[0]);
           kw_args--;
         }
-        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 446, __pyx_L3_error)
+        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 447, __pyx_L3_error)
         else goto __pyx_L5_argtuple_error;
       }
       if (unlikely(kw_args > 0)) {
         const Py_ssize_t kwd_pos_args = __pyx_nargs;
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "load_patches_with_filenames") < 0)) __PYX_ERR(0, 446, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "load_patches_with_filenames") < 0)) __PYX_ERR(0, 447, __pyx_L3_error)
       }
     } else if (unlikely(__pyx_nargs != 1)) {
       goto __pyx_L5_argtuple_error;
@@ -18693,7 +18705,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("load_patches_with_filenames", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 446, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("load_patches_with_filenames", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 447, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -18765,31 +18777,31 @@ static PyObject *__pyx_pf_9resources_3svm_11PatchLoader_2load_patches_with_filen
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("load_patches_with_filenames", 1);
 
-  /* "resources/svm.py":447
+  /* "resources/svm.py":448
  * 
  *     def load_patches_with_filenames(self):
  *         categories = ['blurry', 'sharp', 'empty', 'indeterminate']             # <<<<<<<<<<<<<<
  *         patches = {category: [] for category in categories}
  *         filenames = {category: [] for category in categories}
  */
-  __pyx_t_1 = PyList_New(4); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 447, __pyx_L1_error)
+  __pyx_t_1 = PyList_New(4); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 448, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_INCREF(__pyx_n_u_blurry);
   __Pyx_GIVEREF(__pyx_n_u_blurry);
-  if (__Pyx_PyList_SET_ITEM(__pyx_t_1, 0, __pyx_n_u_blurry)) __PYX_ERR(0, 447, __pyx_L1_error);
+  if (__Pyx_PyList_SET_ITEM(__pyx_t_1, 0, __pyx_n_u_blurry)) __PYX_ERR(0, 448, __pyx_L1_error);
   __Pyx_INCREF(__pyx_n_u_sharp);
   __Pyx_GIVEREF(__pyx_n_u_sharp);
-  if (__Pyx_PyList_SET_ITEM(__pyx_t_1, 1, __pyx_n_u_sharp)) __PYX_ERR(0, 447, __pyx_L1_error);
+  if (__Pyx_PyList_SET_ITEM(__pyx_t_1, 1, __pyx_n_u_sharp)) __PYX_ERR(0, 448, __pyx_L1_error);
   __Pyx_INCREF(__pyx_n_u_empty);
   __Pyx_GIVEREF(__pyx_n_u_empty);
-  if (__Pyx_PyList_SET_ITEM(__pyx_t_1, 2, __pyx_n_u_empty)) __PYX_ERR(0, 447, __pyx_L1_error);
+  if (__Pyx_PyList_SET_ITEM(__pyx_t_1, 2, __pyx_n_u_empty)) __PYX_ERR(0, 448, __pyx_L1_error);
   __Pyx_INCREF(__pyx_n_u_indeterminate);
   __Pyx_GIVEREF(__pyx_n_u_indeterminate);
-  if (__Pyx_PyList_SET_ITEM(__pyx_t_1, 3, __pyx_n_u_indeterminate)) __PYX_ERR(0, 447, __pyx_L1_error);
+  if (__Pyx_PyList_SET_ITEM(__pyx_t_1, 3, __pyx_n_u_indeterminate)) __PYX_ERR(0, 448, __pyx_L1_error);
   __pyx_v_categories = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "resources/svm.py":448
+  /* "resources/svm.py":449
  *     def load_patches_with_filenames(self):
  *         categories = ['blurry', 'sharp', 'empty', 'indeterminate']
  *         patches = {category: [] for category in categories}             # <<<<<<<<<<<<<<
@@ -18797,7 +18809,7 @@ static PyObject *__pyx_pf_9resources_3svm_11PatchLoader_2load_patches_with_filen
  *         for category in categories:
  */
   { /* enter inner scope */
-    __pyx_t_1 = PyDict_New(); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 448, __pyx_L5_error)
+    __pyx_t_1 = PyDict_New(); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 449, __pyx_L5_error)
     __Pyx_GOTREF(__pyx_t_1);
     __pyx_t_2 = __pyx_v_categories; __Pyx_INCREF(__pyx_t_2);
     __pyx_t_3 = 0;
@@ -18805,21 +18817,21 @@ static PyObject *__pyx_pf_9resources_3svm_11PatchLoader_2load_patches_with_filen
       {
         Py_ssize_t __pyx_temp = __Pyx_PyList_GET_SIZE(__pyx_t_2);
         #if !CYTHON_ASSUME_SAFE_MACROS
-        if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 448, __pyx_L5_error)
+        if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 449, __pyx_L5_error)
         #endif
         if (__pyx_t_3 >= __pyx_temp) break;
       }
       #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-      __pyx_t_4 = PyList_GET_ITEM(__pyx_t_2, __pyx_t_3); __Pyx_INCREF(__pyx_t_4); __pyx_t_3++; if (unlikely((0 < 0))) __PYX_ERR(0, 448, __pyx_L5_error)
+      __pyx_t_4 = PyList_GET_ITEM(__pyx_t_2, __pyx_t_3); __Pyx_INCREF(__pyx_t_4); __pyx_t_3++; if (unlikely((0 < 0))) __PYX_ERR(0, 449, __pyx_L5_error)
       #else
-      __pyx_t_4 = __Pyx_PySequence_ITEM(__pyx_t_2, __pyx_t_3); __pyx_t_3++; if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 448, __pyx_L5_error)
+      __pyx_t_4 = __Pyx_PySequence_ITEM(__pyx_t_2, __pyx_t_3); __pyx_t_3++; if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 449, __pyx_L5_error)
       __Pyx_GOTREF(__pyx_t_4);
       #endif
       __Pyx_XDECREF_SET(__pyx_8genexpr5__pyx_v_category, __pyx_t_4);
       __pyx_t_4 = 0;
-      __pyx_t_4 = PyList_New(0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 448, __pyx_L5_error)
+      __pyx_t_4 = PyList_New(0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 449, __pyx_L5_error)
       __Pyx_GOTREF(__pyx_t_4);
-      if (unlikely(PyDict_SetItem(__pyx_t_1, (PyObject*)__pyx_8genexpr5__pyx_v_category, (PyObject*)__pyx_t_4))) __PYX_ERR(0, 448, __pyx_L5_error)
+      if (unlikely(PyDict_SetItem(__pyx_t_1, (PyObject*)__pyx_8genexpr5__pyx_v_category, (PyObject*)__pyx_t_4))) __PYX_ERR(0, 449, __pyx_L5_error)
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     }
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
@@ -18833,7 +18845,7 @@ static PyObject *__pyx_pf_9resources_3svm_11PatchLoader_2load_patches_with_filen
   __pyx_v_patches = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "resources/svm.py":449
+  /* "resources/svm.py":450
  *         categories = ['blurry', 'sharp', 'empty', 'indeterminate']
  *         patches = {category: [] for category in categories}
  *         filenames = {category: [] for category in categories}             # <<<<<<<<<<<<<<
@@ -18841,7 +18853,7 @@ static PyObject *__pyx_pf_9resources_3svm_11PatchLoader_2load_patches_with_filen
  *             category_folder = os.path.join(self.base_folder, category)
  */
   { /* enter inner scope */
-    __pyx_t_1 = PyDict_New(); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 449, __pyx_L12_error)
+    __pyx_t_1 = PyDict_New(); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 450, __pyx_L12_error)
     __Pyx_GOTREF(__pyx_t_1);
     __pyx_t_2 = __pyx_v_categories; __Pyx_INCREF(__pyx_t_2);
     __pyx_t_3 = 0;
@@ -18849,21 +18861,21 @@ static PyObject *__pyx_pf_9resources_3svm_11PatchLoader_2load_patches_with_filen
       {
         Py_ssize_t __pyx_temp = __Pyx_PyList_GET_SIZE(__pyx_t_2);
         #if !CYTHON_ASSUME_SAFE_MACROS
-        if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 449, __pyx_L12_error)
+        if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 450, __pyx_L12_error)
         #endif
         if (__pyx_t_3 >= __pyx_temp) break;
       }
       #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-      __pyx_t_4 = PyList_GET_ITEM(__pyx_t_2, __pyx_t_3); __Pyx_INCREF(__pyx_t_4); __pyx_t_3++; if (unlikely((0 < 0))) __PYX_ERR(0, 449, __pyx_L12_error)
+      __pyx_t_4 = PyList_GET_ITEM(__pyx_t_2, __pyx_t_3); __Pyx_INCREF(__pyx_t_4); __pyx_t_3++; if (unlikely((0 < 0))) __PYX_ERR(0, 450, __pyx_L12_error)
       #else
-      __pyx_t_4 = __Pyx_PySequence_ITEM(__pyx_t_2, __pyx_t_3); __pyx_t_3++; if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 449, __pyx_L12_error)
+      __pyx_t_4 = __Pyx_PySequence_ITEM(__pyx_t_2, __pyx_t_3); __pyx_t_3++; if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 450, __pyx_L12_error)
       __Pyx_GOTREF(__pyx_t_4);
       #endif
       __Pyx_XDECREF_SET(__pyx_8genexpr6__pyx_v_category, __pyx_t_4);
       __pyx_t_4 = 0;
-      __pyx_t_4 = PyList_New(0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 449, __pyx_L12_error)
+      __pyx_t_4 = PyList_New(0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 450, __pyx_L12_error)
       __Pyx_GOTREF(__pyx_t_4);
-      if (unlikely(PyDict_SetItem(__pyx_t_1, (PyObject*)__pyx_8genexpr6__pyx_v_category, (PyObject*)__pyx_t_4))) __PYX_ERR(0, 449, __pyx_L12_error)
+      if (unlikely(PyDict_SetItem(__pyx_t_1, (PyObject*)__pyx_8genexpr6__pyx_v_category, (PyObject*)__pyx_t_4))) __PYX_ERR(0, 450, __pyx_L12_error)
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     }
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
@@ -18877,7 +18889,7 @@ static PyObject *__pyx_pf_9resources_3svm_11PatchLoader_2load_patches_with_filen
   __pyx_v_filenames = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "resources/svm.py":450
+  /* "resources/svm.py":451
  *         patches = {category: [] for category in categories}
  *         filenames = {category: [] for category in categories}
  *         for category in categories:             # <<<<<<<<<<<<<<
@@ -18890,35 +18902,35 @@ static PyObject *__pyx_pf_9resources_3svm_11PatchLoader_2load_patches_with_filen
     {
       Py_ssize_t __pyx_temp = __Pyx_PyList_GET_SIZE(__pyx_t_1);
       #if !CYTHON_ASSUME_SAFE_MACROS
-      if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 450, __pyx_L1_error)
+      if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 451, __pyx_L1_error)
       #endif
       if (__pyx_t_3 >= __pyx_temp) break;
     }
     #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-    __pyx_t_2 = PyList_GET_ITEM(__pyx_t_1, __pyx_t_3); __Pyx_INCREF(__pyx_t_2); __pyx_t_3++; if (unlikely((0 < 0))) __PYX_ERR(0, 450, __pyx_L1_error)
+    __pyx_t_2 = PyList_GET_ITEM(__pyx_t_1, __pyx_t_3); __Pyx_INCREF(__pyx_t_2); __pyx_t_3++; if (unlikely((0 < 0))) __PYX_ERR(0, 451, __pyx_L1_error)
     #else
-    __pyx_t_2 = __Pyx_PySequence_ITEM(__pyx_t_1, __pyx_t_3); __pyx_t_3++; if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 450, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PySequence_ITEM(__pyx_t_1, __pyx_t_3); __pyx_t_3++; if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 451, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     #endif
     __Pyx_XDECREF_SET(__pyx_v_category, __pyx_t_2);
     __pyx_t_2 = 0;
 
-    /* "resources/svm.py":451
+    /* "resources/svm.py":452
  *         filenames = {category: [] for category in categories}
  *         for category in categories:
  *             category_folder = os.path.join(self.base_folder, category)             # <<<<<<<<<<<<<<
  *             retry_makedirs(category_folder)
  *             for filename in os.listdir(category_folder):
  */
-    __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_os); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 451, __pyx_L1_error)
+    __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_os); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 452, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
-    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_path); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 451, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_path); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 452, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_n_s_join); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 451, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_n_s_join); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 452, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_base_folder); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 451, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_base_folder); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 452, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
     __pyx_t_6 = NULL;
     __pyx_t_7 = 0;
@@ -18939,21 +18951,21 @@ static PyObject *__pyx_pf_9resources_3svm_11PatchLoader_2load_patches_with_filen
       __pyx_t_2 = __Pyx_PyObject_FastCall(__pyx_t_4, __pyx_callargs+1-__pyx_t_7, 2+__pyx_t_7);
       __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-      if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 451, __pyx_L1_error)
+      if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 452, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     }
     __Pyx_XDECREF_SET(__pyx_v_category_folder, __pyx_t_2);
     __pyx_t_2 = 0;
 
-    /* "resources/svm.py":452
+    /* "resources/svm.py":453
  *         for category in categories:
  *             category_folder = os.path.join(self.base_folder, category)
  *             retry_makedirs(category_folder)             # <<<<<<<<<<<<<<
  *             for filename in os.listdir(category_folder):
  *                 try:
  */
-    __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_retry_makedirs); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 452, __pyx_L1_error)
+    __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_retry_makedirs); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 453, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
     __pyx_t_5 = NULL;
     __pyx_t_7 = 0;
@@ -18973,22 +18985,22 @@ static PyObject *__pyx_pf_9resources_3svm_11PatchLoader_2load_patches_with_filen
       PyObject *__pyx_callargs[2] = {__pyx_t_5, __pyx_v_category_folder};
       __pyx_t_2 = __Pyx_PyObject_FastCall(__pyx_t_4, __pyx_callargs+1-__pyx_t_7, 1+__pyx_t_7);
       __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
-      if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 452, __pyx_L1_error)
+      if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 453, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     }
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-    /* "resources/svm.py":453
+    /* "resources/svm.py":454
  *             category_folder = os.path.join(self.base_folder, category)
  *             retry_makedirs(category_folder)
  *             for filename in os.listdir(category_folder):             # <<<<<<<<<<<<<<
  *                 try:
  *                     patch_path = os.path.join(category_folder, filename)
  */
-    __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_os); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 453, __pyx_L1_error)
+    __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_os); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 454, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
-    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_listdir); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 453, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_listdir); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 454, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     __pyx_t_4 = NULL;
@@ -19009,7 +19021,7 @@ static PyObject *__pyx_pf_9resources_3svm_11PatchLoader_2load_patches_with_filen
       PyObject *__pyx_callargs[2] = {__pyx_t_4, __pyx_v_category_folder};
       __pyx_t_2 = __Pyx_PyObject_FastCall(__pyx_t_5, __pyx_callargs+1-__pyx_t_7, 1+__pyx_t_7);
       __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-      if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 453, __pyx_L1_error)
+      if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 454, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     }
@@ -19018,9 +19030,9 @@ static PyObject *__pyx_pf_9resources_3svm_11PatchLoader_2load_patches_with_filen
       __pyx_t_8 = 0;
       __pyx_t_9 = NULL;
     } else {
-      __pyx_t_8 = -1; __pyx_t_5 = PyObject_GetIter(__pyx_t_2); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 453, __pyx_L1_error)
+      __pyx_t_8 = -1; __pyx_t_5 = PyObject_GetIter(__pyx_t_2); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 454, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_5);
-      __pyx_t_9 = __Pyx_PyObject_GetIterNextFunc(__pyx_t_5); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 453, __pyx_L1_error)
+      __pyx_t_9 = __Pyx_PyObject_GetIterNextFunc(__pyx_t_5); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 454, __pyx_L1_error)
     }
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     for (;;) {
@@ -19029,28 +19041,28 @@ static PyObject *__pyx_pf_9resources_3svm_11PatchLoader_2load_patches_with_filen
           {
             Py_ssize_t __pyx_temp = __Pyx_PyList_GET_SIZE(__pyx_t_5);
             #if !CYTHON_ASSUME_SAFE_MACROS
-            if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 453, __pyx_L1_error)
+            if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 454, __pyx_L1_error)
             #endif
             if (__pyx_t_8 >= __pyx_temp) break;
           }
           #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-          __pyx_t_2 = PyList_GET_ITEM(__pyx_t_5, __pyx_t_8); __Pyx_INCREF(__pyx_t_2); __pyx_t_8++; if (unlikely((0 < 0))) __PYX_ERR(0, 453, __pyx_L1_error)
+          __pyx_t_2 = PyList_GET_ITEM(__pyx_t_5, __pyx_t_8); __Pyx_INCREF(__pyx_t_2); __pyx_t_8++; if (unlikely((0 < 0))) __PYX_ERR(0, 454, __pyx_L1_error)
           #else
-          __pyx_t_2 = __Pyx_PySequence_ITEM(__pyx_t_5, __pyx_t_8); __pyx_t_8++; if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 453, __pyx_L1_error)
+          __pyx_t_2 = __Pyx_PySequence_ITEM(__pyx_t_5, __pyx_t_8); __pyx_t_8++; if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 454, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_2);
           #endif
         } else {
           {
             Py_ssize_t __pyx_temp = __Pyx_PyTuple_GET_SIZE(__pyx_t_5);
             #if !CYTHON_ASSUME_SAFE_MACROS
-            if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 453, __pyx_L1_error)
+            if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 454, __pyx_L1_error)
             #endif
             if (__pyx_t_8 >= __pyx_temp) break;
           }
           #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-          __pyx_t_2 = PyTuple_GET_ITEM(__pyx_t_5, __pyx_t_8); __Pyx_INCREF(__pyx_t_2); __pyx_t_8++; if (unlikely((0 < 0))) __PYX_ERR(0, 453, __pyx_L1_error)
+          __pyx_t_2 = PyTuple_GET_ITEM(__pyx_t_5, __pyx_t_8); __Pyx_INCREF(__pyx_t_2); __pyx_t_8++; if (unlikely((0 < 0))) __PYX_ERR(0, 454, __pyx_L1_error)
           #else
-          __pyx_t_2 = __Pyx_PySequence_ITEM(__pyx_t_5, __pyx_t_8); __pyx_t_8++; if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 453, __pyx_L1_error)
+          __pyx_t_2 = __Pyx_PySequence_ITEM(__pyx_t_5, __pyx_t_8); __pyx_t_8++; if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 454, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_2);
           #endif
         }
@@ -19060,7 +19072,7 @@ static PyObject *__pyx_pf_9resources_3svm_11PatchLoader_2load_patches_with_filen
           PyObject* exc_type = PyErr_Occurred();
           if (exc_type) {
             if (likely(__Pyx_PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) PyErr_Clear();
-            else __PYX_ERR(0, 453, __pyx_L1_error)
+            else __PYX_ERR(0, 454, __pyx_L1_error)
           }
           break;
         }
@@ -19069,7 +19081,7 @@ static PyObject *__pyx_pf_9resources_3svm_11PatchLoader_2load_patches_with_filen
       __Pyx_XDECREF_SET(__pyx_v_filename, __pyx_t_2);
       __pyx_t_2 = 0;
 
-      /* "resources/svm.py":454
+      /* "resources/svm.py":455
  *             retry_makedirs(category_folder)
  *             for filename in os.listdir(category_folder):
  *                 try:             # <<<<<<<<<<<<<<
@@ -19085,19 +19097,19 @@ static PyObject *__pyx_pf_9resources_3svm_11PatchLoader_2load_patches_with_filen
         __Pyx_XGOTREF(__pyx_t_12);
         /*try:*/ {
 
-          /* "resources/svm.py":455
+          /* "resources/svm.py":456
  *             for filename in os.listdir(category_folder):
  *                 try:
  *                     patch_path = os.path.join(category_folder, filename)             # <<<<<<<<<<<<<<
  *                     patch = read_image_with_retry(patch_path, cv2.IMREAD_GRAYSCALE)
  *                     patches[category].append(patch)
  */
-          __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_os); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 455, __pyx_L21_error)
+          __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_os); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 456, __pyx_L21_error)
           __Pyx_GOTREF(__pyx_t_4);
-          __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_path); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 455, __pyx_L21_error)
+          __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_path); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 456, __pyx_L21_error)
           __Pyx_GOTREF(__pyx_t_6);
           __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-          __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_6, __pyx_n_s_join); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 455, __pyx_L21_error)
+          __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_6, __pyx_n_s_join); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 456, __pyx_L21_error)
           __Pyx_GOTREF(__pyx_t_4);
           __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
           __pyx_t_6 = NULL;
@@ -19118,25 +19130,25 @@ static PyObject *__pyx_pf_9resources_3svm_11PatchLoader_2load_patches_with_filen
             PyObject *__pyx_callargs[3] = {__pyx_t_6, __pyx_v_category_folder, __pyx_v_filename};
             __pyx_t_2 = __Pyx_PyObject_FastCall(__pyx_t_4, __pyx_callargs+1-__pyx_t_7, 2+__pyx_t_7);
             __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
-            if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 455, __pyx_L21_error)
+            if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 456, __pyx_L21_error)
             __Pyx_GOTREF(__pyx_t_2);
             __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
           }
           __Pyx_XDECREF_SET(__pyx_v_patch_path, __pyx_t_2);
           __pyx_t_2 = 0;
 
-          /* "resources/svm.py":456
+          /* "resources/svm.py":457
  *                 try:
  *                     patch_path = os.path.join(category_folder, filename)
  *                     patch = read_image_with_retry(patch_path, cv2.IMREAD_GRAYSCALE)             # <<<<<<<<<<<<<<
  *                     patches[category].append(patch)
  *                     filenames[category].append(filename)
  */
-          __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_read_image_with_retry); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 456, __pyx_L21_error)
+          __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_read_image_with_retry); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 457, __pyx_L21_error)
           __Pyx_GOTREF(__pyx_t_4);
-          __Pyx_GetModuleGlobalName(__pyx_t_6, __pyx_n_s_cv2); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 456, __pyx_L21_error)
+          __Pyx_GetModuleGlobalName(__pyx_t_6, __pyx_n_s_cv2); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 457, __pyx_L21_error)
           __Pyx_GOTREF(__pyx_t_6);
-          __pyx_t_13 = __Pyx_PyObject_GetAttrStr(__pyx_t_6, __pyx_n_s_IMREAD_GRAYSCALE); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 456, __pyx_L21_error)
+          __pyx_t_13 = __Pyx_PyObject_GetAttrStr(__pyx_t_6, __pyx_n_s_IMREAD_GRAYSCALE); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 457, __pyx_L21_error)
           __Pyx_GOTREF(__pyx_t_13);
           __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
           __pyx_t_6 = NULL;
@@ -19158,38 +19170,38 @@ static PyObject *__pyx_pf_9resources_3svm_11PatchLoader_2load_patches_with_filen
             __pyx_t_2 = __Pyx_PyObject_FastCall(__pyx_t_4, __pyx_callargs+1-__pyx_t_7, 2+__pyx_t_7);
             __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
             __Pyx_DECREF(__pyx_t_13); __pyx_t_13 = 0;
-            if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 456, __pyx_L21_error)
+            if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 457, __pyx_L21_error)
             __Pyx_GOTREF(__pyx_t_2);
             __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
           }
           __Pyx_XDECREF_SET(__pyx_v_patch, __pyx_t_2);
           __pyx_t_2 = 0;
 
-          /* "resources/svm.py":457
+          /* "resources/svm.py":458
  *                     patch_path = os.path.join(category_folder, filename)
  *                     patch = read_image_with_retry(patch_path, cv2.IMREAD_GRAYSCALE)
  *                     patches[category].append(patch)             # <<<<<<<<<<<<<<
  *                     filenames[category].append(filename)
  *                 except Exception as e:
  */
-          __pyx_t_2 = __Pyx_PyDict_GetItem(__pyx_v_patches, __pyx_v_category); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 457, __pyx_L21_error)
+          __pyx_t_2 = __Pyx_PyDict_GetItem(__pyx_v_patches, __pyx_v_category); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 458, __pyx_L21_error)
           __Pyx_GOTREF(__pyx_t_2);
-          __pyx_t_14 = __Pyx_PyObject_Append(__pyx_t_2, __pyx_v_patch); if (unlikely(__pyx_t_14 == ((int)-1))) __PYX_ERR(0, 457, __pyx_L21_error)
+          __pyx_t_14 = __Pyx_PyObject_Append(__pyx_t_2, __pyx_v_patch); if (unlikely(__pyx_t_14 == ((int)-1))) __PYX_ERR(0, 458, __pyx_L21_error)
           __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-          /* "resources/svm.py":458
+          /* "resources/svm.py":459
  *                     patch = read_image_with_retry(patch_path, cv2.IMREAD_GRAYSCALE)
  *                     patches[category].append(patch)
  *                     filenames[category].append(filename)             # <<<<<<<<<<<<<<
  *                 except Exception as e:
  *                     print(f'(Svm-pl-lpwf) {e}')
  */
-          __pyx_t_2 = __Pyx_PyDict_GetItem(__pyx_v_filenames, __pyx_v_category); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 458, __pyx_L21_error)
+          __pyx_t_2 = __Pyx_PyDict_GetItem(__pyx_v_filenames, __pyx_v_category); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 459, __pyx_L21_error)
           __Pyx_GOTREF(__pyx_t_2);
-          __pyx_t_14 = __Pyx_PyObject_Append(__pyx_t_2, __pyx_v_filename); if (unlikely(__pyx_t_14 == ((int)-1))) __PYX_ERR(0, 458, __pyx_L21_error)
+          __pyx_t_14 = __Pyx_PyObject_Append(__pyx_t_2, __pyx_v_filename); if (unlikely(__pyx_t_14 == ((int)-1))) __PYX_ERR(0, 459, __pyx_L21_error)
           __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-          /* "resources/svm.py":454
+          /* "resources/svm.py":455
  *             retry_makedirs(category_folder)
  *             for filename in os.listdir(category_folder):
  *                 try:             # <<<<<<<<<<<<<<
@@ -19207,7 +19219,7 @@ static PyObject *__pyx_pf_9resources_3svm_11PatchLoader_2load_patches_with_filen
         __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
         __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
 
-        /* "resources/svm.py":459
+        /* "resources/svm.py":460
  *                     patches[category].append(patch)
  *                     filenames[category].append(filename)
  *                 except Exception as e:             # <<<<<<<<<<<<<<
@@ -19217,7 +19229,7 @@ static PyObject *__pyx_pf_9resources_3svm_11PatchLoader_2load_patches_with_filen
         __pyx_t_15 = __Pyx_PyErr_ExceptionMatches(((PyObject *)(&((PyTypeObject*)PyExc_Exception)[0])));
         if (__pyx_t_15) {
           __Pyx_AddTraceback("resources.svm.PatchLoader.load_patches_with_filenames", __pyx_clineno, __pyx_lineno, __pyx_filename);
-          if (__Pyx_GetException(&__pyx_t_2, &__pyx_t_4, &__pyx_t_13) < 0) __PYX_ERR(0, 459, __pyx_L23_except_error)
+          if (__Pyx_GetException(&__pyx_t_2, &__pyx_t_4, &__pyx_t_13) < 0) __PYX_ERR(0, 460, __pyx_L23_except_error)
           __Pyx_XGOTREF(__pyx_t_2);
           __Pyx_XGOTREF(__pyx_t_4);
           __Pyx_XGOTREF(__pyx_t_13);
@@ -19225,30 +19237,30 @@ static PyObject *__pyx_pf_9resources_3svm_11PatchLoader_2load_patches_with_filen
           __pyx_v_e = __pyx_t_4;
           /*try:*/ {
 
-            /* "resources/svm.py":460
+            /* "resources/svm.py":461
  *                     filenames[category].append(filename)
  *                 except Exception as e:
  *                     print(f'(Svm-pl-lpwf) {e}')             # <<<<<<<<<<<<<<
  *                     LoggerSingleton().error('(Svm-pl-lpwf) ' +  e)
  *         return patches, filenames
  */
-            __pyx_t_6 = __Pyx_PyObject_FormatSimple(__pyx_v_e, __pyx_empty_unicode); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 460, __pyx_L34_error)
+            __pyx_t_6 = __Pyx_PyObject_FormatSimple(__pyx_v_e, __pyx_empty_unicode); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 461, __pyx_L34_error)
             __Pyx_GOTREF(__pyx_t_6);
-            __pyx_t_16 = __Pyx_PyUnicode_Concat(__pyx_kp_u_Svm_pl_lpwf, __pyx_t_6); if (unlikely(!__pyx_t_16)) __PYX_ERR(0, 460, __pyx_L34_error)
+            __pyx_t_16 = __Pyx_PyUnicode_Concat(__pyx_kp_u_Svm_pl_lpwf, __pyx_t_6); if (unlikely(!__pyx_t_16)) __PYX_ERR(0, 461, __pyx_L34_error)
             __Pyx_GOTREF(__pyx_t_16);
             __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-            __pyx_t_6 = __Pyx_PyObject_CallOneArg(__pyx_builtin_print, __pyx_t_16); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 460, __pyx_L34_error)
+            __pyx_t_6 = __Pyx_PyObject_CallOneArg(__pyx_builtin_print, __pyx_t_16); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 461, __pyx_L34_error)
             __Pyx_GOTREF(__pyx_t_6);
             __Pyx_DECREF(__pyx_t_16); __pyx_t_16 = 0;
             __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
 
-            /* "resources/svm.py":461
+            /* "resources/svm.py":462
  *                 except Exception as e:
  *                     print(f'(Svm-pl-lpwf) {e}')
  *                     LoggerSingleton().error('(Svm-pl-lpwf) ' +  e)             # <<<<<<<<<<<<<<
  *         return patches, filenames
  */
-            __Pyx_GetModuleGlobalName(__pyx_t_17, __pyx_n_s_LoggerSingleton); if (unlikely(!__pyx_t_17)) __PYX_ERR(0, 461, __pyx_L34_error)
+            __Pyx_GetModuleGlobalName(__pyx_t_17, __pyx_n_s_LoggerSingleton); if (unlikely(!__pyx_t_17)) __PYX_ERR(0, 462, __pyx_L34_error)
             __Pyx_GOTREF(__pyx_t_17);
             __pyx_t_18 = NULL;
             __pyx_t_7 = 0;
@@ -19268,14 +19280,14 @@ static PyObject *__pyx_pf_9resources_3svm_11PatchLoader_2load_patches_with_filen
               PyObject *__pyx_callargs[2] = {__pyx_t_18, NULL};
               __pyx_t_16 = __Pyx_PyObject_FastCall(__pyx_t_17, __pyx_callargs+1-__pyx_t_7, 0+__pyx_t_7);
               __Pyx_XDECREF(__pyx_t_18); __pyx_t_18 = 0;
-              if (unlikely(!__pyx_t_16)) __PYX_ERR(0, 461, __pyx_L34_error)
+              if (unlikely(!__pyx_t_16)) __PYX_ERR(0, 462, __pyx_L34_error)
               __Pyx_GOTREF(__pyx_t_16);
               __Pyx_DECREF(__pyx_t_17); __pyx_t_17 = 0;
             }
-            __pyx_t_17 = __Pyx_PyObject_GetAttrStr(__pyx_t_16, __pyx_n_s_error); if (unlikely(!__pyx_t_17)) __PYX_ERR(0, 461, __pyx_L34_error)
+            __pyx_t_17 = __Pyx_PyObject_GetAttrStr(__pyx_t_16, __pyx_n_s_error); if (unlikely(!__pyx_t_17)) __PYX_ERR(0, 462, __pyx_L34_error)
             __Pyx_GOTREF(__pyx_t_17);
             __Pyx_DECREF(__pyx_t_16); __pyx_t_16 = 0;
-            __pyx_t_16 = PyNumber_Add(__pyx_kp_u_Svm_pl_lpwf, __pyx_v_e); if (unlikely(!__pyx_t_16)) __PYX_ERR(0, 461, __pyx_L34_error)
+            __pyx_t_16 = PyNumber_Add(__pyx_kp_u_Svm_pl_lpwf, __pyx_v_e); if (unlikely(!__pyx_t_16)) __PYX_ERR(0, 462, __pyx_L34_error)
             __Pyx_GOTREF(__pyx_t_16);
             __pyx_t_18 = NULL;
             __pyx_t_7 = 0;
@@ -19296,14 +19308,14 @@ static PyObject *__pyx_pf_9resources_3svm_11PatchLoader_2load_patches_with_filen
               __pyx_t_6 = __Pyx_PyObject_FastCall(__pyx_t_17, __pyx_callargs+1-__pyx_t_7, 1+__pyx_t_7);
               __Pyx_XDECREF(__pyx_t_18); __pyx_t_18 = 0;
               __Pyx_DECREF(__pyx_t_16); __pyx_t_16 = 0;
-              if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 461, __pyx_L34_error)
+              if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 462, __pyx_L34_error)
               __Pyx_GOTREF(__pyx_t_6);
               __Pyx_DECREF(__pyx_t_17); __pyx_t_17 = 0;
             }
             __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
           }
 
-          /* "resources/svm.py":459
+          /* "resources/svm.py":460
  *                     patches[category].append(patch)
  *                     filenames[category].append(filename)
  *                 except Exception as e:             # <<<<<<<<<<<<<<
@@ -19359,7 +19371,7 @@ static PyObject *__pyx_pf_9resources_3svm_11PatchLoader_2load_patches_with_filen
         }
         goto __pyx_L23_except_error;
 
-        /* "resources/svm.py":454
+        /* "resources/svm.py":455
  *             retry_makedirs(category_folder)
  *             for filename in os.listdir(category_folder):
  *                 try:             # <<<<<<<<<<<<<<
@@ -19380,7 +19392,7 @@ static PyObject *__pyx_pf_9resources_3svm_11PatchLoader_2load_patches_with_filen
         __pyx_L28_try_end:;
       }
 
-      /* "resources/svm.py":453
+      /* "resources/svm.py":454
  *             category_folder = os.path.join(self.base_folder, category)
  *             retry_makedirs(category_folder)
  *             for filename in os.listdir(category_folder):             # <<<<<<<<<<<<<<
@@ -19390,7 +19402,7 @@ static PyObject *__pyx_pf_9resources_3svm_11PatchLoader_2load_patches_with_filen
     }
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-    /* "resources/svm.py":450
+    /* "resources/svm.py":451
  *         patches = {category: [] for category in categories}
  *         filenames = {category: [] for category in categories}
  *         for category in categories:             # <<<<<<<<<<<<<<
@@ -19400,25 +19412,25 @@ static PyObject *__pyx_pf_9resources_3svm_11PatchLoader_2load_patches_with_filen
   }
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "resources/svm.py":462
+  /* "resources/svm.py":463
  *                     print(f'(Svm-pl-lpwf) {e}')
  *                     LoggerSingleton().error('(Svm-pl-lpwf) ' +  e)
  *         return patches, filenames             # <<<<<<<<<<<<<<
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyTuple_New(2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 462, __pyx_L1_error)
+  __pyx_t_1 = PyTuple_New(2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 463, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_INCREF(__pyx_v_patches);
   __Pyx_GIVEREF(__pyx_v_patches);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_v_patches)) __PYX_ERR(0, 462, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_v_patches)) __PYX_ERR(0, 463, __pyx_L1_error);
   __Pyx_INCREF(__pyx_v_filenames);
   __Pyx_GIVEREF(__pyx_v_filenames);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_1, 1, __pyx_v_filenames)) __PYX_ERR(0, 462, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_1, 1, __pyx_v_filenames)) __PYX_ERR(0, 463, __pyx_L1_error);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "resources/svm.py":446
+  /* "resources/svm.py":447
  *         self.base_folder = base_folder
  * 
  *     def load_patches_with_filenames(self):             # <<<<<<<<<<<<<<
@@ -19553,6 +19565,7 @@ static int __Pyx_CreateStringTabAndInitStrings(void) {
     {&__pyx_n_u_book, __pyx_k_book, sizeof(__pyx_k_book), 0, 1, 0, 1},
     {&__pyx_n_s_bottom_right_coords, __pyx_k_bottom_right_coords, sizeof(__pyx_k_bottom_right_coords), 0, 0, 1, 1},
     {&__pyx_n_s_buffer, __pyx_k_buffer, sizeof(__pyx_k_buffer), 0, 0, 1, 1},
+    {&__pyx_n_s_cache, __pyx_k_cache, sizeof(__pyx_k_cache), 0, 0, 1, 1},
     {&__pyx_n_s_cache_list, __pyx_k_cache_list, sizeof(__pyx_k_cache_list), 0, 0, 1, 1},
     {&__pyx_n_s_cache_path, __pyx_k_cache_path, sizeof(__pyx_k_cache_path), 0, 0, 1, 1},
     {&__pyx_n_s_categories, __pyx_k_categories, sizeof(__pyx_k_categories), 0, 0, 1, 1},
@@ -19916,14 +19929,14 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __Pyx_GOTREF(__pyx_tuple__10);
   __Pyx_GIVEREF(__pyx_tuple__10);
 
-  /* "resources/svm.py":394
+  /* "resources/svm.py":395
  *         folder_path = os.path.join(os.getenv("INSPECTION_CLIENT_FOLDERS_PATH"), 'collages')
  *         xml_filename = os.path.join(folder_path, f'{self.barcode}_patches.xml')
  *         book = ET.Element("book", barcode=str(self.barcode))             # <<<<<<<<<<<<<<
  * 
  *         for page_number, patches in patches_dict.items():
  */
-  __pyx_tuple__13 = PyTuple_Pack(1, __pyx_n_u_book); if (unlikely(!__pyx_tuple__13)) __PYX_ERR(0, 394, __pyx_L1_error)
+  __pyx_tuple__13 = PyTuple_Pack(1, __pyx_n_u_book); if (unlikely(!__pyx_tuple__13)) __PYX_ERR(0, 395, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__13);
   __Pyx_GIVEREF(__pyx_tuple__13);
 
@@ -20065,82 +20078,82 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
  *         for target, patch_class, target_cache in zip([self.blurry_patches, self.empty_patches, self.indeterminate_patches], ['blurry', 'empty', 'indeterminate'], [self.blurry_batch_paths, None, self.indeterminate_batch_paths]):
  *             if patch_class == 'empty': continue
  */
-  __pyx_tuple__37 = PyTuple_Pack(7, __pyx_n_s_self, __pyx_n_s_target, __pyx_n_s_patch_class, __pyx_n_s_target_cache, __pyx_n_s_cnn_results, __pyx_n_s_attempts, __pyx_n_s_e); if (unlikely(!__pyx_tuple__37)) __PYX_ERR(0, 313, __pyx_L1_error)
+  __pyx_tuple__37 = PyTuple_Pack(8, __pyx_n_s_self, __pyx_n_s_target, __pyx_n_s_patch_class, __pyx_n_s_target_cache, __pyx_n_s_cnn_results, __pyx_n_s_attempts, __pyx_n_s_cache, __pyx_n_s_e); if (unlikely(!__pyx_tuple__37)) __PYX_ERR(0, 313, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__37);
   __Pyx_GIVEREF(__pyx_tuple__37);
-  __pyx_codeobj__38 = (PyObject*)__Pyx_PyCode_New(1, 0, 0, 7, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__37, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_resources_svm_py, __pyx_n_s_finish, 313, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__38)) __PYX_ERR(0, 313, __pyx_L1_error)
+  __pyx_codeobj__38 = (PyObject*)__Pyx_PyCode_New(1, 0, 0, 8, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__37, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_resources_svm_py, __pyx_n_s_finish, 313, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__38)) __PYX_ERR(0, 313, __pyx_L1_error)
 
-  /* "resources/svm.py":342
+  /* "resources/svm.py":343
  *         self.save_patches_to_xml(self.cut_page_coordinates_dict)
  * 
  *     def add_to_cut_page_coordinates_dict(self, target):             # <<<<<<<<<<<<<<
  *         for labeled_patch in target:
  *             num_of_page = labeled_patch[1]
  */
-  __pyx_tuple__39 = PyTuple_Pack(11, __pyx_n_s_self, __pyx_n_s_target, __pyx_n_s_labeled_patch, __pyx_n_s_num_of_page, __pyx_n_s_path, __pyx_n_s_xp, __pyx_n_s_yp, __pyx_n_s_xa, __pyx_n_s_ya, __pyx_n_s_scale_x, __pyx_n_s_scale_y); if (unlikely(!__pyx_tuple__39)) __PYX_ERR(0, 342, __pyx_L1_error)
+  __pyx_tuple__39 = PyTuple_Pack(11, __pyx_n_s_self, __pyx_n_s_target, __pyx_n_s_labeled_patch, __pyx_n_s_num_of_page, __pyx_n_s_path, __pyx_n_s_xp, __pyx_n_s_yp, __pyx_n_s_xa, __pyx_n_s_ya, __pyx_n_s_scale_x, __pyx_n_s_scale_y); if (unlikely(!__pyx_tuple__39)) __PYX_ERR(0, 343, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__39);
   __Pyx_GIVEREF(__pyx_tuple__39);
-  __pyx_codeobj__40 = (PyObject*)__Pyx_PyCode_New(2, 0, 0, 11, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__39, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_resources_svm_py, __pyx_n_s_add_to_cut_page_coordinates_dict, 342, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__40)) __PYX_ERR(0, 342, __pyx_L1_error)
+  __pyx_codeobj__40 = (PyObject*)__Pyx_PyCode_New(2, 0, 0, 11, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__39, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_resources_svm_py, __pyx_n_s_add_to_cut_page_coordinates_dict, 343, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__40)) __PYX_ERR(0, 343, __pyx_L1_error)
 
-  /* "resources/svm.py":361
+  /* "resources/svm.py":362
  *             self.cut_page_coordinates_dict[num_of_page].append((int(xa + xp * scale_x), int(ya + yp * scale_y) , int(200 * scale_x), int(200 * scale_y)))
  * 
  *     def finish_old(self):             # <<<<<<<<<<<<<<
  *         for target, patch_class, target_cache in zip([self.blurry_patches, self.empty_patches, self.indeterminate_patches], ['blurry', 'empty', 'indeterminate'], [self.blurry_batch_paths, None, self.indeterminate_batch_paths]):
  *             if patch_class == 'empty': continue
  */
-  __pyx_tuple__41 = PyTuple_Pack(13, __pyx_n_s_self, __pyx_n_s_target, __pyx_n_s_patch_class, __pyx_n_s_target_cache, __pyx_n_s_labeled_patch, __pyx_n_s_num_of_page, __pyx_n_s_path, __pyx_n_s_xp, __pyx_n_s_yp, __pyx_n_s_xa, __pyx_n_s_ya, __pyx_n_s_scale_x, __pyx_n_s_scale_y); if (unlikely(!__pyx_tuple__41)) __PYX_ERR(0, 361, __pyx_L1_error)
+  __pyx_tuple__41 = PyTuple_Pack(13, __pyx_n_s_self, __pyx_n_s_target, __pyx_n_s_patch_class, __pyx_n_s_target_cache, __pyx_n_s_labeled_patch, __pyx_n_s_num_of_page, __pyx_n_s_path, __pyx_n_s_xp, __pyx_n_s_yp, __pyx_n_s_xa, __pyx_n_s_ya, __pyx_n_s_scale_x, __pyx_n_s_scale_y); if (unlikely(!__pyx_tuple__41)) __PYX_ERR(0, 362, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__41);
   __Pyx_GIVEREF(__pyx_tuple__41);
-  __pyx_codeobj__42 = (PyObject*)__Pyx_PyCode_New(1, 0, 0, 13, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__41, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_resources_svm_py, __pyx_n_s_finish_old, 361, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__42)) __PYX_ERR(0, 361, __pyx_L1_error)
+  __pyx_codeobj__42 = (PyObject*)__Pyx_PyCode_New(1, 0, 0, 13, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__41, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_resources_svm_py, __pyx_n_s_finish_old, 362, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__42)) __PYX_ERR(0, 362, __pyx_L1_error)
 
-  /* "resources/svm.py":391
+  /* "resources/svm.py":392
  *         self.save_patches_to_xml(self.cut_page_coordinates_dict)
  * 
  *     def save_patches_to_xml(self, patches_dict : dict):             # <<<<<<<<<<<<<<
  *         folder_path = os.path.join(os.getenv("INSPECTION_CLIENT_FOLDERS_PATH"), 'collages')
  *         xml_filename = os.path.join(folder_path, f'{self.barcode}_patches.xml')
  */
-  __pyx_tuple__43 = PyTuple_Pack(16, __pyx_n_s_self, __pyx_n_s_patches_dict, __pyx_n_s_folder_path, __pyx_n_s_xml_filename, __pyx_n_s_book, __pyx_n_s_page_number, __pyx_n_s_patches, __pyx_n_s_x, __pyx_n_s_y, __pyx_n_s_w, __pyx_n_s_h, __pyx_n_s_width, __pyx_n_s_height, __pyx_n_s_page, __pyx_n_s_patch, __pyx_n_s_tree); if (unlikely(!__pyx_tuple__43)) __PYX_ERR(0, 391, __pyx_L1_error)
+  __pyx_tuple__43 = PyTuple_Pack(16, __pyx_n_s_self, __pyx_n_s_patches_dict, __pyx_n_s_folder_path, __pyx_n_s_xml_filename, __pyx_n_s_book, __pyx_n_s_page_number, __pyx_n_s_patches, __pyx_n_s_x, __pyx_n_s_y, __pyx_n_s_w, __pyx_n_s_h, __pyx_n_s_width, __pyx_n_s_height, __pyx_n_s_page, __pyx_n_s_patch, __pyx_n_s_tree); if (unlikely(!__pyx_tuple__43)) __PYX_ERR(0, 392, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__43);
   __Pyx_GIVEREF(__pyx_tuple__43);
-  __pyx_codeobj__44 = (PyObject*)__Pyx_PyCode_New(2, 0, 0, 16, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__43, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_resources_svm_py, __pyx_n_s_save_patches_to_xml, 391, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__44)) __PYX_ERR(0, 391, __pyx_L1_error)
+  __pyx_codeobj__44 = (PyObject*)__Pyx_PyCode_New(2, 0, 0, 16, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__43, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_resources_svm_py, __pyx_n_s_save_patches_to_xml, 392, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__44)) __PYX_ERR(0, 392, __pyx_L1_error)
 
-  /* "resources/svm.py":412
+  /* "resources/svm.py":413
  * 
  * 
  *     def add_patch(self, labeled_patch):             # <<<<<<<<<<<<<<
  *         with self.lock:  # Ensure thread-safe access
  *             target = None
  */
-  __pyx_tuple__45 = PyTuple_Pack(6, __pyx_n_s_self, __pyx_n_s_labeled_patch, __pyx_n_s_target, __pyx_n_s_patch_class, __pyx_n_s_cache_list, __pyx_n_s_cache_path); if (unlikely(!__pyx_tuple__45)) __PYX_ERR(0, 412, __pyx_L1_error)
+  __pyx_tuple__45 = PyTuple_Pack(6, __pyx_n_s_self, __pyx_n_s_labeled_patch, __pyx_n_s_target, __pyx_n_s_patch_class, __pyx_n_s_cache_list, __pyx_n_s_cache_path); if (unlikely(!__pyx_tuple__45)) __PYX_ERR(0, 413, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__45);
   __Pyx_GIVEREF(__pyx_tuple__45);
-  __pyx_codeobj__46 = (PyObject*)__Pyx_PyCode_New(2, 0, 0, 6, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__45, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_resources_svm_py, __pyx_n_s_add_patch, 412, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__46)) __PYX_ERR(0, 412, __pyx_L1_error)
+  __pyx_codeobj__46 = (PyObject*)__Pyx_PyCode_New(2, 0, 0, 6, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__45, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_resources_svm_py, __pyx_n_s_add_patch, 413, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__46)) __PYX_ERR(0, 413, __pyx_L1_error)
 
-  /* "resources/svm.py":443
+  /* "resources/svm.py":444
  * 
  * class PatchLoader:
  *     def __init__(self, base_folder):             # <<<<<<<<<<<<<<
  *         self.base_folder = base_folder
  * 
  */
-  __pyx_tuple__47 = PyTuple_Pack(2, __pyx_n_s_self, __pyx_n_s_base_folder); if (unlikely(!__pyx_tuple__47)) __PYX_ERR(0, 443, __pyx_L1_error)
+  __pyx_tuple__47 = PyTuple_Pack(2, __pyx_n_s_self, __pyx_n_s_base_folder); if (unlikely(!__pyx_tuple__47)) __PYX_ERR(0, 444, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__47);
   __Pyx_GIVEREF(__pyx_tuple__47);
-  __pyx_codeobj__48 = (PyObject*)__Pyx_PyCode_New(2, 0, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__47, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_resources_svm_py, __pyx_n_s_init, 443, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__48)) __PYX_ERR(0, 443, __pyx_L1_error)
+  __pyx_codeobj__48 = (PyObject*)__Pyx_PyCode_New(2, 0, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__47, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_resources_svm_py, __pyx_n_s_init, 444, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__48)) __PYX_ERR(0, 444, __pyx_L1_error)
 
-  /* "resources/svm.py":446
+  /* "resources/svm.py":447
  *         self.base_folder = base_folder
  * 
  *     def load_patches_with_filenames(self):             # <<<<<<<<<<<<<<
  *         categories = ['blurry', 'sharp', 'empty', 'indeterminate']
  *         patches = {category: [] for category in categories}
  */
-  __pyx_tuple__49 = PyTuple_Pack(12, __pyx_n_s_self, __pyx_n_s_categories, __pyx_n_s_patches, __pyx_n_s_filenames, __pyx_n_s_category, __pyx_n_s_category_folder, __pyx_n_s_filename, __pyx_n_s_patch_path, __pyx_n_s_patch, __pyx_n_s_e, __pyx_n_s_category, __pyx_n_s_category); if (unlikely(!__pyx_tuple__49)) __PYX_ERR(0, 446, __pyx_L1_error)
+  __pyx_tuple__49 = PyTuple_Pack(12, __pyx_n_s_self, __pyx_n_s_categories, __pyx_n_s_patches, __pyx_n_s_filenames, __pyx_n_s_category, __pyx_n_s_category_folder, __pyx_n_s_filename, __pyx_n_s_patch_path, __pyx_n_s_patch, __pyx_n_s_e, __pyx_n_s_category, __pyx_n_s_category); if (unlikely(!__pyx_tuple__49)) __PYX_ERR(0, 447, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__49);
   __Pyx_GIVEREF(__pyx_tuple__49);
-  __pyx_codeobj__50 = (PyObject*)__Pyx_PyCode_New(1, 0, 0, 12, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__49, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_resources_svm_py, __pyx_n_s_load_patches_with_filenames, 446, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__50)) __PYX_ERR(0, 446, __pyx_L1_error)
+  __pyx_codeobj__50 = (PyObject*)__Pyx_PyCode_New(1, 0, 0, 12, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__49, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_resources_svm_py, __pyx_n_s_load_patches_with_filenames, 447, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__50)) __PYX_ERR(0, 447, __pyx_L1_error)
   __Pyx_RefNannyFinishContext();
   return 0;
   __pyx_L1_error:;
@@ -21101,57 +21114,57 @@ if (!__Pyx_RefNanny) {
   if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_finish, __pyx_t_2) < 0) __PYX_ERR(0, 313, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "resources/svm.py":342
+  /* "resources/svm.py":343
  *         self.save_patches_to_xml(self.cut_page_coordinates_dict)
  * 
  *     def add_to_cut_page_coordinates_dict(self, target):             # <<<<<<<<<<<<<<
  *         for labeled_patch in target:
  *             num_of_page = labeled_patch[1]
  */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_9resources_3svm_14CollageHandler_13add_to_cut_page_coordinates_dict, 0, __pyx_n_s_CollageHandler_add_to_cut_page_c, NULL, __pyx_n_s_resources_svm, __pyx_d, ((PyObject *)__pyx_codeobj__40)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 342, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_9resources_3svm_14CollageHandler_13add_to_cut_page_coordinates_dict, 0, __pyx_n_s_CollageHandler_add_to_cut_page_c, NULL, __pyx_n_s_resources_svm, __pyx_d, ((PyObject *)__pyx_codeobj__40)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 343, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_add_to_cut_page_coordinates_dict, __pyx_t_2) < 0) __PYX_ERR(0, 342, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_add_to_cut_page_coordinates_dict, __pyx_t_2) < 0) __PYX_ERR(0, 343, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "resources/svm.py":361
+  /* "resources/svm.py":362
  *             self.cut_page_coordinates_dict[num_of_page].append((int(xa + xp * scale_x), int(ya + yp * scale_y) , int(200 * scale_x), int(200 * scale_y)))
  * 
  *     def finish_old(self):             # <<<<<<<<<<<<<<
  *         for target, patch_class, target_cache in zip([self.blurry_patches, self.empty_patches, self.indeterminate_patches], ['blurry', 'empty', 'indeterminate'], [self.blurry_batch_paths, None, self.indeterminate_batch_paths]):
  *             if patch_class == 'empty': continue
  */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_9resources_3svm_14CollageHandler_15finish_old, 0, __pyx_n_s_CollageHandler_finish_old, NULL, __pyx_n_s_resources_svm, __pyx_d, ((PyObject *)__pyx_codeobj__42)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 361, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_9resources_3svm_14CollageHandler_15finish_old, 0, __pyx_n_s_CollageHandler_finish_old, NULL, __pyx_n_s_resources_svm, __pyx_d, ((PyObject *)__pyx_codeobj__42)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 362, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_finish_old, __pyx_t_2) < 0) __PYX_ERR(0, 361, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_finish_old, __pyx_t_2) < 0) __PYX_ERR(0, 362, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "resources/svm.py":391
+  /* "resources/svm.py":392
  *         self.save_patches_to_xml(self.cut_page_coordinates_dict)
  * 
  *     def save_patches_to_xml(self, patches_dict : dict):             # <<<<<<<<<<<<<<
  *         folder_path = os.path.join(os.getenv("INSPECTION_CLIENT_FOLDERS_PATH"), 'collages')
  *         xml_filename = os.path.join(folder_path, f'{self.barcode}_patches.xml')
  */
-  __pyx_t_2 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 391, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 392, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  if (PyDict_SetItem(__pyx_t_2, __pyx_n_s_patches_dict, __pyx_n_s_dict) < 0) __PYX_ERR(0, 391, __pyx_L1_error)
-  __pyx_t_4 = __Pyx_CyFunction_New(&__pyx_mdef_9resources_3svm_14CollageHandler_17save_patches_to_xml, 0, __pyx_n_s_CollageHandler_save_patches_to_x, NULL, __pyx_n_s_resources_svm, __pyx_d, ((PyObject *)__pyx_codeobj__44)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 391, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_2, __pyx_n_s_patches_dict, __pyx_n_s_dict) < 0) __PYX_ERR(0, 392, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_CyFunction_New(&__pyx_mdef_9resources_3svm_14CollageHandler_17save_patches_to_xml, 0, __pyx_n_s_CollageHandler_save_patches_to_x, NULL, __pyx_n_s_resources_svm, __pyx_d, ((PyObject *)__pyx_codeobj__44)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 392, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_CyFunction_SetAnnotationsDict(__pyx_t_4, __pyx_t_2);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_save_patches_to_xml, __pyx_t_4) < 0) __PYX_ERR(0, 391, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_save_patches_to_xml, __pyx_t_4) < 0) __PYX_ERR(0, 392, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "resources/svm.py":412
+  /* "resources/svm.py":413
  * 
  * 
  *     def add_patch(self, labeled_patch):             # <<<<<<<<<<<<<<
  *         with self.lock:  # Ensure thread-safe access
  *             target = None
  */
-  __pyx_t_4 = __Pyx_CyFunction_New(&__pyx_mdef_9resources_3svm_14CollageHandler_19add_patch, 0, __pyx_n_s_CollageHandler_add_patch, NULL, __pyx_n_s_resources_svm, __pyx_d, ((PyObject *)__pyx_codeobj__46)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 412, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_CyFunction_New(&__pyx_mdef_9resources_3svm_14CollageHandler_19add_patch, 0, __pyx_n_s_CollageHandler_add_patch, NULL, __pyx_n_s_resources_svm, __pyx_d, ((PyObject *)__pyx_codeobj__46)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 413, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_add_patch, __pyx_t_4) < 0) __PYX_ERR(0, 412, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_add_patch, __pyx_t_4) < 0) __PYX_ERR(0, 413, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
   /* "resources/svm.py":211
@@ -21167,50 +21180,50 @@ if (!__Pyx_RefNanny) {
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "resources/svm.py":442
+  /* "resources/svm.py":443
  *             return 2  # added blurry
  * 
  * class PatchLoader:             # <<<<<<<<<<<<<<
  *     def __init__(self, base_folder):
  *         self.base_folder = base_folder
  */
-  __pyx_t_3 = __Pyx_Py3MetaclassPrepare((PyObject *) NULL, __pyx_empty_tuple, __pyx_n_s_PatchLoader, __pyx_n_s_PatchLoader, (PyObject *) NULL, __pyx_n_s_resources_svm, (PyObject *) NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 442, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_Py3MetaclassPrepare((PyObject *) NULL, __pyx_empty_tuple, __pyx_n_s_PatchLoader, __pyx_n_s_PatchLoader, (PyObject *) NULL, __pyx_n_s_resources_svm, (PyObject *) NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 443, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
 
-  /* "resources/svm.py":443
+  /* "resources/svm.py":444
  * 
  * class PatchLoader:
  *     def __init__(self, base_folder):             # <<<<<<<<<<<<<<
  *         self.base_folder = base_folder
  * 
  */
-  __pyx_t_4 = __Pyx_CyFunction_New(&__pyx_mdef_9resources_3svm_11PatchLoader_1__init__, 0, __pyx_n_s_PatchLoader___init, NULL, __pyx_n_s_resources_svm, __pyx_d, ((PyObject *)__pyx_codeobj__48)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 443, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_CyFunction_New(&__pyx_mdef_9resources_3svm_11PatchLoader_1__init__, 0, __pyx_n_s_PatchLoader___init, NULL, __pyx_n_s_resources_svm, __pyx_d, ((PyObject *)__pyx_codeobj__48)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 444, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_init, __pyx_t_4) < 0) __PYX_ERR(0, 443, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_init, __pyx_t_4) < 0) __PYX_ERR(0, 444, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "resources/svm.py":446
+  /* "resources/svm.py":447
  *         self.base_folder = base_folder
  * 
  *     def load_patches_with_filenames(self):             # <<<<<<<<<<<<<<
  *         categories = ['blurry', 'sharp', 'empty', 'indeterminate']
  *         patches = {category: [] for category in categories}
  */
-  __pyx_t_4 = __Pyx_CyFunction_New(&__pyx_mdef_9resources_3svm_11PatchLoader_3load_patches_with_filenames, 0, __pyx_n_s_PatchLoader_load_patches_with_fi, NULL, __pyx_n_s_resources_svm, __pyx_d, ((PyObject *)__pyx_codeobj__50)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 446, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_CyFunction_New(&__pyx_mdef_9resources_3svm_11PatchLoader_3load_patches_with_filenames, 0, __pyx_n_s_PatchLoader_load_patches_with_fi, NULL, __pyx_n_s_resources_svm, __pyx_d, ((PyObject *)__pyx_codeobj__50)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 447, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_load_patches_with_filenames, __pyx_t_4) < 0) __PYX_ERR(0, 446, __pyx_L1_error)
+  if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_load_patches_with_filenames, __pyx_t_4) < 0) __PYX_ERR(0, 447, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "resources/svm.py":442
+  /* "resources/svm.py":443
  *             return 2  # added blurry
  * 
  * class PatchLoader:             # <<<<<<<<<<<<<<
  *     def __init__(self, base_folder):
  *         self.base_folder = base_folder
  */
-  __pyx_t_4 = __Pyx_Py3ClassCreate(((PyObject*)&PyType_Type), __pyx_n_s_PatchLoader, __pyx_empty_tuple, __pyx_t_3, NULL, 0, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 442, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_Py3ClassCreate(((PyObject*)&PyType_Type), __pyx_n_s_PatchLoader, __pyx_empty_tuple, __pyx_t_3, NULL, 0, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 443, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_PatchLoader, __pyx_t_4) < 0) __PYX_ERR(0, 442, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_PatchLoader, __pyx_t_4) < 0) __PYX_ERR(0, 443, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
