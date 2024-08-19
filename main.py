@@ -4,7 +4,13 @@ def main():
     import os
     from dotenv import load_dotenv
     from multiprocessing import freeze_support
-    
+    import sys
+
+    # Add the resources directory to the sys.path if not already present
+    resources_path = os.path.join(os.path.dirname(__file__), 'resources')
+    if resources_path not in sys.path:
+        sys.path.insert(0, resources_path)
+
     freeze_support()
     
     env_path = r'C:\Users\Public\ICLOCAL\.env'

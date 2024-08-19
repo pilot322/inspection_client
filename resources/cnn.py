@@ -1,12 +1,9 @@
-
 IMAGE_SIZE = 200
+from keras.api.preprocessing.image import img_to_array
+import cv2
+import numpy as np
 
 def predict_blur(images, model):
-    from tensorflow.keras.preprocessing.image import img_to_array
-    import cv2
-    import numpy as np
-
-
     processed_images = []
     for img in images:
         img = cv2.resize(img, (IMAGE_SIZE, IMAGE_SIZE))

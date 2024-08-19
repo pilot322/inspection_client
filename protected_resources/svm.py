@@ -210,7 +210,7 @@ def train_svm(patches_path):
 
 class CollageHandler:
     def __init__(self, barcode, temp_images_path):
-        from tensorflow.keras.models import load_model
+        from keras.api.models import load_model
         
         self.model = load_model(os.path.join(os.getenv("INSPECTION_CLIENT_FOLDERS_PATH"),'blur_detection_model.keras'))
         self.barcode = barcode
@@ -324,9 +324,10 @@ class CollageHandler:
                 if len(target_cache) == 0: break
 
                 attempts = 0
+                cache = target_cache.pop()
                 while attempts < 10:
                     try:
-                        target = joblib.load(os.path.join(os.getenv("INSPECTION_CLIENT_FOLDERS_PATH"), 'temp_files', self.barcode ,target_cache.pop())) 
+                        target = joblib.load(os.path.join(os.getenv("INSPECTION_CLIENT_FOLDERS_PATH"), 'temp_files', self.barcode, cache)) 
                         break
                     except Exception as e:
                         LoggerSingleton().log('joblib ' + str(e))
