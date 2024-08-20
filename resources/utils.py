@@ -54,6 +54,8 @@ def read_images(images_path, temp_images_path):
     return images
 
 def process_and_save_image(filename, images_path, temp_images_path, counter, total_files, lock, results):
+    retry_makedirs(temp_images_path)
+
     if not filename.endswith('.tif') or 'thumb' in filename:
         return
     image_path = os.path.join(images_path, filename)
@@ -66,7 +68,7 @@ def process_and_save_image(filename, images_path, temp_images_path, counter, tot
             halfs, coords_pair = process_image(image)
             break
         except Exception as e:
-            print(f'(Utils-pasi) {e}')
+            print(f'(Utils-pasi1) {e}')
             LoggerSingleton().error('(Utils-pasi) ' +  e.__str__())
             time.sleep(5)
             attempts += 1
@@ -76,17 +78,21 @@ def process_and_save_image(filename, images_path, temp_images_path, counter, tot
     
     attempts = 0
 
+    paths = []
+
     for half, label, coords in zip(halfs, labels, coords_pair):
         while attempts < 10:
             try:
                 new_img_path = temp_image_path.format(label)
+                if not new_img_path in paths:
+                    paths.append(new_img_path)
                 write_image_with_retry(temp_image_path.format(label), half)
                 
                 if results is not None:
                     results.append((new_img_path, coords))
                 break
             except Exception as e:
-                print(f'(Utils-pasi) {e}')
+                print(f'(Utils-pasi2) {e}')
                 LoggerSingleton().error('(Utils-pasi) ' +  e.__str__())
                 time.sleep(5)
                 attempts += 1
@@ -100,6 +106,7 @@ def process_and_save_image(filename, images_path, temp_images_path, counter, tot
             if counter.value in values:
                 print(f'{os.path.basename(images_path)} processing progress: {counter.value / total_files:.2f}%')
 
+    return paths
 
 def process_images(images_path, temp_images_path):
     

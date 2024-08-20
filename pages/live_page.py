@@ -11,6 +11,7 @@ from multiprocessing import Manager
 import threading
 from keras.api.models import load_model
 from resources.cnn import predict_blur
+from resources.svm import read_divide_classify
 
 class QueueMonitor(QThread):
     def __init__(self, manager_queue):
@@ -18,7 +19,6 @@ class QueueMonitor(QThread):
         self.manager_queue = manager_queue
         self._running = True
         self.model = load_model(os.path.join(os.getenv("INSPECTION_CLIENT_FOLDERS_PATH"),'blur_detection_model.keras'))
-
 
     def run(self):
         while self._running:
@@ -49,6 +49,11 @@ class QueueMonitor(QThread):
 
             print(f'number of blurries: {count} / {n}')
 
+    def stop(self):
+        self._running = False
+        self.manager_queue.put('DONE')
+        self.wait()
+
 class FolderWatcher(QThread):
     def __init__(self, folder_to_watch, new_image_signal):
         super().__init__()
@@ -64,13 +69,17 @@ class FolderWatcher(QThread):
 
     def run(self):
         while self._running:
-            print('watching')
+            #print('watching')
             for file_name in sorted(os.listdir(self.folder_to_watch)):
                 file_path = os.path.join(self.folder_to_watch, file_name)
-                if file_path not in self.processed_files and file_name.endswith(('.tif')):
-                    sleep(4)
-                    self.processed_files.add(file_path)
-                    self.new_image_signal.emit(file_path)
+                if file_path not in self.processed_files :
+                    print(f'new file detected: {file_name}')
+                    
+                    if file_name.endswith(('.tif')):
+                        sleep(8)
+                        self.processed_files.add(file_path)
+                        self.new_image_signal.emit(file_path)
+
             sleep(1)  # Check for new files every second
 
     def stop(self):
@@ -86,6 +95,7 @@ class LivePage(QWidget):
         self.initUI()
 
         self.watcher_thread = None
+        self.monitor_thread = None
         self.watched_folder = ""
         self.selected_preset = ""
         self.new_image_signal.connect(self.process_new_image)
@@ -101,6 +111,13 @@ class LivePage(QWidget):
         self.preset_combo = QComboBox()
         self.load_presets()
         self.start_btn = QPushButton('Start Watching')
+        self.start_btn.setStyleSheet("""
+            QPushButton {
+                background-color: #fafafa;                       
+            }
+            """
+        )
+        
         self.back_btn = QPushButton('Back to main')
 
         self.folder_btn.clicked.connect(self.select_folder_action)
@@ -127,15 +144,22 @@ class LivePage(QWidget):
         folder = QFileDialog.getExistingDirectory(self, "Select Folder")
         if folder:
             self.watched_folder = folder
-            self.update_label.setText(f'Watching folder: {folder}')
+            self.update_label.setText(f'Selected folder: {folder}')
             self.temp_folder = os.path.join(os.getenv("INSPECTION_CLIENT_FOLDERS_PATH"), 'temp_images', os.path.basename(folder))
 
     def start_watching(self):
-        if not self.watched_folder or not self.preset_combo.currentText() or self.watcher_thread:
-            self.watcher_thread.stop()
-            self.monitor_thread.stop()
-            self.update_label.setText('Please select a folder and a preset')
+        if not self.watched_folder or not self.preset_combo.currentText() or self.watcher_thread is not None:
+            if self.watcher_thread:
+                self.watcher_thread.stop()
+            if self.monitor_thread:
+                self.monitor_thread.stop()
+            self.update_label.setText('Please select a folder and a preset' if not self.watched_folder else f'Folder selected: {self.watched_folder}')
             self.start_btn.setText('Start Watching')
+            self.start_btn.setStyleSheet("""
+            QPushButton {
+                background-color: #fafafa;                       
+            }
+            """)
             #self.start_btn.setColor('white')
             self.preset_combo.setDisabled(False)
             self.back_btn.setDisabled(False)
@@ -144,6 +168,12 @@ class LivePage(QWidget):
             self.monitor_thread = None
             return
 
+        self.start_btn.setText('Stop Watching')
+        self.start_btn.setStyleSheet("""
+            QPushButton {
+                background-color: #aa0000;                       
+            }
+        """)
         self.selected_preset = self.preset_combo.currentText()
         preset_path = os.path.join(os.getenv("INSPECTION_CLIENT_FOLDERS_PATH"), 'presets', self.selected_preset)
         
@@ -167,17 +197,19 @@ class LivePage(QWidget):
         self.monitor_thread.start()
 
     def process_new_image(self, image_path):
-        sleep(7)
         self.update_label.setText(f'Processing image: {image_path}')
+        print(f'paths: {os.path.basename(image_path)} {self.watched_folder} {self.temp_folder}')        
+        paths = process_and_save_image(os.path.basename(image_path), self.watched_folder, self.temp_folder, None, None, None, None)
         
-        process_and_save_image(image_path, self.watched_folder, self.temp_folder, None, None, None, None)
-        # self.inspect_image(temp_folder)
+        total_labeled_patches = []
 
-    def inspect_image(self, temp_folder):
+        for path in paths:
+            labeled_patches = read_divide_classify(path, self.svm, self.pca, self.scaler)
 
-        #utils.inspect_folder(temp_folder, self.selected_preset, lambda x: None)
-        self.update_label.setText('Image processed and inspected')
+            total_labeled_patches.extend(labeled_patches)
 
+        self.manager_queue.put(total_labeled_patches)
+        
     def back_to_main_page_action(self):
         if self.watcher_thread:
             self.watcher_thread.stop()
