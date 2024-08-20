@@ -139,7 +139,7 @@ def read_divide_classify(image_path, svm, pca, scaler):
     basename = os.path.basename(image_path)
 
     image_count = basename[:4]
-    labeled_patches = [(patch_features[i][0], image_count, labels[i], float(max(decision_scores[i])), coords[i], basename) for i in range(num_of_patches)]
+    labeled_patches = [[patch_features[i][0], image_count, labels[i], float(max(decision_scores[i])), coords[i], basename] for i in range(num_of_patches)]
 
     return labeled_patches
 

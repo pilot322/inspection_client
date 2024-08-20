@@ -12,14 +12,15 @@ import threading
 from keras.api.models import load_model
 from resources.cnn import predict_blur
 from resources.svm import read_divide_classify
+from pages.point_report_window import PointReportWindow
 
 class QueueMonitor(QThread):
-    def __init__(self, manager_queue):
+    def __init__(self, manager_queue, send_labeled_patches_callback):
         super().__init__()
         self.manager_queue = manager_queue
         self._running = True
         self.model = load_model(os.path.join(os.getenv("INSPECTION_CLIENT_FOLDERS_PATH"),'blur_detection_model.keras'))
-
+        self.send_labeled_patches_callback = send_labeled_patches_callback
     def run(self):
         while self._running:
             labeled_patches = self.manager_queue.get()
@@ -49,6 +50,14 @@ class QueueMonitor(QThread):
 
             print(f'number of blurries: {count} / {n}')
 
+            new_labeled_patches = []
+            for i in range(len(labeled_patches)):
+                if results[i]:
+                    new_labeled_patches.append(labeled_patches[i])
+
+            self.send_labeled_patches_callback(new_labeled_patches)
+            
+
     def stop(self):
         self._running = False
         self.manager_queue.put('DONE')
@@ -74,10 +83,9 @@ class FolderWatcher(QThread):
                 file_path = os.path.join(self.folder_to_watch, file_name)
                 if file_path not in self.processed_files :
                     print(f'new file detected: {file_name}')
-                    
+                    self.processed_files.add(file_path)
                     if file_name.endswith(('.tif')):
-                        sleep(8)
-                        self.processed_files.add(file_path)
+                        sleep(1)
                         self.new_image_signal.emit(file_path)
 
             sleep(1)  # Check for new files every second
@@ -98,7 +106,9 @@ class LivePage(QWidget):
         self.monitor_thread = None
         self.watched_folder = ""
         self.selected_preset = ""
+        self.point_report_map = None
         self.new_image_signal.connect(self.process_new_image)
+
 
     def initUI(self):
         self.setWindowTitle('Live Mode')
@@ -153,6 +163,9 @@ class LivePage(QWidget):
                 self.watcher_thread.stop()
             if self.monitor_thread:
                 self.monitor_thread.stop()
+            if self.point_report_map:
+                self.point_report_map.close()
+                self.point_report_map = None
             self.update_label.setText('Please select a folder and a preset' if not self.watched_folder else f'Folder selected: {self.watched_folder}')
             self.start_btn.setText('Start Watching')
             self.start_btn.setStyleSheet("""
@@ -167,7 +180,8 @@ class LivePage(QWidget):
             self.watcher_thread = None
             self.monitor_thread = None
             return
-
+        
+        self.point_report_map = PointReportWindow()
         self.start_btn.setText('Stop Watching')
         self.start_btn.setStyleSheet("""
             QPushButton {
@@ -193,7 +207,7 @@ class LivePage(QWidget):
         
         self.manager = Manager()
         self.manager_queue = self.manager.Queue()
-        self.monitor_thread = QueueMonitor(self.manager_queue)
+        self.monitor_thread = QueueMonitor(self.manager_queue, self.point_report_map.draw_points)
         self.monitor_thread.start()
 
     def process_new_image(self, image_path):
@@ -203,11 +217,17 @@ class LivePage(QWidget):
         
         total_labeled_patches = []
 
+        i = 0
         for path in paths:
             labeled_patches = read_divide_classify(path, self.svm, self.pca, self.scaler)
 
+            if i == 1:
+                for labeled_patch in labeled_patches:
+                    labeled_patch.insert(4, (labeled_patch[4][0] + int(os.getenv('INSPECTION_CLIENT_TEMP_IMAGE_SIZE')),labeled_patch[4][1]))
+                    labeled_patch.pop(5)
+                    #labeled_patch[4] = (labeled_patch[4][0] + int(os.getenv('INSPECTION_CLIENT_TEMP_IMAGE_SIZE')),labeled_patch[4][1] + int(os.getenv('INSPECTION_CLIENT_TEMP_IMAGE_SIZE')) )
             total_labeled_patches.extend(labeled_patches)
-
+            i += 1
         self.manager_queue.put(total_labeled_patches)
         
     def back_to_main_page_action(self):
