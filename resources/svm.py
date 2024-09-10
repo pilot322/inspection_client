@@ -115,7 +115,7 @@ def read_divide_classify(image_path, svm, pca, scaler):
     attempts = 0
     while attempts < 10:
         try:
-            patches, coords = utils.divide_into_patches(read_image_with_retry(image_path, cv2.IMREAD_GRAYSCALE), (int(os.getenv("INSPECTION_CLIENT_GRID_SIZE")), int(os.getenv("INSPECTION_CLIENT_GRID_SIZE"))))
+            patches, coords, gridcoords = utils.divide_into_patches(read_image_with_retry(image_path, cv2.IMREAD_GRAYSCALE), (int(os.getenv("INSPECTION_CLIENT_GRID_SIZE")), int(os.getenv("INSPECTION_CLIENT_GRID_SIZE"))))
             break
         except ZeroDivisionError as e:
             print(f'(Svm-rdf) {e}')
@@ -139,7 +139,7 @@ def read_divide_classify(image_path, svm, pca, scaler):
     basename = os.path.basename(image_path)
 
     image_count = basename[:4]
-    labeled_patches = [[patch_features[i][0], image_count, labels[i], float(max(decision_scores[i])), coords[i], basename] for i in range(num_of_patches)]
+    labeled_patches = [[patch_features[i][0], image_count, labels[i], float(max(decision_scores[i])), coords[i], basename, gridcoords[i]] for i in range(num_of_patches)]
 
     return labeled_patches
 

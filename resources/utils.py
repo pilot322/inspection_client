@@ -189,17 +189,25 @@ def divide_into_patches(img, dimensions):
 
     patches = []
     coords = []
+    gridcoords = []
     h, w = img.shape[:2]
     patch_width = w // dimensions[0]
     patch_height = h // dimensions[1]
+
+
+    row_index = 0
     
-    for i in range(patch_height // 2, h - patch_height // 2, patch_height):
-        for j in range(patch_width // 2, w - patch_width // 2, patch_width):
-            patch = img[i:i+patch_height, j:j+patch_width]
+    for row in range(patch_height // 2, h - patch_height // 2, patch_height):
+        col_index = 0
+        for col in range(patch_width // 2, w - patch_width // 2, patch_width):
+            patch = img[row:row+patch_height, col:col+patch_width]
             patches.append(patch)
-            coords.append((j, i))
-    
-    return patches, coords
+            coords.append((col, row))
+            gridcoords.append((col_index, row_index))
+
+            col_index += 1
+        row_index += 1
+    return patches, coords, gridcoords
 
 def remove_surrounding_non_pages(image, square_size=int(os.getenv("INSPECTION_CLIENT_TEMP_IMAGE_SIZE"))):
     gray = image

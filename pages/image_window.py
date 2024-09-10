@@ -33,7 +33,7 @@ GRID_DIMENSIONS = (int(os.getenv("INSPECTION_CLIENT_GRID_SIZE")), int(os.getenv(
 PATCH_DIMENSIONS = (int(os.getenv("INSPECTION_CLIENT_TEMP_IMAGE_SIZE")) / GRID_DIMENSIONS[0], int(os.getenv("INSPECTION_CLIENT_TEMP_IMAGE_SIZE")) / GRID_DIMENSIONS[1])
 
 class ImageWindow(QWidget):
-    def __init__(self, image_path, parent):
+    def __init__(self, image_path, parent, view_only=False, zoom_scale = 1.0, offset_x=100):
         super().__init__()
         self.image_path = image_path
         self.parent = parent
@@ -41,11 +41,12 @@ class ImageWindow(QWidget):
         self.extra_patches_y = 5
         self.extra_offset = 20
         self.patch_size = PATCH_DIMENSIONS[0]
-        self.initUI()
+        self.view_only = view_only
+        self.initUI(zoom_scale, offset_x)
 
-    def initUI(self):
+    def initUI(self, zoom_scale, offset_x):
         self.setWindowTitle('Image Window')
-        self.setGeometry(100, 100, 1500, 800)
+        self.setGeometry(offset_x, 100, 1500, 800)
         
         layout = QVBoxLayout()
         
@@ -66,7 +67,7 @@ class ImageWindow(QWidget):
         self.view.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
         self.view.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
         
-        self.zoom_scale = 1.0
+        self.zoom_scale = zoom_scale
         self.view.scale(self.zoom_scale, self.zoom_scale)
 
         layout.addWidget(self.view)
@@ -80,9 +81,9 @@ class ImageWindow(QWidget):
         self.hovered_patch = None
 
     def eventFilter(self, source, event):
-        if event.type() == event.MouseMove:
+        if event.type() == event.MouseMove and not self.view_only:
             self.handle_mouse_move(event)
-        elif event.type() == event.MouseButtonPress:
+        elif event.type() == event.MouseButtonPress  and not self.view_only:
             self.handle_mouse_click(event)
         return super().eventFilter(source, event)
 
@@ -125,6 +126,9 @@ class ImageWindow(QWidget):
             self.view.scale(zoom_out_factor, zoom_out_factor)
 
     def keyPressEvent(self, event):
+        if self.view_only:
+            return
+
         if event.key() == Qt.Key_1:
             self.extra_patches_x += 1
         elif event.key() == Qt.Key_2:
@@ -169,6 +173,9 @@ class ImageWindow(QWidget):
         self.selected_patches[(x, y)] = category
 
     def closeEvent(self, event):
+        if self.view_only:
+            event.accept()
+            return
         self.save_patches()
         event.accept()
 

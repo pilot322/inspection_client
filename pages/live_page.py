@@ -14,6 +14,9 @@ from resources.cnn import predict_blur
 from resources.svm import read_divide_classify
 from pages.point_report_window import PointReportWindow
 
+next_num_page = '0'
+recent_half_paths = []
+
 class QueueMonitor(QThread):
     def __init__(self, manager_queue, send_labeled_patches_callback):
         super().__init__()
@@ -21,6 +24,7 @@ class QueueMonitor(QThread):
         self._running = True
         self.model = load_model(os.path.join(os.getenv("INSPECTION_CLIENT_FOLDERS_PATH"),'blur_detection_model.keras'))
         self.send_labeled_patches_callback = send_labeled_patches_callback
+
     def run(self):
         while self._running:
             labeled_patches = self.manager_queue.get()
@@ -51,13 +55,17 @@ class QueueMonitor(QThread):
             print(f'number of blurries: {count} / {n}')
 
             new_labeled_patches = []
+            
             for i in range(len(labeled_patches)):
                 if results[i]:
                     new_labeled_patches.append(labeled_patches[i])
-
-            self.send_labeled_patches_callback(new_labeled_patches)
             
+            new_labeled_patches.append(recent_half_paths)
+            new_labeled_patches.append(next_num_page)
+            self.send_labeled_patches_callback(new_labeled_patches)
 
+
+            
     def stop(self):
         self._running = False
         self.manager_queue.put('DONE')
@@ -85,10 +93,10 @@ class FolderWatcher(QThread):
                     print(f'new file detected: {file_name}')
                     self.processed_files.add(file_path)
                     if file_name.endswith(('.tif')):
-                        sleep(1)
+                        global next_num_page
                         self.new_image_signal.emit(file_path)
-
-            sleep(1)  # Check for new files every second
+                        next_num_page = file_name[:4]
+            sleep(0.1)  # Check for new files every second
 
     def stop(self):
         self._running = False
@@ -211,6 +219,12 @@ class LivePage(QWidget):
         self.monitor_thread.start()
 
     def process_new_image(self, image_path):
+        sleep(0.5)
+
+        if not os.path.exists(image_path):
+            print('overwrite, probably?')
+            return
+
         self.update_label.setText(f'Processing image: {image_path}')
         print(f'paths: {os.path.basename(image_path)} {self.watched_folder} {self.temp_folder}')        
         paths = process_and_save_image(os.path.basename(image_path), self.watched_folder, self.temp_folder, None, None, None, None)
@@ -218,6 +232,10 @@ class LivePage(QWidget):
         total_labeled_patches = []
 
         i = 0
+
+        global recent_half_paths
+        recent_half_paths = paths
+
         for path in paths:
             labeled_patches = read_divide_classify(path, self.svm, self.pca, self.scaler)
 
@@ -225,7 +243,9 @@ class LivePage(QWidget):
                 for labeled_patch in labeled_patches:
                     labeled_patch.insert(4, (labeled_patch[4][0] + int(os.getenv('INSPECTION_CLIENT_TEMP_IMAGE_SIZE')),labeled_patch[4][1]))
                     labeled_patch.pop(5)
-                    #labeled_patch[4] = (labeled_patch[4][0] + int(os.getenv('INSPECTION_CLIENT_TEMP_IMAGE_SIZE')),labeled_patch[4][1] + int(os.getenv('INSPECTION_CLIENT_TEMP_IMAGE_SIZE')) )
+                    labeled_patch.insert(6, (labeled_patch[6][0] + int(os.getenv('INSPECTION_CLIENT_GRID_SIZE')), labeled_patch[6][1]))
+                    labeled_patch.pop(7)
+
             total_labeled_patches.extend(labeled_patches)
             i += 1
         self.manager_queue.put(total_labeled_patches)
