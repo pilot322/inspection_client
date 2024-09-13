@@ -20,7 +20,7 @@ includefiles = [
     'pages/',  # Assuming this directory doesn't contain .py files you want to exclude
     'components/',  # Same assumption as above
     'resources/',  # Only include the compiled .pyd files
-    r'C:\Users\Mixalis\Documents\Work\inspection_client\env\Lib\site-packages\PyQt5\Qt5\plugins\platforms'
+    r'C:\Users\Mixalis\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\PyQt5\Qt5\plugins\platforms'
 ]
 
 # Explicitly include only the compiled .pyd files

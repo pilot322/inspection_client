@@ -6,7 +6,7 @@ import numpy as np
 def predict_blur(images, model):
     processed_images = []
     for img in images:
-        img = cv2.resize(img, (IMAGE_SIZE, IMAGE_SIZE))
+        #img = cv2.resize(img, (IMAGE_SIZE, IMAGE_SIZE))
         img = img_to_array(img)
         img = img / 255.0
         img = np.expand_dims(img, axis=-1)  # Add a channel dimension for grayscale

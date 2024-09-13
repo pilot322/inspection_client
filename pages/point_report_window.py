@@ -1,5 +1,5 @@
 from PyQt5.QtWidgets import QWidget, QVBoxLayout, QApplication, QLabel
-from PyQt5.QtCore import pyqtSignal, Qt, QPoint
+from PyQt5.QtCore import pyqtSignal, Qt, QPoint, pyqtSlot
 from PyQt5.QtGui import QPainter, QPen, QColor
 import sys
 from components.point_report_map import PointReportMapWidget
@@ -40,6 +40,7 @@ class PointReportWindow(QWidget):
 
         self.show()
 
+    @pyqtSlot(list)
     def draw_points(self, labeled_patches : list):
         num_of_page = labeled_patches.pop()
         self.image_paths = labeled_patches.pop()

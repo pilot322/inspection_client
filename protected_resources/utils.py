@@ -53,14 +53,17 @@ def read_images(images_path, temp_images_path):
 
     return images
 
-def process_and_save_image(filename, images_path, temp_images_path, counter, total_files, lock, results):
+def process_and_save_image(filename, images_path, temp_images_path, counter=None, total_files=None, lock=None, results=None, return_images = False):
+    print('is this thing even called?')
     retry_makedirs(temp_images_path)
-
+    print(' i guess so')
     if not filename.endswith('.tif') or 'thumb' in filename:
         return
+    print('bitchass..')
     image_path = os.path.join(images_path, filename)
+    print(image_path)
     temp_image_path = os.path.join(temp_images_path, f"{filename.split('.')[0]}_{{}}.png")
-    
+    print('ok?')
     attempts = 0
     while attempts < 10:
         try: 
@@ -70,10 +73,10 @@ def process_and_save_image(filename, images_path, temp_images_path, counter, tot
         except Exception as e:
             print(f'(Utils-pasi1) {e}')
             LoggerSingleton().error('(Utils-pasi) ' +  e.__str__())
-            time.sleep(5)
+            time.sleep(0.1)
             attempts += 1
             if attempts >= 10: return
-
+    print('ok??')
     labels = ['left', 'right']
     
     attempts = 0
@@ -97,7 +100,7 @@ def process_and_save_image(filename, images_path, temp_images_path, counter, tot
                 time.sleep(5)
                 attempts += 1
                 if attempts >= 10: return
-            
+    print('ok???')
     if lock is not None:
         with lock:
             counter.value += 1
@@ -106,6 +109,8 @@ def process_and_save_image(filename, images_path, temp_images_path, counter, tot
             if counter.value in values:
                 print(f'{os.path.basename(images_path)} processing progress: {counter.value / total_files:.2f}%')
 
+    if return_images:
+        return halfs, paths, filename[:4]
     return paths
 
 def process_images(images_path, temp_images_path):

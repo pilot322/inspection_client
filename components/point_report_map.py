@@ -43,7 +43,6 @@ class PointReportMapWidget(QWidget):
             bg_color = QColor("#00ff00")  # Green
 
         # Fill the background with the selected color
-        qp.begin(self)
         qp.fillRect(QRect(0, 0, 178, 178), bg_color)
 
         # Set pen for points

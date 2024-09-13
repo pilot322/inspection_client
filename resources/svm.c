@@ -2652,7 +2652,7 @@ static const char __pyx_k__11[] = "";
 static const char __pyx_k__12[] = " ";
 static const char __pyx_k__14[] = "_";
 static const char __pyx_k__15[] = "*";
-static const char __pyx_k__52[] = "?";
+static const char __pyx_k__53[] = "?";
 static const char __pyx_k_cnn[] = "cnn";
 static const char __pyx_k_col[] = "col";
 static const char __pyx_k_cv2[] = "cv2";
@@ -2719,6 +2719,7 @@ static const char __pyx_k_enter[] = "__enter__";
 static const char __pyx_k_error[] = "error";
 static const char __pyx_k_etree[] = "etree";
 static const char __pyx_k_frame[] = "frame";
+static const char __pyx_k_image[] = "image";
 static const char __pyx_k_items[] = "items";
 static const char __pyx_k_label[] = "label";
 static const char __pyx_k_model[] = "model";
@@ -2981,7 +2982,7 @@ static const char __pyx_k_CollageHandler_save_batch_as_ima_2[] = "CollageHandler
 static PyObject *__pyx_pf_9resources_3svm_inspect_folder(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_folder_dir, PyObject *__pyx_v_preset_name, PyObject *__pyx_v_progress_update); /* proto */
 static PyObject *__pyx_pf_9resources_3svm_2process_file(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_file_name, PyObject *__pyx_v_temp_dir, PyObject *__pyx_v_svm, PyObject *__pyx_v_pca, PyObject *__pyx_v_scaler, PyObject *__pyx_v_queue); /* proto */
 static PyObject *__pyx_pf_9resources_3svm_4monitor_queue(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_queue, PyObject *__pyx_v_collage_handler); /* proto */
-static PyObject *__pyx_pf_9resources_3svm_6read_divide_classify(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_image_path, PyObject *__pyx_v_svm, PyObject *__pyx_v_pca, PyObject *__pyx_v_scaler); /* proto */
+static PyObject *__pyx_pf_9resources_3svm_6read_divide_classify(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_image_path, PyObject *__pyx_v_svm, PyObject *__pyx_v_pca, PyObject *__pyx_v_scaler, PyObject *__pyx_v_image); /* proto */
 static PyObject *__pyx_pf_9resources_3svm_8train_svm(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_patches_path); /* proto */
 static PyObject *__pyx_pf_9resources_3svm_14CollageHandler___init__(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_barcode, PyObject *__pyx_v_temp_images_path, CYTHON_UNUSED PyObject *__pyx_v_live); /* proto */
 static PyObject *__pyx_pf_9resources_3svm_14CollageHandler_2parse_xml_to_dict(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self); /* proto */
@@ -3085,7 +3086,7 @@ typedef struct {
   PyObject *__pyx_n_s__15;
   PyObject *__pyx_kp_u__3;
   PyObject *__pyx_kp_u__5;
-  PyObject *__pyx_n_s__52;
+  PyObject *__pyx_n_s__53;
   PyObject *__pyx_kp_u__9;
   PyObject *__pyx_n_s_add_patch;
   PyObject *__pyx_n_s_add_to_cut_page_coordinates_dict;
@@ -3193,6 +3194,7 @@ typedef struct {
   PyObject *__pyx_n_s_height;
   PyObject *__pyx_n_s_i;
   PyObject *__pyx_n_s_idx;
+  PyObject *__pyx_n_s_image;
   PyObject *__pyx_n_s_image_count;
   PyObject *__pyx_n_s_image_path;
   PyObject *__pyx_n_s_image_size;
@@ -3409,36 +3411,37 @@ typedef struct {
   PyObject *__pyx_tuple__21;
   PyObject *__pyx_tuple__23;
   PyObject *__pyx_tuple__25;
-  PyObject *__pyx_tuple__27;
-  PyObject *__pyx_tuple__29;
+  PyObject *__pyx_tuple__26;
+  PyObject *__pyx_tuple__28;
   PyObject *__pyx_tuple__30;
-  PyObject *__pyx_tuple__32;
-  PyObject *__pyx_tuple__34;
-  PyObject *__pyx_tuple__36;
-  PyObject *__pyx_tuple__38;
-  PyObject *__pyx_tuple__40;
-  PyObject *__pyx_tuple__42;
-  PyObject *__pyx_tuple__44;
-  PyObject *__pyx_tuple__46;
-  PyObject *__pyx_tuple__48;
-  PyObject *__pyx_tuple__50;
+  PyObject *__pyx_tuple__31;
+  PyObject *__pyx_tuple__33;
+  PyObject *__pyx_tuple__35;
+  PyObject *__pyx_tuple__37;
+  PyObject *__pyx_tuple__39;
+  PyObject *__pyx_tuple__41;
+  PyObject *__pyx_tuple__43;
+  PyObject *__pyx_tuple__45;
+  PyObject *__pyx_tuple__47;
+  PyObject *__pyx_tuple__49;
+  PyObject *__pyx_tuple__51;
   PyObject *__pyx_codeobj__18;
   PyObject *__pyx_codeobj__20;
   PyObject *__pyx_codeobj__22;
   PyObject *__pyx_codeobj__24;
-  PyObject *__pyx_codeobj__26;
-  PyObject *__pyx_codeobj__28;
-  PyObject *__pyx_codeobj__31;
-  PyObject *__pyx_codeobj__33;
-  PyObject *__pyx_codeobj__35;
-  PyObject *__pyx_codeobj__37;
-  PyObject *__pyx_codeobj__39;
-  PyObject *__pyx_codeobj__41;
-  PyObject *__pyx_codeobj__43;
-  PyObject *__pyx_codeobj__45;
-  PyObject *__pyx_codeobj__47;
-  PyObject *__pyx_codeobj__49;
-  PyObject *__pyx_codeobj__51;
+  PyObject *__pyx_codeobj__27;
+  PyObject *__pyx_codeobj__29;
+  PyObject *__pyx_codeobj__32;
+  PyObject *__pyx_codeobj__34;
+  PyObject *__pyx_codeobj__36;
+  PyObject *__pyx_codeobj__38;
+  PyObject *__pyx_codeobj__40;
+  PyObject *__pyx_codeobj__42;
+  PyObject *__pyx_codeobj__44;
+  PyObject *__pyx_codeobj__46;
+  PyObject *__pyx_codeobj__48;
+  PyObject *__pyx_codeobj__50;
+  PyObject *__pyx_codeobj__52;
 } __pyx_mstate;
 
 #if CYTHON_USE_MODULE_STATE
@@ -3539,7 +3542,7 @@ static int __pyx_m_clear(PyObject *m) {
   Py_CLEAR(clear_module_state->__pyx_n_s__15);
   Py_CLEAR(clear_module_state->__pyx_kp_u__3);
   Py_CLEAR(clear_module_state->__pyx_kp_u__5);
-  Py_CLEAR(clear_module_state->__pyx_n_s__52);
+  Py_CLEAR(clear_module_state->__pyx_n_s__53);
   Py_CLEAR(clear_module_state->__pyx_kp_u__9);
   Py_CLEAR(clear_module_state->__pyx_n_s_add_patch);
   Py_CLEAR(clear_module_state->__pyx_n_s_add_to_cut_page_coordinates_dict);
@@ -3647,6 +3650,7 @@ static int __pyx_m_clear(PyObject *m) {
   Py_CLEAR(clear_module_state->__pyx_n_s_height);
   Py_CLEAR(clear_module_state->__pyx_n_s_i);
   Py_CLEAR(clear_module_state->__pyx_n_s_idx);
+  Py_CLEAR(clear_module_state->__pyx_n_s_image);
   Py_CLEAR(clear_module_state->__pyx_n_s_image_count);
   Py_CLEAR(clear_module_state->__pyx_n_s_image_path);
   Py_CLEAR(clear_module_state->__pyx_n_s_image_size);
@@ -3863,36 +3867,37 @@ static int __pyx_m_clear(PyObject *m) {
   Py_CLEAR(clear_module_state->__pyx_tuple__21);
   Py_CLEAR(clear_module_state->__pyx_tuple__23);
   Py_CLEAR(clear_module_state->__pyx_tuple__25);
-  Py_CLEAR(clear_module_state->__pyx_tuple__27);
-  Py_CLEAR(clear_module_state->__pyx_tuple__29);
+  Py_CLEAR(clear_module_state->__pyx_tuple__26);
+  Py_CLEAR(clear_module_state->__pyx_tuple__28);
   Py_CLEAR(clear_module_state->__pyx_tuple__30);
-  Py_CLEAR(clear_module_state->__pyx_tuple__32);
-  Py_CLEAR(clear_module_state->__pyx_tuple__34);
-  Py_CLEAR(clear_module_state->__pyx_tuple__36);
-  Py_CLEAR(clear_module_state->__pyx_tuple__38);
-  Py_CLEAR(clear_module_state->__pyx_tuple__40);
-  Py_CLEAR(clear_module_state->__pyx_tuple__42);
-  Py_CLEAR(clear_module_state->__pyx_tuple__44);
-  Py_CLEAR(clear_module_state->__pyx_tuple__46);
-  Py_CLEAR(clear_module_state->__pyx_tuple__48);
-  Py_CLEAR(clear_module_state->__pyx_tuple__50);
+  Py_CLEAR(clear_module_state->__pyx_tuple__31);
+  Py_CLEAR(clear_module_state->__pyx_tuple__33);
+  Py_CLEAR(clear_module_state->__pyx_tuple__35);
+  Py_CLEAR(clear_module_state->__pyx_tuple__37);
+  Py_CLEAR(clear_module_state->__pyx_tuple__39);
+  Py_CLEAR(clear_module_state->__pyx_tuple__41);
+  Py_CLEAR(clear_module_state->__pyx_tuple__43);
+  Py_CLEAR(clear_module_state->__pyx_tuple__45);
+  Py_CLEAR(clear_module_state->__pyx_tuple__47);
+  Py_CLEAR(clear_module_state->__pyx_tuple__49);
+  Py_CLEAR(clear_module_state->__pyx_tuple__51);
   Py_CLEAR(clear_module_state->__pyx_codeobj__18);
   Py_CLEAR(clear_module_state->__pyx_codeobj__20);
   Py_CLEAR(clear_module_state->__pyx_codeobj__22);
   Py_CLEAR(clear_module_state->__pyx_codeobj__24);
-  Py_CLEAR(clear_module_state->__pyx_codeobj__26);
-  Py_CLEAR(clear_module_state->__pyx_codeobj__28);
-  Py_CLEAR(clear_module_state->__pyx_codeobj__31);
-  Py_CLEAR(clear_module_state->__pyx_codeobj__33);
-  Py_CLEAR(clear_module_state->__pyx_codeobj__35);
-  Py_CLEAR(clear_module_state->__pyx_codeobj__37);
-  Py_CLEAR(clear_module_state->__pyx_codeobj__39);
-  Py_CLEAR(clear_module_state->__pyx_codeobj__41);
-  Py_CLEAR(clear_module_state->__pyx_codeobj__43);
-  Py_CLEAR(clear_module_state->__pyx_codeobj__45);
-  Py_CLEAR(clear_module_state->__pyx_codeobj__47);
-  Py_CLEAR(clear_module_state->__pyx_codeobj__49);
-  Py_CLEAR(clear_module_state->__pyx_codeobj__51);
+  Py_CLEAR(clear_module_state->__pyx_codeobj__27);
+  Py_CLEAR(clear_module_state->__pyx_codeobj__29);
+  Py_CLEAR(clear_module_state->__pyx_codeobj__32);
+  Py_CLEAR(clear_module_state->__pyx_codeobj__34);
+  Py_CLEAR(clear_module_state->__pyx_codeobj__36);
+  Py_CLEAR(clear_module_state->__pyx_codeobj__38);
+  Py_CLEAR(clear_module_state->__pyx_codeobj__40);
+  Py_CLEAR(clear_module_state->__pyx_codeobj__42);
+  Py_CLEAR(clear_module_state->__pyx_codeobj__44);
+  Py_CLEAR(clear_module_state->__pyx_codeobj__46);
+  Py_CLEAR(clear_module_state->__pyx_codeobj__48);
+  Py_CLEAR(clear_module_state->__pyx_codeobj__50);
+  Py_CLEAR(clear_module_state->__pyx_codeobj__52);
   return 0;
 }
 #endif
@@ -3971,7 +3976,7 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
   Py_VISIT(traverse_module_state->__pyx_n_s__15);
   Py_VISIT(traverse_module_state->__pyx_kp_u__3);
   Py_VISIT(traverse_module_state->__pyx_kp_u__5);
-  Py_VISIT(traverse_module_state->__pyx_n_s__52);
+  Py_VISIT(traverse_module_state->__pyx_n_s__53);
   Py_VISIT(traverse_module_state->__pyx_kp_u__9);
   Py_VISIT(traverse_module_state->__pyx_n_s_add_patch);
   Py_VISIT(traverse_module_state->__pyx_n_s_add_to_cut_page_coordinates_dict);
@@ -4079,6 +4084,7 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
   Py_VISIT(traverse_module_state->__pyx_n_s_height);
   Py_VISIT(traverse_module_state->__pyx_n_s_i);
   Py_VISIT(traverse_module_state->__pyx_n_s_idx);
+  Py_VISIT(traverse_module_state->__pyx_n_s_image);
   Py_VISIT(traverse_module_state->__pyx_n_s_image_count);
   Py_VISIT(traverse_module_state->__pyx_n_s_image_path);
   Py_VISIT(traverse_module_state->__pyx_n_s_image_size);
@@ -4295,36 +4301,37 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
   Py_VISIT(traverse_module_state->__pyx_tuple__21);
   Py_VISIT(traverse_module_state->__pyx_tuple__23);
   Py_VISIT(traverse_module_state->__pyx_tuple__25);
-  Py_VISIT(traverse_module_state->__pyx_tuple__27);
-  Py_VISIT(traverse_module_state->__pyx_tuple__29);
+  Py_VISIT(traverse_module_state->__pyx_tuple__26);
+  Py_VISIT(traverse_module_state->__pyx_tuple__28);
   Py_VISIT(traverse_module_state->__pyx_tuple__30);
-  Py_VISIT(traverse_module_state->__pyx_tuple__32);
-  Py_VISIT(traverse_module_state->__pyx_tuple__34);
-  Py_VISIT(traverse_module_state->__pyx_tuple__36);
-  Py_VISIT(traverse_module_state->__pyx_tuple__38);
-  Py_VISIT(traverse_module_state->__pyx_tuple__40);
-  Py_VISIT(traverse_module_state->__pyx_tuple__42);
-  Py_VISIT(traverse_module_state->__pyx_tuple__44);
-  Py_VISIT(traverse_module_state->__pyx_tuple__46);
-  Py_VISIT(traverse_module_state->__pyx_tuple__48);
-  Py_VISIT(traverse_module_state->__pyx_tuple__50);
+  Py_VISIT(traverse_module_state->__pyx_tuple__31);
+  Py_VISIT(traverse_module_state->__pyx_tuple__33);
+  Py_VISIT(traverse_module_state->__pyx_tuple__35);
+  Py_VISIT(traverse_module_state->__pyx_tuple__37);
+  Py_VISIT(traverse_module_state->__pyx_tuple__39);
+  Py_VISIT(traverse_module_state->__pyx_tuple__41);
+  Py_VISIT(traverse_module_state->__pyx_tuple__43);
+  Py_VISIT(traverse_module_state->__pyx_tuple__45);
+  Py_VISIT(traverse_module_state->__pyx_tuple__47);
+  Py_VISIT(traverse_module_state->__pyx_tuple__49);
+  Py_VISIT(traverse_module_state->__pyx_tuple__51);
   Py_VISIT(traverse_module_state->__pyx_codeobj__18);
   Py_VISIT(traverse_module_state->__pyx_codeobj__20);
   Py_VISIT(traverse_module_state->__pyx_codeobj__22);
   Py_VISIT(traverse_module_state->__pyx_codeobj__24);
-  Py_VISIT(traverse_module_state->__pyx_codeobj__26);
-  Py_VISIT(traverse_module_state->__pyx_codeobj__28);
-  Py_VISIT(traverse_module_state->__pyx_codeobj__31);
-  Py_VISIT(traverse_module_state->__pyx_codeobj__33);
-  Py_VISIT(traverse_module_state->__pyx_codeobj__35);
-  Py_VISIT(traverse_module_state->__pyx_codeobj__37);
-  Py_VISIT(traverse_module_state->__pyx_codeobj__39);
-  Py_VISIT(traverse_module_state->__pyx_codeobj__41);
-  Py_VISIT(traverse_module_state->__pyx_codeobj__43);
-  Py_VISIT(traverse_module_state->__pyx_codeobj__45);
-  Py_VISIT(traverse_module_state->__pyx_codeobj__47);
-  Py_VISIT(traverse_module_state->__pyx_codeobj__49);
-  Py_VISIT(traverse_module_state->__pyx_codeobj__51);
+  Py_VISIT(traverse_module_state->__pyx_codeobj__27);
+  Py_VISIT(traverse_module_state->__pyx_codeobj__29);
+  Py_VISIT(traverse_module_state->__pyx_codeobj__32);
+  Py_VISIT(traverse_module_state->__pyx_codeobj__34);
+  Py_VISIT(traverse_module_state->__pyx_codeobj__36);
+  Py_VISIT(traverse_module_state->__pyx_codeobj__38);
+  Py_VISIT(traverse_module_state->__pyx_codeobj__40);
+  Py_VISIT(traverse_module_state->__pyx_codeobj__42);
+  Py_VISIT(traverse_module_state->__pyx_codeobj__44);
+  Py_VISIT(traverse_module_state->__pyx_codeobj__46);
+  Py_VISIT(traverse_module_state->__pyx_codeobj__48);
+  Py_VISIT(traverse_module_state->__pyx_codeobj__50);
+  Py_VISIT(traverse_module_state->__pyx_codeobj__52);
   return 0;
 }
 #endif
@@ -4413,7 +4420,7 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
 #define __pyx_n_s__15 __pyx_mstate_global->__pyx_n_s__15
 #define __pyx_kp_u__3 __pyx_mstate_global->__pyx_kp_u__3
 #define __pyx_kp_u__5 __pyx_mstate_global->__pyx_kp_u__5
-#define __pyx_n_s__52 __pyx_mstate_global->__pyx_n_s__52
+#define __pyx_n_s__53 __pyx_mstate_global->__pyx_n_s__53
 #define __pyx_kp_u__9 __pyx_mstate_global->__pyx_kp_u__9
 #define __pyx_n_s_add_patch __pyx_mstate_global->__pyx_n_s_add_patch
 #define __pyx_n_s_add_to_cut_page_coordinates_dict __pyx_mstate_global->__pyx_n_s_add_to_cut_page_coordinates_dict
@@ -4521,6 +4528,7 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
 #define __pyx_n_s_height __pyx_mstate_global->__pyx_n_s_height
 #define __pyx_n_s_i __pyx_mstate_global->__pyx_n_s_i
 #define __pyx_n_s_idx __pyx_mstate_global->__pyx_n_s_idx
+#define __pyx_n_s_image __pyx_mstate_global->__pyx_n_s_image
 #define __pyx_n_s_image_count __pyx_mstate_global->__pyx_n_s_image_count
 #define __pyx_n_s_image_path __pyx_mstate_global->__pyx_n_s_image_path
 #define __pyx_n_s_image_size __pyx_mstate_global->__pyx_n_s_image_size
@@ -4737,36 +4745,37 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
 #define __pyx_tuple__21 __pyx_mstate_global->__pyx_tuple__21
 #define __pyx_tuple__23 __pyx_mstate_global->__pyx_tuple__23
 #define __pyx_tuple__25 __pyx_mstate_global->__pyx_tuple__25
-#define __pyx_tuple__27 __pyx_mstate_global->__pyx_tuple__27
-#define __pyx_tuple__29 __pyx_mstate_global->__pyx_tuple__29
+#define __pyx_tuple__26 __pyx_mstate_global->__pyx_tuple__26
+#define __pyx_tuple__28 __pyx_mstate_global->__pyx_tuple__28
 #define __pyx_tuple__30 __pyx_mstate_global->__pyx_tuple__30
-#define __pyx_tuple__32 __pyx_mstate_global->__pyx_tuple__32
-#define __pyx_tuple__34 __pyx_mstate_global->__pyx_tuple__34
-#define __pyx_tuple__36 __pyx_mstate_global->__pyx_tuple__36
-#define __pyx_tuple__38 __pyx_mstate_global->__pyx_tuple__38
-#define __pyx_tuple__40 __pyx_mstate_global->__pyx_tuple__40
-#define __pyx_tuple__42 __pyx_mstate_global->__pyx_tuple__42
-#define __pyx_tuple__44 __pyx_mstate_global->__pyx_tuple__44
-#define __pyx_tuple__46 __pyx_mstate_global->__pyx_tuple__46
-#define __pyx_tuple__48 __pyx_mstate_global->__pyx_tuple__48
-#define __pyx_tuple__50 __pyx_mstate_global->__pyx_tuple__50
+#define __pyx_tuple__31 __pyx_mstate_global->__pyx_tuple__31
+#define __pyx_tuple__33 __pyx_mstate_global->__pyx_tuple__33
+#define __pyx_tuple__35 __pyx_mstate_global->__pyx_tuple__35
+#define __pyx_tuple__37 __pyx_mstate_global->__pyx_tuple__37
+#define __pyx_tuple__39 __pyx_mstate_global->__pyx_tuple__39
+#define __pyx_tuple__41 __pyx_mstate_global->__pyx_tuple__41
+#define __pyx_tuple__43 __pyx_mstate_global->__pyx_tuple__43
+#define __pyx_tuple__45 __pyx_mstate_global->__pyx_tuple__45
+#define __pyx_tuple__47 __pyx_mstate_global->__pyx_tuple__47
+#define __pyx_tuple__49 __pyx_mstate_global->__pyx_tuple__49
+#define __pyx_tuple__51 __pyx_mstate_global->__pyx_tuple__51
 #define __pyx_codeobj__18 __pyx_mstate_global->__pyx_codeobj__18
 #define __pyx_codeobj__20 __pyx_mstate_global->__pyx_codeobj__20
 #define __pyx_codeobj__22 __pyx_mstate_global->__pyx_codeobj__22
 #define __pyx_codeobj__24 __pyx_mstate_global->__pyx_codeobj__24
-#define __pyx_codeobj__26 __pyx_mstate_global->__pyx_codeobj__26
-#define __pyx_codeobj__28 __pyx_mstate_global->__pyx_codeobj__28
-#define __pyx_codeobj__31 __pyx_mstate_global->__pyx_codeobj__31
-#define __pyx_codeobj__33 __pyx_mstate_global->__pyx_codeobj__33
-#define __pyx_codeobj__35 __pyx_mstate_global->__pyx_codeobj__35
-#define __pyx_codeobj__37 __pyx_mstate_global->__pyx_codeobj__37
-#define __pyx_codeobj__39 __pyx_mstate_global->__pyx_codeobj__39
-#define __pyx_codeobj__41 __pyx_mstate_global->__pyx_codeobj__41
-#define __pyx_codeobj__43 __pyx_mstate_global->__pyx_codeobj__43
-#define __pyx_codeobj__45 __pyx_mstate_global->__pyx_codeobj__45
-#define __pyx_codeobj__47 __pyx_mstate_global->__pyx_codeobj__47
-#define __pyx_codeobj__49 __pyx_mstate_global->__pyx_codeobj__49
-#define __pyx_codeobj__51 __pyx_mstate_global->__pyx_codeobj__51
+#define __pyx_codeobj__27 __pyx_mstate_global->__pyx_codeobj__27
+#define __pyx_codeobj__29 __pyx_mstate_global->__pyx_codeobj__29
+#define __pyx_codeobj__32 __pyx_mstate_global->__pyx_codeobj__32
+#define __pyx_codeobj__34 __pyx_mstate_global->__pyx_codeobj__34
+#define __pyx_codeobj__36 __pyx_mstate_global->__pyx_codeobj__36
+#define __pyx_codeobj__38 __pyx_mstate_global->__pyx_codeobj__38
+#define __pyx_codeobj__40 __pyx_mstate_global->__pyx_codeobj__40
+#define __pyx_codeobj__42 __pyx_mstate_global->__pyx_codeobj__42
+#define __pyx_codeobj__44 __pyx_mstate_global->__pyx_codeobj__44
+#define __pyx_codeobj__46 __pyx_mstate_global->__pyx_codeobj__46
+#define __pyx_codeobj__48 __pyx_mstate_global->__pyx_codeobj__48
+#define __pyx_codeobj__50 __pyx_mstate_global->__pyx_codeobj__50
+#define __pyx_codeobj__52 __pyx_mstate_global->__pyx_codeobj__52
 /* #### Code section: module_code ### */
 
 /* "resources/svm.py":32
@@ -8452,7 +8461,7 @@ static PyObject *__pyx_pf_9resources_3svm_4monitor_queue(CYTHON_UNUSED PyObject 
 /* "resources/svm.py":114
  * 
  * # labeled_patches = [ (patch, image_count, label, distance, patch coords, image_path), ... ]
- * def read_divide_classify(image_path, svm, pca, scaler):             # <<<<<<<<<<<<<<
+ * def read_divide_classify(image_path, svm, pca, scaler, image=None):             # <<<<<<<<<<<<<<
  *     attempts = 0
  *     while attempts < 10:
  */
@@ -8477,11 +8486,12 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   PyObject *__pyx_v_svm = 0;
   PyObject *__pyx_v_pca = 0;
   PyObject *__pyx_v_scaler = 0;
+  PyObject *__pyx_v_image = 0;
   #if !CYTHON_METH_FASTCALL
   CYTHON_UNUSED Py_ssize_t __pyx_nargs;
   #endif
   CYTHON_UNUSED PyObject *const *__pyx_kwvalues;
-  PyObject* values[4] = {0,0,0,0};
+  PyObject* values[5] = {0,0,0,0,0};
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
@@ -8497,10 +8507,13 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   #endif
   __pyx_kwvalues = __Pyx_KwValues_FASTCALL(__pyx_args, __pyx_nargs);
   {
-    PyObject **__pyx_pyargnames[] = {&__pyx_n_s_image_path,&__pyx_n_s_svm,&__pyx_n_s_pca,&__pyx_n_s_scaler,0};
+    PyObject **__pyx_pyargnames[] = {&__pyx_n_s_image_path,&__pyx_n_s_svm,&__pyx_n_s_pca,&__pyx_n_s_scaler,&__pyx_n_s_image,0};
+    values[4] = __Pyx_Arg_NewRef_FASTCALL(((PyObject *)Py_None));
     if (__pyx_kwds) {
       Py_ssize_t kw_args;
       switch (__pyx_nargs) {
+        case  5: values[4] = __Pyx_Arg_FASTCALL(__pyx_args, 4);
+        CYTHON_FALLTHROUGH;
         case  4: values[3] = __Pyx_Arg_FASTCALL(__pyx_args, 3);
         CYTHON_FALLTHROUGH;
         case  3: values[2] = __Pyx_Arg_FASTCALL(__pyx_args, 2);
@@ -8529,7 +8542,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
         }
         else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 114, __pyx_L3_error)
         else {
-          __Pyx_RaiseArgtupleInvalid("read_divide_classify", 1, 4, 4, 1); __PYX_ERR(0, 114, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("read_divide_classify", 0, 4, 5, 1); __PYX_ERR(0, 114, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  2:
@@ -8539,7 +8552,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
         }
         else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 114, __pyx_L3_error)
         else {
-          __Pyx_RaiseArgtupleInvalid("read_divide_classify", 1, 4, 4, 2); __PYX_ERR(0, 114, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("read_divide_classify", 0, 4, 5, 2); __PYX_ERR(0, 114, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  3:
@@ -8549,29 +8562,41 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
         }
         else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 114, __pyx_L3_error)
         else {
-          __Pyx_RaiseArgtupleInvalid("read_divide_classify", 1, 4, 4, 3); __PYX_ERR(0, 114, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("read_divide_classify", 0, 4, 5, 3); __PYX_ERR(0, 114, __pyx_L3_error)
+        }
+        CYTHON_FALLTHROUGH;
+        case  4:
+        if (kw_args > 0) {
+          PyObject* value = __Pyx_GetKwValue_FASTCALL(__pyx_kwds, __pyx_kwvalues, __pyx_n_s_image);
+          if (value) { values[4] = __Pyx_Arg_NewRef_FASTCALL(value); kw_args--; }
+          else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 114, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
         const Py_ssize_t kwd_pos_args = __pyx_nargs;
         if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "read_divide_classify") < 0)) __PYX_ERR(0, 114, __pyx_L3_error)
       }
-    } else if (unlikely(__pyx_nargs != 4)) {
-      goto __pyx_L5_argtuple_error;
     } else {
-      values[0] = __Pyx_Arg_FASTCALL(__pyx_args, 0);
-      values[1] = __Pyx_Arg_FASTCALL(__pyx_args, 1);
-      values[2] = __Pyx_Arg_FASTCALL(__pyx_args, 2);
-      values[3] = __Pyx_Arg_FASTCALL(__pyx_args, 3);
+      switch (__pyx_nargs) {
+        case  5: values[4] = __Pyx_Arg_FASTCALL(__pyx_args, 4);
+        CYTHON_FALLTHROUGH;
+        case  4: values[3] = __Pyx_Arg_FASTCALL(__pyx_args, 3);
+        values[2] = __Pyx_Arg_FASTCALL(__pyx_args, 2);
+        values[1] = __Pyx_Arg_FASTCALL(__pyx_args, 1);
+        values[0] = __Pyx_Arg_FASTCALL(__pyx_args, 0);
+        break;
+        default: goto __pyx_L5_argtuple_error;
+      }
     }
     __pyx_v_image_path = values[0];
     __pyx_v_svm = values[1];
     __pyx_v_pca = values[2];
     __pyx_v_scaler = values[3];
+    __pyx_v_image = values[4];
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("read_divide_classify", 1, 4, 4, __pyx_nargs); __PYX_ERR(0, 114, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("read_divide_classify", 0, 4, 5, __pyx_nargs); __PYX_ERR(0, 114, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -8585,7 +8610,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_9resources_3svm_6read_divide_classify(__pyx_self, __pyx_v_image_path, __pyx_v_svm, __pyx_v_pca, __pyx_v_scaler);
+  __pyx_r = __pyx_pf_9resources_3svm_6read_divide_classify(__pyx_self, __pyx_v_image_path, __pyx_v_svm, __pyx_v_pca, __pyx_v_scaler, __pyx_v_image);
 
   /* function exit code */
   {
@@ -8598,7 +8623,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_9resources_3svm_6read_divide_classify(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_image_path, PyObject *__pyx_v_svm, PyObject *__pyx_v_pca, PyObject *__pyx_v_scaler) {
+static PyObject *__pyx_pf_9resources_3svm_6read_divide_classify(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_image_path, PyObject *__pyx_v_svm, PyObject *__pyx_v_pca, PyObject *__pyx_v_scaler, PyObject *__pyx_v_image) {
   PyObject *__pyx_v_attempts = NULL;
   PyObject *__pyx_v_patches = NULL;
   PyObject *__pyx_v_coords = NULL;
@@ -8626,8 +8651,8 @@ static PyObject *__pyx_pf_9resources_3svm_6read_divide_classify(CYTHON_UNUSED Py
   PyObject *__pyx_t_8 = NULL;
   PyObject *__pyx_t_9 = NULL;
   PyObject *__pyx_t_10 = NULL;
-  unsigned int __pyx_t_11;
-  PyObject *__pyx_t_12 = NULL;
+  PyObject *__pyx_t_11 = NULL;
+  unsigned int __pyx_t_12;
   PyObject *(*__pyx_t_13)(PyObject *);
   int __pyx_t_14;
   PyObject *__pyx_t_15 = NULL;
@@ -8650,7 +8675,7 @@ static PyObject *__pyx_pf_9resources_3svm_6read_divide_classify(CYTHON_UNUSED Py
 
   /* "resources/svm.py":115
  * # labeled_patches = [ (patch, image_count, label, distance, patch coords, image_path), ... ]
- * def read_divide_classify(image_path, svm, pca, scaler):
+ * def read_divide_classify(image_path, svm, pca, scaler, image=None):
  *     attempts = 0             # <<<<<<<<<<<<<<
  *     while attempts < 10:
  *         try:
@@ -8659,11 +8684,11 @@ static PyObject *__pyx_pf_9resources_3svm_6read_divide_classify(CYTHON_UNUSED Py
   __pyx_v_attempts = __pyx_int_0;
 
   /* "resources/svm.py":116
- * def read_divide_classify(image_path, svm, pca, scaler):
+ * def read_divide_classify(image_path, svm, pca, scaler, image=None):
  *     attempts = 0
  *     while attempts < 10:             # <<<<<<<<<<<<<<
  *         try:
- *             patches, coords, gridcoords = utils.divide_into_patches(read_image_with_retry(image_path, cv2.IMREAD_GRAYSCALE), (int(os.getenv("INSPECTION_CLIENT_GRID_SIZE")), int(os.getenv("INSPECTION_CLIENT_GRID_SIZE"))))
+ *             patches, coords, gridcoords = utils.divide_into_patches(image if image is not None else read_image_with_retry(image_path, cv2.IMREAD_GRAYSCALE), (int(os.getenv("INSPECTION_CLIENT_GRID_SIZE")), int(os.getenv("INSPECTION_CLIENT_GRID_SIZE"))))
  */
   while (1) {
     __pyx_t_1 = PyObject_RichCompare(__pyx_v_attempts, __pyx_int_10, Py_LT); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 116, __pyx_L1_error)
@@ -8675,7 +8700,7 @@ static PyObject *__pyx_pf_9resources_3svm_6read_divide_classify(CYTHON_UNUSED Py
  *     attempts = 0
  *     while attempts < 10:
  *         try:             # <<<<<<<<<<<<<<
- *             patches, coords, gridcoords = utils.divide_into_patches(read_image_with_retry(image_path, cv2.IMREAD_GRAYSCALE), (int(os.getenv("INSPECTION_CLIENT_GRID_SIZE")), int(os.getenv("INSPECTION_CLIENT_GRID_SIZE"))))
+ *             patches, coords, gridcoords = utils.divide_into_patches(image if image is not None else read_image_with_retry(image_path, cv2.IMREAD_GRAYSCALE), (int(os.getenv("INSPECTION_CLIENT_GRID_SIZE")), int(os.getenv("INSPECTION_CLIENT_GRID_SIZE"))))
  *             break
  */
     {
@@ -8690,7 +8715,7 @@ static PyObject *__pyx_pf_9resources_3svm_6read_divide_classify(CYTHON_UNUSED Py
         /* "resources/svm.py":118
  *     while attempts < 10:
  *         try:
- *             patches, coords, gridcoords = utils.divide_into_patches(read_image_with_retry(image_path, cv2.IMREAD_GRAYSCALE), (int(os.getenv("INSPECTION_CLIENT_GRID_SIZE")), int(os.getenv("INSPECTION_CLIENT_GRID_SIZE"))))             # <<<<<<<<<<<<<<
+ *             patches, coords, gridcoords = utils.divide_into_patches(image if image is not None else read_image_with_retry(image_path, cv2.IMREAD_GRAYSCALE), (int(os.getenv("INSPECTION_CLIENT_GRID_SIZE")), int(os.getenv("INSPECTION_CLIENT_GRID_SIZE"))))             # <<<<<<<<<<<<<<
  *             break
  *         except ZeroDivisionError as e:
  */
@@ -8699,122 +8724,130 @@ static PyObject *__pyx_pf_9resources_3svm_6read_divide_classify(CYTHON_UNUSED Py
         __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_t_6, __pyx_n_s_divide_into_patches); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 118, __pyx_L5_error)
         __Pyx_GOTREF(__pyx_t_7);
         __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-        __Pyx_GetModuleGlobalName(__pyx_t_8, __pyx_n_s_read_image_with_retry); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 118, __pyx_L5_error)
-        __Pyx_GOTREF(__pyx_t_8);
-        __Pyx_GetModuleGlobalName(__pyx_t_9, __pyx_n_s_cv2); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 118, __pyx_L5_error)
+        __pyx_t_2 = (__pyx_v_image != Py_None);
+        if (__pyx_t_2) {
+          __Pyx_INCREF(__pyx_v_image);
+          __pyx_t_6 = __pyx_v_image;
+        } else {
+          __Pyx_GetModuleGlobalName(__pyx_t_9, __pyx_n_s_read_image_with_retry); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 118, __pyx_L5_error)
+          __Pyx_GOTREF(__pyx_t_9);
+          __Pyx_GetModuleGlobalName(__pyx_t_10, __pyx_n_s_cv2); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 118, __pyx_L5_error)
+          __Pyx_GOTREF(__pyx_t_10);
+          __pyx_t_11 = __Pyx_PyObject_GetAttrStr(__pyx_t_10, __pyx_n_s_IMREAD_GRAYSCALE); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 118, __pyx_L5_error)
+          __Pyx_GOTREF(__pyx_t_11);
+          __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
+          __pyx_t_10 = NULL;
+          __pyx_t_12 = 0;
+          #if CYTHON_UNPACK_METHODS
+          if (unlikely(PyMethod_Check(__pyx_t_9))) {
+            __pyx_t_10 = PyMethod_GET_SELF(__pyx_t_9);
+            if (likely(__pyx_t_10)) {
+              PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_9);
+              __Pyx_INCREF(__pyx_t_10);
+              __Pyx_INCREF(function);
+              __Pyx_DECREF_SET(__pyx_t_9, function);
+              __pyx_t_12 = 1;
+            }
+          }
+          #endif
+          {
+            PyObject *__pyx_callargs[3] = {__pyx_t_10, __pyx_v_image_path, __pyx_t_11};
+            __pyx_t_8 = __Pyx_PyObject_FastCall(__pyx_t_9, __pyx_callargs+1-__pyx_t_12, 2+__pyx_t_12);
+            __Pyx_XDECREF(__pyx_t_10); __pyx_t_10 = 0;
+            __Pyx_DECREF(__pyx_t_11); __pyx_t_11 = 0;
+            if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 118, __pyx_L5_error)
+            __Pyx_GOTREF(__pyx_t_8);
+            __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
+          }
+          __pyx_t_6 = __pyx_t_8;
+          __pyx_t_8 = 0;
+        }
+        __Pyx_GetModuleGlobalName(__pyx_t_9, __pyx_n_s_os); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 118, __pyx_L5_error)
         __Pyx_GOTREF(__pyx_t_9);
-        __pyx_t_10 = __Pyx_PyObject_GetAttrStr(__pyx_t_9, __pyx_n_s_IMREAD_GRAYSCALE); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 118, __pyx_L5_error)
+        __pyx_t_11 = __Pyx_PyObject_GetAttrStr(__pyx_t_9, __pyx_n_s_getenv); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 118, __pyx_L5_error)
+        __Pyx_GOTREF(__pyx_t_11);
+        __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
+        __pyx_t_9 = NULL;
+        __pyx_t_12 = 0;
+        #if CYTHON_UNPACK_METHODS
+        if (unlikely(PyMethod_Check(__pyx_t_11))) {
+          __pyx_t_9 = PyMethod_GET_SELF(__pyx_t_11);
+          if (likely(__pyx_t_9)) {
+            PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_11);
+            __Pyx_INCREF(__pyx_t_9);
+            __Pyx_INCREF(function);
+            __Pyx_DECREF_SET(__pyx_t_11, function);
+            __pyx_t_12 = 1;
+          }
+        }
+        #endif
+        {
+          PyObject *__pyx_callargs[2] = {__pyx_t_9, __pyx_n_u_INSPECTION_CLIENT_GRID_SIZE};
+          __pyx_t_8 = __Pyx_PyObject_FastCall(__pyx_t_11, __pyx_callargs+1-__pyx_t_12, 1+__pyx_t_12);
+          __Pyx_XDECREF(__pyx_t_9); __pyx_t_9 = 0;
+          if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 118, __pyx_L5_error)
+          __Pyx_GOTREF(__pyx_t_8);
+          __Pyx_DECREF(__pyx_t_11); __pyx_t_11 = 0;
+        }
+        __pyx_t_11 = __Pyx_PyNumber_Int(__pyx_t_8); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 118, __pyx_L5_error)
+        __Pyx_GOTREF(__pyx_t_11);
+        __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
+        __Pyx_GetModuleGlobalName(__pyx_t_9, __pyx_n_s_os); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 118, __pyx_L5_error)
+        __Pyx_GOTREF(__pyx_t_9);
+        __pyx_t_10 = __Pyx_PyObject_GetAttrStr(__pyx_t_9, __pyx_n_s_getenv); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 118, __pyx_L5_error)
         __Pyx_GOTREF(__pyx_t_10);
         __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
         __pyx_t_9 = NULL;
-        __pyx_t_11 = 0;
+        __pyx_t_12 = 0;
         #if CYTHON_UNPACK_METHODS
-        if (unlikely(PyMethod_Check(__pyx_t_8))) {
-          __pyx_t_9 = PyMethod_GET_SELF(__pyx_t_8);
+        if (unlikely(PyMethod_Check(__pyx_t_10))) {
+          __pyx_t_9 = PyMethod_GET_SELF(__pyx_t_10);
           if (likely(__pyx_t_9)) {
-            PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_8);
+            PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_10);
             __Pyx_INCREF(__pyx_t_9);
             __Pyx_INCREF(function);
-            __Pyx_DECREF_SET(__pyx_t_8, function);
-            __pyx_t_11 = 1;
+            __Pyx_DECREF_SET(__pyx_t_10, function);
+            __pyx_t_12 = 1;
           }
         }
         #endif
         {
-          PyObject *__pyx_callargs[3] = {__pyx_t_9, __pyx_v_image_path, __pyx_t_10};
-          __pyx_t_6 = __Pyx_PyObject_FastCall(__pyx_t_8, __pyx_callargs+1-__pyx_t_11, 2+__pyx_t_11);
+          PyObject *__pyx_callargs[2] = {__pyx_t_9, __pyx_n_u_INSPECTION_CLIENT_GRID_SIZE};
+          __pyx_t_8 = __Pyx_PyObject_FastCall(__pyx_t_10, __pyx_callargs+1-__pyx_t_12, 1+__pyx_t_12);
           __Pyx_XDECREF(__pyx_t_9); __pyx_t_9 = 0;
+          if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 118, __pyx_L5_error)
+          __Pyx_GOTREF(__pyx_t_8);
           __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
-          if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 118, __pyx_L5_error)
-          __Pyx_GOTREF(__pyx_t_6);
-          __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
         }
-        __Pyx_GetModuleGlobalName(__pyx_t_10, __pyx_n_s_os); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 118, __pyx_L5_error)
+        __pyx_t_10 = __Pyx_PyNumber_Int(__pyx_t_8); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 118, __pyx_L5_error)
         __Pyx_GOTREF(__pyx_t_10);
-        __pyx_t_9 = __Pyx_PyObject_GetAttrStr(__pyx_t_10, __pyx_n_s_getenv); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 118, __pyx_L5_error)
-        __Pyx_GOTREF(__pyx_t_9);
-        __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
-        __pyx_t_10 = NULL;
-        __pyx_t_11 = 0;
-        #if CYTHON_UNPACK_METHODS
-        if (unlikely(PyMethod_Check(__pyx_t_9))) {
-          __pyx_t_10 = PyMethod_GET_SELF(__pyx_t_9);
-          if (likely(__pyx_t_10)) {
-            PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_9);
-            __Pyx_INCREF(__pyx_t_10);
-            __Pyx_INCREF(function);
-            __Pyx_DECREF_SET(__pyx_t_9, function);
-            __pyx_t_11 = 1;
-          }
-        }
-        #endif
-        {
-          PyObject *__pyx_callargs[2] = {__pyx_t_10, __pyx_n_u_INSPECTION_CLIENT_GRID_SIZE};
-          __pyx_t_8 = __Pyx_PyObject_FastCall(__pyx_t_9, __pyx_callargs+1-__pyx_t_11, 1+__pyx_t_11);
-          __Pyx_XDECREF(__pyx_t_10); __pyx_t_10 = 0;
-          if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 118, __pyx_L5_error)
-          __Pyx_GOTREF(__pyx_t_8);
-          __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
-        }
-        __pyx_t_9 = __Pyx_PyNumber_Int(__pyx_t_8); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 118, __pyx_L5_error)
-        __Pyx_GOTREF(__pyx_t_9);
-        __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-        __Pyx_GetModuleGlobalName(__pyx_t_10, __pyx_n_s_os); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 118, __pyx_L5_error)
-        __Pyx_GOTREF(__pyx_t_10);
-        __pyx_t_12 = __Pyx_PyObject_GetAttrStr(__pyx_t_10, __pyx_n_s_getenv); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 118, __pyx_L5_error)
-        __Pyx_GOTREF(__pyx_t_12);
-        __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
-        __pyx_t_10 = NULL;
-        __pyx_t_11 = 0;
-        #if CYTHON_UNPACK_METHODS
-        if (unlikely(PyMethod_Check(__pyx_t_12))) {
-          __pyx_t_10 = PyMethod_GET_SELF(__pyx_t_12);
-          if (likely(__pyx_t_10)) {
-            PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_12);
-            __Pyx_INCREF(__pyx_t_10);
-            __Pyx_INCREF(function);
-            __Pyx_DECREF_SET(__pyx_t_12, function);
-            __pyx_t_11 = 1;
-          }
-        }
-        #endif
-        {
-          PyObject *__pyx_callargs[2] = {__pyx_t_10, __pyx_n_u_INSPECTION_CLIENT_GRID_SIZE};
-          __pyx_t_8 = __Pyx_PyObject_FastCall(__pyx_t_12, __pyx_callargs+1-__pyx_t_11, 1+__pyx_t_11);
-          __Pyx_XDECREF(__pyx_t_10); __pyx_t_10 = 0;
-          if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 118, __pyx_L5_error)
-          __Pyx_GOTREF(__pyx_t_8);
-          __Pyx_DECREF(__pyx_t_12); __pyx_t_12 = 0;
-        }
-        __pyx_t_12 = __Pyx_PyNumber_Int(__pyx_t_8); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 118, __pyx_L5_error)
-        __Pyx_GOTREF(__pyx_t_12);
         __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
         __pyx_t_8 = PyTuple_New(2); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 118, __pyx_L5_error)
         __Pyx_GOTREF(__pyx_t_8);
-        __Pyx_GIVEREF(__pyx_t_9);
-        if (__Pyx_PyTuple_SET_ITEM(__pyx_t_8, 0, __pyx_t_9)) __PYX_ERR(0, 118, __pyx_L5_error);
-        __Pyx_GIVEREF(__pyx_t_12);
-        if (__Pyx_PyTuple_SET_ITEM(__pyx_t_8, 1, __pyx_t_12)) __PYX_ERR(0, 118, __pyx_L5_error);
-        __pyx_t_9 = 0;
-        __pyx_t_12 = 0;
-        __pyx_t_12 = NULL;
+        __Pyx_GIVEREF(__pyx_t_11);
+        if (__Pyx_PyTuple_SET_ITEM(__pyx_t_8, 0, __pyx_t_11)) __PYX_ERR(0, 118, __pyx_L5_error);
+        __Pyx_GIVEREF(__pyx_t_10);
+        if (__Pyx_PyTuple_SET_ITEM(__pyx_t_8, 1, __pyx_t_10)) __PYX_ERR(0, 118, __pyx_L5_error);
         __pyx_t_11 = 0;
+        __pyx_t_10 = 0;
+        __pyx_t_10 = NULL;
+        __pyx_t_12 = 0;
         #if CYTHON_UNPACK_METHODS
         if (unlikely(PyMethod_Check(__pyx_t_7))) {
-          __pyx_t_12 = PyMethod_GET_SELF(__pyx_t_7);
-          if (likely(__pyx_t_12)) {
+          __pyx_t_10 = PyMethod_GET_SELF(__pyx_t_7);
+          if (likely(__pyx_t_10)) {
             PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_7);
-            __Pyx_INCREF(__pyx_t_12);
+            __Pyx_INCREF(__pyx_t_10);
             __Pyx_INCREF(function);
             __Pyx_DECREF_SET(__pyx_t_7, function);
-            __pyx_t_11 = 1;
+            __pyx_t_12 = 1;
           }
         }
         #endif
         {
-          PyObject *__pyx_callargs[3] = {__pyx_t_12, __pyx_t_6, __pyx_t_8};
-          __pyx_t_1 = __Pyx_PyObject_FastCall(__pyx_t_7, __pyx_callargs+1-__pyx_t_11, 2+__pyx_t_11);
-          __Pyx_XDECREF(__pyx_t_12); __pyx_t_12 = 0;
+          PyObject *__pyx_callargs[3] = {__pyx_t_10, __pyx_t_6, __pyx_t_8};
+          __pyx_t_1 = __Pyx_PyObject_FastCall(__pyx_t_7, __pyx_callargs+1-__pyx_t_12, 2+__pyx_t_12);
+          __Pyx_XDECREF(__pyx_t_10); __pyx_t_10 = 0;
           __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
           __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
           if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 118, __pyx_L5_error)
@@ -8853,22 +8886,22 @@ static PyObject *__pyx_pf_9resources_3svm_6read_divide_classify(CYTHON_UNUSED Py
           __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
         } else {
           Py_ssize_t index = -1;
-          __pyx_t_12 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 118, __pyx_L5_error)
-          __Pyx_GOTREF(__pyx_t_12);
+          __pyx_t_10 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 118, __pyx_L5_error)
+          __Pyx_GOTREF(__pyx_t_10);
           __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-          __pyx_t_13 = __Pyx_PyObject_GetIterNextFunc(__pyx_t_12);
-          index = 0; __pyx_t_7 = __pyx_t_13(__pyx_t_12); if (unlikely(!__pyx_t_7)) goto __pyx_L13_unpacking_failed;
+          __pyx_t_13 = __Pyx_PyObject_GetIterNextFunc(__pyx_t_10);
+          index = 0; __pyx_t_7 = __pyx_t_13(__pyx_t_10); if (unlikely(!__pyx_t_7)) goto __pyx_L13_unpacking_failed;
           __Pyx_GOTREF(__pyx_t_7);
-          index = 1; __pyx_t_8 = __pyx_t_13(__pyx_t_12); if (unlikely(!__pyx_t_8)) goto __pyx_L13_unpacking_failed;
+          index = 1; __pyx_t_8 = __pyx_t_13(__pyx_t_10); if (unlikely(!__pyx_t_8)) goto __pyx_L13_unpacking_failed;
           __Pyx_GOTREF(__pyx_t_8);
-          index = 2; __pyx_t_6 = __pyx_t_13(__pyx_t_12); if (unlikely(!__pyx_t_6)) goto __pyx_L13_unpacking_failed;
+          index = 2; __pyx_t_6 = __pyx_t_13(__pyx_t_10); if (unlikely(!__pyx_t_6)) goto __pyx_L13_unpacking_failed;
           __Pyx_GOTREF(__pyx_t_6);
-          if (__Pyx_IternextUnpackEndCheck(__pyx_t_13(__pyx_t_12), 3) < 0) __PYX_ERR(0, 118, __pyx_L5_error)
+          if (__Pyx_IternextUnpackEndCheck(__pyx_t_13(__pyx_t_10), 3) < 0) __PYX_ERR(0, 118, __pyx_L5_error)
           __pyx_t_13 = NULL;
-          __Pyx_DECREF(__pyx_t_12); __pyx_t_12 = 0;
+          __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
           goto __pyx_L14_unpacking_done;
           __pyx_L13_unpacking_failed:;
-          __Pyx_DECREF(__pyx_t_12); __pyx_t_12 = 0;
+          __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
           __pyx_t_13 = NULL;
           if (__Pyx_IterFinish() == 0) __Pyx_RaiseNeedMoreValuesError(index);
           __PYX_ERR(0, 118, __pyx_L5_error)
@@ -8883,7 +8916,7 @@ static PyObject *__pyx_pf_9resources_3svm_6read_divide_classify(CYTHON_UNUSED Py
 
         /* "resources/svm.py":119
  *         try:
- *             patches, coords, gridcoords = utils.divide_into_patches(read_image_with_retry(image_path, cv2.IMREAD_GRAYSCALE), (int(os.getenv("INSPECTION_CLIENT_GRID_SIZE")), int(os.getenv("INSPECTION_CLIENT_GRID_SIZE"))))
+ *             patches, coords, gridcoords = utils.divide_into_patches(image if image is not None else read_image_with_retry(image_path, cv2.IMREAD_GRAYSCALE), (int(os.getenv("INSPECTION_CLIENT_GRID_SIZE")), int(os.getenv("INSPECTION_CLIENT_GRID_SIZE"))))
  *             break             # <<<<<<<<<<<<<<
  *         except ZeroDivisionError as e:
  *             print(f'(Svm-rdf) {e}')
@@ -8894,21 +8927,21 @@ static PyObject *__pyx_pf_9resources_3svm_6read_divide_classify(CYTHON_UNUSED Py
  *     attempts = 0
  *     while attempts < 10:
  *         try:             # <<<<<<<<<<<<<<
- *             patches, coords, gridcoords = utils.divide_into_patches(read_image_with_retry(image_path, cv2.IMREAD_GRAYSCALE), (int(os.getenv("INSPECTION_CLIENT_GRID_SIZE")), int(os.getenv("INSPECTION_CLIENT_GRID_SIZE"))))
+ *             patches, coords, gridcoords = utils.divide_into_patches(image if image is not None else read_image_with_retry(image_path, cv2.IMREAD_GRAYSCALE), (int(os.getenv("INSPECTION_CLIENT_GRID_SIZE")), int(os.getenv("INSPECTION_CLIENT_GRID_SIZE"))))
  *             break
  */
       }
       __pyx_L5_error:;
       __Pyx_XDECREF(__pyx_t_1); __pyx_t_1 = 0;
       __Pyx_XDECREF(__pyx_t_10); __pyx_t_10 = 0;
-      __Pyx_XDECREF(__pyx_t_12); __pyx_t_12 = 0;
+      __Pyx_XDECREF(__pyx_t_11); __pyx_t_11 = 0;
       __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
       __Pyx_XDECREF(__pyx_t_7); __pyx_t_7 = 0;
       __Pyx_XDECREF(__pyx_t_8); __pyx_t_8 = 0;
       __Pyx_XDECREF(__pyx_t_9); __pyx_t_9 = 0;
 
       /* "resources/svm.py":120
- *             patches, coords, gridcoords = utils.divide_into_patches(read_image_with_retry(image_path, cv2.IMREAD_GRAYSCALE), (int(os.getenv("INSPECTION_CLIENT_GRID_SIZE")), int(os.getenv("INSPECTION_CLIENT_GRID_SIZE"))))
+ *             patches, coords, gridcoords = utils.divide_into_patches(image if image is not None else read_image_with_retry(image_path, cv2.IMREAD_GRAYSCALE), (int(os.getenv("INSPECTION_CLIENT_GRID_SIZE")), int(os.getenv("INSPECTION_CLIENT_GRID_SIZE"))))
  *             break
  *         except ZeroDivisionError as e:             # <<<<<<<<<<<<<<
  *             print(f'(Svm-rdf) {e}')
@@ -8934,12 +8967,12 @@ static PyObject *__pyx_pf_9resources_3svm_6read_divide_classify(CYTHON_UNUSED Py
  */
           __pyx_t_7 = __Pyx_PyObject_FormatSimple(__pyx_v_e, __pyx_empty_unicode); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 121, __pyx_L20_error)
           __Pyx_GOTREF(__pyx_t_7);
-          __pyx_t_12 = __Pyx_PyUnicode_Concat(__pyx_kp_u_Svm_rdf, __pyx_t_7); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 121, __pyx_L20_error)
-          __Pyx_GOTREF(__pyx_t_12);
+          __pyx_t_10 = __Pyx_PyUnicode_Concat(__pyx_kp_u_Svm_rdf, __pyx_t_7); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 121, __pyx_L20_error)
+          __Pyx_GOTREF(__pyx_t_10);
           __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-          __pyx_t_7 = __Pyx_PyObject_CallOneArg(__pyx_builtin_print, __pyx_t_12); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 121, __pyx_L20_error)
+          __pyx_t_7 = __Pyx_PyObject_CallOneArg(__pyx_builtin_print, __pyx_t_10); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 121, __pyx_L20_error)
           __Pyx_GOTREF(__pyx_t_7);
-          __Pyx_DECREF(__pyx_t_12); __pyx_t_12 = 0;
+          __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
           __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
 
           /* "resources/svm.py":122
@@ -8949,82 +8982,82 @@ static PyObject *__pyx_pf_9resources_3svm_6read_divide_classify(CYTHON_UNUSED Py
  *             return None
  *         except Exception as e:
  */
-          __Pyx_GetModuleGlobalName(__pyx_t_9, __pyx_n_s_LoggerSingleton); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 122, __pyx_L20_error)
-          __Pyx_GOTREF(__pyx_t_9);
-          __pyx_t_10 = NULL;
-          __pyx_t_11 = 0;
+          __Pyx_GetModuleGlobalName(__pyx_t_11, __pyx_n_s_LoggerSingleton); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 122, __pyx_L20_error)
+          __Pyx_GOTREF(__pyx_t_11);
+          __pyx_t_9 = NULL;
+          __pyx_t_12 = 0;
           #if CYTHON_UNPACK_METHODS
-          if (unlikely(PyMethod_Check(__pyx_t_9))) {
-            __pyx_t_10 = PyMethod_GET_SELF(__pyx_t_9);
-            if (likely(__pyx_t_10)) {
-              PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_9);
-              __Pyx_INCREF(__pyx_t_10);
+          if (unlikely(PyMethod_Check(__pyx_t_11))) {
+            __pyx_t_9 = PyMethod_GET_SELF(__pyx_t_11);
+            if (likely(__pyx_t_9)) {
+              PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_11);
+              __Pyx_INCREF(__pyx_t_9);
               __Pyx_INCREF(function);
-              __Pyx_DECREF_SET(__pyx_t_9, function);
-              __pyx_t_11 = 1;
+              __Pyx_DECREF_SET(__pyx_t_11, function);
+              __pyx_t_12 = 1;
             }
           }
           #endif
           {
-            PyObject *__pyx_callargs[2] = {__pyx_t_10, NULL};
-            __pyx_t_12 = __Pyx_PyObject_FastCall(__pyx_t_9, __pyx_callargs+1-__pyx_t_11, 0+__pyx_t_11);
-            __Pyx_XDECREF(__pyx_t_10); __pyx_t_10 = 0;
-            if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 122, __pyx_L20_error)
-            __Pyx_GOTREF(__pyx_t_12);
-            __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
+            PyObject *__pyx_callargs[2] = {__pyx_t_9, NULL};
+            __pyx_t_10 = __Pyx_PyObject_FastCall(__pyx_t_11, __pyx_callargs+1-__pyx_t_12, 0+__pyx_t_12);
+            __Pyx_XDECREF(__pyx_t_9); __pyx_t_9 = 0;
+            if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 122, __pyx_L20_error)
+            __Pyx_GOTREF(__pyx_t_10);
+            __Pyx_DECREF(__pyx_t_11); __pyx_t_11 = 0;
           }
-          __pyx_t_9 = __Pyx_PyObject_GetAttrStr(__pyx_t_12, __pyx_n_s_error); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 122, __pyx_L20_error)
+          __pyx_t_11 = __Pyx_PyObject_GetAttrStr(__pyx_t_10, __pyx_n_s_error); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 122, __pyx_L20_error)
+          __Pyx_GOTREF(__pyx_t_11);
+          __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
+          __pyx_t_9 = __Pyx_PyObject_GetAttrStr(__pyx_v_e, __pyx_n_s_str); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 122, __pyx_L20_error)
           __Pyx_GOTREF(__pyx_t_9);
-          __Pyx_DECREF(__pyx_t_12); __pyx_t_12 = 0;
-          __pyx_t_10 = __Pyx_PyObject_GetAttrStr(__pyx_v_e, __pyx_n_s_str); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 122, __pyx_L20_error)
-          __Pyx_GOTREF(__pyx_t_10);
           __pyx_t_15 = NULL;
-          __pyx_t_11 = 0;
+          __pyx_t_12 = 0;
           #if CYTHON_UNPACK_METHODS
-          if (likely(PyMethod_Check(__pyx_t_10))) {
-            __pyx_t_15 = PyMethod_GET_SELF(__pyx_t_10);
+          if (likely(PyMethod_Check(__pyx_t_9))) {
+            __pyx_t_15 = PyMethod_GET_SELF(__pyx_t_9);
             if (likely(__pyx_t_15)) {
-              PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_10);
+              PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_9);
               __Pyx_INCREF(__pyx_t_15);
               __Pyx_INCREF(function);
-              __Pyx_DECREF_SET(__pyx_t_10, function);
-              __pyx_t_11 = 1;
+              __Pyx_DECREF_SET(__pyx_t_9, function);
+              __pyx_t_12 = 1;
             }
           }
           #endif
           {
             PyObject *__pyx_callargs[2] = {__pyx_t_15, NULL};
-            __pyx_t_12 = __Pyx_PyObject_FastCall(__pyx_t_10, __pyx_callargs+1-__pyx_t_11, 0+__pyx_t_11);
+            __pyx_t_10 = __Pyx_PyObject_FastCall(__pyx_t_9, __pyx_callargs+1-__pyx_t_12, 0+__pyx_t_12);
             __Pyx_XDECREF(__pyx_t_15); __pyx_t_15 = 0;
-            if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 122, __pyx_L20_error)
-            __Pyx_GOTREF(__pyx_t_12);
-            __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
+            if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 122, __pyx_L20_error)
+            __Pyx_GOTREF(__pyx_t_10);
+            __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
           }
-          __pyx_t_10 = PyNumber_Add(__pyx_kp_u_Svm_rdf, __pyx_t_12); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 122, __pyx_L20_error)
-          __Pyx_GOTREF(__pyx_t_10);
-          __Pyx_DECREF(__pyx_t_12); __pyx_t_12 = 0;
-          __pyx_t_12 = NULL;
-          __pyx_t_11 = 0;
+          __pyx_t_9 = PyNumber_Add(__pyx_kp_u_Svm_rdf, __pyx_t_10); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 122, __pyx_L20_error)
+          __Pyx_GOTREF(__pyx_t_9);
+          __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
+          __pyx_t_10 = NULL;
+          __pyx_t_12 = 0;
           #if CYTHON_UNPACK_METHODS
-          if (likely(PyMethod_Check(__pyx_t_9))) {
-            __pyx_t_12 = PyMethod_GET_SELF(__pyx_t_9);
-            if (likely(__pyx_t_12)) {
-              PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_9);
-              __Pyx_INCREF(__pyx_t_12);
+          if (likely(PyMethod_Check(__pyx_t_11))) {
+            __pyx_t_10 = PyMethod_GET_SELF(__pyx_t_11);
+            if (likely(__pyx_t_10)) {
+              PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_11);
+              __Pyx_INCREF(__pyx_t_10);
               __Pyx_INCREF(function);
-              __Pyx_DECREF_SET(__pyx_t_9, function);
-              __pyx_t_11 = 1;
+              __Pyx_DECREF_SET(__pyx_t_11, function);
+              __pyx_t_12 = 1;
             }
           }
           #endif
           {
-            PyObject *__pyx_callargs[2] = {__pyx_t_12, __pyx_t_10};
-            __pyx_t_7 = __Pyx_PyObject_FastCall(__pyx_t_9, __pyx_callargs+1-__pyx_t_11, 1+__pyx_t_11);
-            __Pyx_XDECREF(__pyx_t_12); __pyx_t_12 = 0;
-            __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
+            PyObject *__pyx_callargs[2] = {__pyx_t_10, __pyx_t_9};
+            __pyx_t_7 = __Pyx_PyObject_FastCall(__pyx_t_11, __pyx_callargs+1-__pyx_t_12, 1+__pyx_t_12);
+            __Pyx_XDECREF(__pyx_t_10); __pyx_t_10 = 0;
+            __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
             if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 122, __pyx_L20_error)
             __Pyx_GOTREF(__pyx_t_7);
-            __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
+            __Pyx_DECREF(__pyx_t_11); __pyx_t_11 = 0;
           }
           __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
 
@@ -9044,7 +9077,7 @@ static PyObject *__pyx_pf_9resources_3svm_6read_divide_classify(CYTHON_UNUSED Py
         }
 
         /* "resources/svm.py":120
- *             patches, coords, gridcoords = utils.divide_into_patches(read_image_with_retry(image_path, cv2.IMREAD_GRAYSCALE), (int(os.getenv("INSPECTION_CLIENT_GRID_SIZE")), int(os.getenv("INSPECTION_CLIENT_GRID_SIZE"))))
+ *             patches, coords, gridcoords = utils.divide_into_patches(image if image is not None else read_image_with_retry(image_path, cv2.IMREAD_GRAYSCALE), (int(os.getenv("INSPECTION_CLIENT_GRID_SIZE")), int(os.getenv("INSPECTION_CLIENT_GRID_SIZE"))))
  *             break
  *         except ZeroDivisionError as e:             # <<<<<<<<<<<<<<
  *             print(f'(Svm-rdf) {e}')
@@ -9057,7 +9090,7 @@ static PyObject *__pyx_pf_9resources_3svm_6read_divide_classify(CYTHON_UNUSED Py
             __Pyx_PyThreadState_assign
             __pyx_t_18 = 0; __pyx_t_19 = 0; __pyx_t_20 = 0; __pyx_t_21 = 0; __pyx_t_22 = 0; __pyx_t_23 = 0;
             __Pyx_XDECREF(__pyx_t_10); __pyx_t_10 = 0;
-            __Pyx_XDECREF(__pyx_t_12); __pyx_t_12 = 0;
+            __Pyx_XDECREF(__pyx_t_11); __pyx_t_11 = 0;
             __Pyx_XDECREF(__pyx_t_15); __pyx_t_15 = 0;
             __Pyx_XDECREF(__pyx_t_7); __pyx_t_7 = 0;
             __Pyx_XDECREF(__pyx_t_9); __pyx_t_9 = 0;
@@ -9125,12 +9158,12 @@ static PyObject *__pyx_pf_9resources_3svm_6read_divide_classify(CYTHON_UNUSED Py
  */
           __pyx_t_7 = __Pyx_PyObject_FormatSimple(__pyx_v_e, __pyx_empty_unicode); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 125, __pyx_L31_error)
           __Pyx_GOTREF(__pyx_t_7);
-          __pyx_t_9 = __Pyx_PyUnicode_Concat(__pyx_kp_u_Svm_rdf, __pyx_t_7); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 125, __pyx_L31_error)
-          __Pyx_GOTREF(__pyx_t_9);
+          __pyx_t_11 = __Pyx_PyUnicode_Concat(__pyx_kp_u_Svm_rdf, __pyx_t_7); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 125, __pyx_L31_error)
+          __Pyx_GOTREF(__pyx_t_11);
           __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-          __pyx_t_7 = __Pyx_PyObject_CallOneArg(__pyx_builtin_print, __pyx_t_9); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 125, __pyx_L31_error)
+          __pyx_t_7 = __Pyx_PyObject_CallOneArg(__pyx_builtin_print, __pyx_t_11); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 125, __pyx_L31_error)
           __Pyx_GOTREF(__pyx_t_7);
-          __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
+          __Pyx_DECREF(__pyx_t_11); __pyx_t_11 = 0;
           __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
 
           /* "resources/svm.py":126
@@ -9140,82 +9173,82 @@ static PyObject *__pyx_pf_9resources_3svm_6read_divide_classify(CYTHON_UNUSED Py
  *             attempts += 1
  *             if attempts >= 10: raise Exception(f'rdc: {e}')
  */
-          __Pyx_GetModuleGlobalName(__pyx_t_10, __pyx_n_s_LoggerSingleton); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 126, __pyx_L31_error)
-          __Pyx_GOTREF(__pyx_t_10);
-          __pyx_t_12 = NULL;
-          __pyx_t_11 = 0;
+          __Pyx_GetModuleGlobalName(__pyx_t_9, __pyx_n_s_LoggerSingleton); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 126, __pyx_L31_error)
+          __Pyx_GOTREF(__pyx_t_9);
+          __pyx_t_10 = NULL;
+          __pyx_t_12 = 0;
           #if CYTHON_UNPACK_METHODS
-          if (unlikely(PyMethod_Check(__pyx_t_10))) {
-            __pyx_t_12 = PyMethod_GET_SELF(__pyx_t_10);
-            if (likely(__pyx_t_12)) {
-              PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_10);
-              __Pyx_INCREF(__pyx_t_12);
+          if (unlikely(PyMethod_Check(__pyx_t_9))) {
+            __pyx_t_10 = PyMethod_GET_SELF(__pyx_t_9);
+            if (likely(__pyx_t_10)) {
+              PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_9);
+              __Pyx_INCREF(__pyx_t_10);
               __Pyx_INCREF(function);
-              __Pyx_DECREF_SET(__pyx_t_10, function);
-              __pyx_t_11 = 1;
+              __Pyx_DECREF_SET(__pyx_t_9, function);
+              __pyx_t_12 = 1;
             }
           }
           #endif
           {
-            PyObject *__pyx_callargs[2] = {__pyx_t_12, NULL};
-            __pyx_t_9 = __Pyx_PyObject_FastCall(__pyx_t_10, __pyx_callargs+1-__pyx_t_11, 0+__pyx_t_11);
-            __Pyx_XDECREF(__pyx_t_12); __pyx_t_12 = 0;
-            if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 126, __pyx_L31_error)
-            __Pyx_GOTREF(__pyx_t_9);
-            __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
+            PyObject *__pyx_callargs[2] = {__pyx_t_10, NULL};
+            __pyx_t_11 = __Pyx_PyObject_FastCall(__pyx_t_9, __pyx_callargs+1-__pyx_t_12, 0+__pyx_t_12);
+            __Pyx_XDECREF(__pyx_t_10); __pyx_t_10 = 0;
+            if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 126, __pyx_L31_error)
+            __Pyx_GOTREF(__pyx_t_11);
+            __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
           }
-          __pyx_t_10 = __Pyx_PyObject_GetAttrStr(__pyx_t_9, __pyx_n_s_error); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 126, __pyx_L31_error)
+          __pyx_t_9 = __Pyx_PyObject_GetAttrStr(__pyx_t_11, __pyx_n_s_error); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 126, __pyx_L31_error)
+          __Pyx_GOTREF(__pyx_t_9);
+          __Pyx_DECREF(__pyx_t_11); __pyx_t_11 = 0;
+          __pyx_t_10 = __Pyx_PyObject_GetAttrStr(__pyx_v_e, __pyx_n_s_str); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 126, __pyx_L31_error)
           __Pyx_GOTREF(__pyx_t_10);
-          __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
-          __pyx_t_12 = __Pyx_PyObject_GetAttrStr(__pyx_v_e, __pyx_n_s_str); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 126, __pyx_L31_error)
-          __Pyx_GOTREF(__pyx_t_12);
           __pyx_t_15 = NULL;
-          __pyx_t_11 = 0;
+          __pyx_t_12 = 0;
           #if CYTHON_UNPACK_METHODS
-          if (likely(PyMethod_Check(__pyx_t_12))) {
-            __pyx_t_15 = PyMethod_GET_SELF(__pyx_t_12);
+          if (likely(PyMethod_Check(__pyx_t_10))) {
+            __pyx_t_15 = PyMethod_GET_SELF(__pyx_t_10);
             if (likely(__pyx_t_15)) {
-              PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_12);
+              PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_10);
               __Pyx_INCREF(__pyx_t_15);
               __Pyx_INCREF(function);
-              __Pyx_DECREF_SET(__pyx_t_12, function);
-              __pyx_t_11 = 1;
+              __Pyx_DECREF_SET(__pyx_t_10, function);
+              __pyx_t_12 = 1;
             }
           }
           #endif
           {
             PyObject *__pyx_callargs[2] = {__pyx_t_15, NULL};
-            __pyx_t_9 = __Pyx_PyObject_FastCall(__pyx_t_12, __pyx_callargs+1-__pyx_t_11, 0+__pyx_t_11);
+            __pyx_t_11 = __Pyx_PyObject_FastCall(__pyx_t_10, __pyx_callargs+1-__pyx_t_12, 0+__pyx_t_12);
             __Pyx_XDECREF(__pyx_t_15); __pyx_t_15 = 0;
-            if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 126, __pyx_L31_error)
-            __Pyx_GOTREF(__pyx_t_9);
-            __Pyx_DECREF(__pyx_t_12); __pyx_t_12 = 0;
+            if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 126, __pyx_L31_error)
+            __Pyx_GOTREF(__pyx_t_11);
+            __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
           }
-          __pyx_t_12 = PyNumber_Add(__pyx_kp_u_Svm_rdf, __pyx_t_9); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 126, __pyx_L31_error)
-          __Pyx_GOTREF(__pyx_t_12);
-          __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
-          __pyx_t_9 = NULL;
-          __pyx_t_11 = 0;
+          __pyx_t_10 = PyNumber_Add(__pyx_kp_u_Svm_rdf, __pyx_t_11); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 126, __pyx_L31_error)
+          __Pyx_GOTREF(__pyx_t_10);
+          __Pyx_DECREF(__pyx_t_11); __pyx_t_11 = 0;
+          __pyx_t_11 = NULL;
+          __pyx_t_12 = 0;
           #if CYTHON_UNPACK_METHODS
-          if (likely(PyMethod_Check(__pyx_t_10))) {
-            __pyx_t_9 = PyMethod_GET_SELF(__pyx_t_10);
-            if (likely(__pyx_t_9)) {
-              PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_10);
-              __Pyx_INCREF(__pyx_t_9);
+          if (likely(PyMethod_Check(__pyx_t_9))) {
+            __pyx_t_11 = PyMethod_GET_SELF(__pyx_t_9);
+            if (likely(__pyx_t_11)) {
+              PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_9);
+              __Pyx_INCREF(__pyx_t_11);
               __Pyx_INCREF(function);
-              __Pyx_DECREF_SET(__pyx_t_10, function);
-              __pyx_t_11 = 1;
+              __Pyx_DECREF_SET(__pyx_t_9, function);
+              __pyx_t_12 = 1;
             }
           }
           #endif
           {
-            PyObject *__pyx_callargs[2] = {__pyx_t_9, __pyx_t_12};
-            __pyx_t_7 = __Pyx_PyObject_FastCall(__pyx_t_10, __pyx_callargs+1-__pyx_t_11, 1+__pyx_t_11);
-            __Pyx_XDECREF(__pyx_t_9); __pyx_t_9 = 0;
-            __Pyx_DECREF(__pyx_t_12); __pyx_t_12 = 0;
+            PyObject *__pyx_callargs[2] = {__pyx_t_11, __pyx_t_10};
+            __pyx_t_7 = __Pyx_PyObject_FastCall(__pyx_t_9, __pyx_callargs+1-__pyx_t_12, 1+__pyx_t_12);
+            __Pyx_XDECREF(__pyx_t_11); __pyx_t_11 = 0;
+            __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
             if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 126, __pyx_L31_error)
             __Pyx_GOTREF(__pyx_t_7);
-            __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
+            __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
           }
           __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
 
@@ -9244,12 +9277,12 @@ static PyObject *__pyx_pf_9resources_3svm_6read_divide_classify(CYTHON_UNUSED Py
           if (unlikely(__pyx_t_2)) {
             __pyx_t_7 = __Pyx_PyObject_FormatSimple(__pyx_v_e, __pyx_empty_unicode); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 128, __pyx_L31_error)
             __Pyx_GOTREF(__pyx_t_7);
-            __pyx_t_10 = __Pyx_PyUnicode_Concat(__pyx_kp_u_rdc, __pyx_t_7); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 128, __pyx_L31_error)
-            __Pyx_GOTREF(__pyx_t_10);
+            __pyx_t_9 = __Pyx_PyUnicode_Concat(__pyx_kp_u_rdc, __pyx_t_7); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 128, __pyx_L31_error)
+            __Pyx_GOTREF(__pyx_t_9);
             __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-            __pyx_t_7 = __Pyx_PyObject_CallOneArg(((PyObject *)(&((PyTypeObject*)PyExc_Exception)[0])), __pyx_t_10); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 128, __pyx_L31_error)
+            __pyx_t_7 = __Pyx_PyObject_CallOneArg(((PyObject *)(&((PyTypeObject*)PyExc_Exception)[0])), __pyx_t_9); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 128, __pyx_L31_error)
             __Pyx_GOTREF(__pyx_t_7);
-            __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
+            __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
             __Pyx_Raise(__pyx_t_7, 0, 0, 0);
             __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
             __PYX_ERR(0, 128, __pyx_L31_error)
@@ -9262,32 +9295,32 @@ static PyObject *__pyx_pf_9resources_3svm_6read_divide_classify(CYTHON_UNUSED Py
  * 
  *     patch_features = extract_features_from_patches(patches)
  */
-          __Pyx_GetModuleGlobalName(__pyx_t_10, __pyx_n_s_time); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 129, __pyx_L31_error)
+          __Pyx_GetModuleGlobalName(__pyx_t_9, __pyx_n_s_time); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 129, __pyx_L31_error)
+          __Pyx_GOTREF(__pyx_t_9);
+          __pyx_t_10 = __Pyx_PyObject_GetAttrStr(__pyx_t_9, __pyx_n_s_sleep); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 129, __pyx_L31_error)
           __Pyx_GOTREF(__pyx_t_10);
-          __pyx_t_12 = __Pyx_PyObject_GetAttrStr(__pyx_t_10, __pyx_n_s_sleep); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 129, __pyx_L31_error)
-          __Pyx_GOTREF(__pyx_t_12);
-          __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
-          __pyx_t_10 = NULL;
-          __pyx_t_11 = 0;
+          __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
+          __pyx_t_9 = NULL;
+          __pyx_t_12 = 0;
           #if CYTHON_UNPACK_METHODS
-          if (unlikely(PyMethod_Check(__pyx_t_12))) {
-            __pyx_t_10 = PyMethod_GET_SELF(__pyx_t_12);
-            if (likely(__pyx_t_10)) {
-              PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_12);
-              __Pyx_INCREF(__pyx_t_10);
+          if (unlikely(PyMethod_Check(__pyx_t_10))) {
+            __pyx_t_9 = PyMethod_GET_SELF(__pyx_t_10);
+            if (likely(__pyx_t_9)) {
+              PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_10);
+              __Pyx_INCREF(__pyx_t_9);
               __Pyx_INCREF(function);
-              __Pyx_DECREF_SET(__pyx_t_12, function);
-              __pyx_t_11 = 1;
+              __Pyx_DECREF_SET(__pyx_t_10, function);
+              __pyx_t_12 = 1;
             }
           }
           #endif
           {
-            PyObject *__pyx_callargs[2] = {__pyx_t_10, __pyx_int_5};
-            __pyx_t_7 = __Pyx_PyObject_FastCall(__pyx_t_12, __pyx_callargs+1-__pyx_t_11, 1+__pyx_t_11);
-            __Pyx_XDECREF(__pyx_t_10); __pyx_t_10 = 0;
+            PyObject *__pyx_callargs[2] = {__pyx_t_9, __pyx_int_5};
+            __pyx_t_7 = __Pyx_PyObject_FastCall(__pyx_t_10, __pyx_callargs+1-__pyx_t_12, 1+__pyx_t_12);
+            __Pyx_XDECREF(__pyx_t_9); __pyx_t_9 = 0;
             if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 129, __pyx_L31_error)
             __Pyx_GOTREF(__pyx_t_7);
-            __Pyx_DECREF(__pyx_t_12); __pyx_t_12 = 0;
+            __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
           }
           __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
         }
@@ -9310,7 +9343,7 @@ static PyObject *__pyx_pf_9resources_3svm_6read_divide_classify(CYTHON_UNUSED Py
             __Pyx_PyThreadState_assign
             __pyx_t_23 = 0; __pyx_t_22 = 0; __pyx_t_21 = 0; __pyx_t_20 = 0; __pyx_t_19 = 0; __pyx_t_18 = 0;
             __Pyx_XDECREF(__pyx_t_10); __pyx_t_10 = 0;
-            __Pyx_XDECREF(__pyx_t_12); __pyx_t_12 = 0;
+            __Pyx_XDECREF(__pyx_t_11); __pyx_t_11 = 0;
             __Pyx_XDECREF(__pyx_t_15); __pyx_t_15 = 0;
             __Pyx_XDECREF(__pyx_t_7); __pyx_t_7 = 0;
             __Pyx_XDECREF(__pyx_t_9); __pyx_t_9 = 0;
@@ -9353,7 +9386,7 @@ static PyObject *__pyx_pf_9resources_3svm_6read_divide_classify(CYTHON_UNUSED Py
  *     attempts = 0
  *     while attempts < 10:
  *         try:             # <<<<<<<<<<<<<<
- *             patches, coords, gridcoords = utils.divide_into_patches(read_image_with_retry(image_path, cv2.IMREAD_GRAYSCALE), (int(os.getenv("INSPECTION_CLIENT_GRID_SIZE")), int(os.getenv("INSPECTION_CLIENT_GRID_SIZE"))))
+ *             patches, coords, gridcoords = utils.divide_into_patches(image if image is not None else read_image_with_retry(image_path, cv2.IMREAD_GRAYSCALE), (int(os.getenv("INSPECTION_CLIENT_GRID_SIZE")), int(os.getenv("INSPECTION_CLIENT_GRID_SIZE"))))
  *             break
  */
       __pyx_L7_except_error:;
@@ -9394,7 +9427,7 @@ static PyObject *__pyx_pf_9resources_3svm_6read_divide_classify(CYTHON_UNUSED Py
   __Pyx_GOTREF(__pyx_t_6);
   if (unlikely(!__pyx_v_patches)) { __Pyx_RaiseUnboundLocalError("patches"); __PYX_ERR(0, 131, __pyx_L1_error) }
   __pyx_t_8 = NULL;
-  __pyx_t_11 = 0;
+  __pyx_t_12 = 0;
   #if CYTHON_UNPACK_METHODS
   if (unlikely(PyMethod_Check(__pyx_t_6))) {
     __pyx_t_8 = PyMethod_GET_SELF(__pyx_t_6);
@@ -9403,13 +9436,13 @@ static PyObject *__pyx_pf_9resources_3svm_6read_divide_classify(CYTHON_UNUSED Py
       __Pyx_INCREF(__pyx_t_8);
       __Pyx_INCREF(function);
       __Pyx_DECREF_SET(__pyx_t_6, function);
-      __pyx_t_11 = 1;
+      __pyx_t_12 = 1;
     }
   }
   #endif
   {
     PyObject *__pyx_callargs[2] = {__pyx_t_8, __pyx_v_patches};
-    __pyx_t_1 = __Pyx_PyObject_FastCall(__pyx_t_6, __pyx_callargs+1-__pyx_t_11, 1+__pyx_t_11);
+    __pyx_t_1 = __Pyx_PyObject_FastCall(__pyx_t_6, __pyx_callargs+1-__pyx_t_12, 1+__pyx_t_12);
     __Pyx_XDECREF(__pyx_t_8); __pyx_t_8 = 0;
     if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 131, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
@@ -9441,46 +9474,46 @@ static PyObject *__pyx_pf_9resources_3svm_6read_divide_classify(CYTHON_UNUSED Py
   __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_v_scaler, __pyx_n_s_transform); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 135, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);
   { /* enter inner scope */
-    __pyx_t_12 = PyList_New(0); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 135, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_12);
+    __pyx_t_10 = PyList_New(0); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 135, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_10);
     __pyx_t_25 = __pyx_v_num_of_patches;
     __pyx_t_26 = __pyx_t_25;
     for (__pyx_t_27 = 0; __pyx_t_27 < __pyx_t_26; __pyx_t_27+=1) {
       __pyx_8genexpr1__pyx_v_i = __pyx_t_27;
-      __pyx_t_10 = __Pyx_GetItemInt(__pyx_v_patch_features, __pyx_8genexpr1__pyx_v_i, Py_ssize_t, 1, PyInt_FromSsize_t, 0, 1, 1); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 135, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_10);
-      __pyx_t_9 = __Pyx_GetItemInt(__pyx_t_10, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 135, __pyx_L1_error)
+      __pyx_t_9 = __Pyx_GetItemInt(__pyx_v_patch_features, __pyx_8genexpr1__pyx_v_i, Py_ssize_t, 1, PyInt_FromSsize_t, 0, 1, 1); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 135, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_9);
-      __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
-      if (unlikely(__Pyx_ListComp_Append(__pyx_t_12, (PyObject*)__pyx_t_9))) __PYX_ERR(0, 135, __pyx_L1_error)
+      __pyx_t_11 = __Pyx_GetItemInt(__pyx_t_9, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 135, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_11);
       __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
+      if (unlikely(__Pyx_ListComp_Append(__pyx_t_10, (PyObject*)__pyx_t_11))) __PYX_ERR(0, 135, __pyx_L1_error)
+      __Pyx_DECREF(__pyx_t_11); __pyx_t_11 = 0;
     }
   } /* exit inner scope */
-  __pyx_t_9 = NULL;
-  __pyx_t_11 = 0;
+  __pyx_t_11 = NULL;
+  __pyx_t_12 = 0;
   #if CYTHON_UNPACK_METHODS
   if (likely(PyMethod_Check(__pyx_t_7))) {
-    __pyx_t_9 = PyMethod_GET_SELF(__pyx_t_7);
-    if (likely(__pyx_t_9)) {
+    __pyx_t_11 = PyMethod_GET_SELF(__pyx_t_7);
+    if (likely(__pyx_t_11)) {
       PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_7);
-      __Pyx_INCREF(__pyx_t_9);
+      __Pyx_INCREF(__pyx_t_11);
       __Pyx_INCREF(function);
       __Pyx_DECREF_SET(__pyx_t_7, function);
-      __pyx_t_11 = 1;
+      __pyx_t_12 = 1;
     }
   }
   #endif
   {
-    PyObject *__pyx_callargs[2] = {__pyx_t_9, __pyx_t_12};
-    __pyx_t_8 = __Pyx_PyObject_FastCall(__pyx_t_7, __pyx_callargs+1-__pyx_t_11, 1+__pyx_t_11);
-    __Pyx_XDECREF(__pyx_t_9); __pyx_t_9 = 0;
-    __Pyx_DECREF(__pyx_t_12); __pyx_t_12 = 0;
+    PyObject *__pyx_callargs[2] = {__pyx_t_11, __pyx_t_10};
+    __pyx_t_8 = __Pyx_PyObject_FastCall(__pyx_t_7, __pyx_callargs+1-__pyx_t_12, 1+__pyx_t_12);
+    __Pyx_XDECREF(__pyx_t_11); __pyx_t_11 = 0;
+    __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
     if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 135, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_8);
     __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
   }
   __pyx_t_7 = NULL;
-  __pyx_t_11 = 0;
+  __pyx_t_12 = 0;
   #if CYTHON_UNPACK_METHODS
   if (likely(PyMethod_Check(__pyx_t_6))) {
     __pyx_t_7 = PyMethod_GET_SELF(__pyx_t_6);
@@ -9489,13 +9522,13 @@ static PyObject *__pyx_pf_9resources_3svm_6read_divide_classify(CYTHON_UNUSED Py
       __Pyx_INCREF(__pyx_t_7);
       __Pyx_INCREF(function);
       __Pyx_DECREF_SET(__pyx_t_6, function);
-      __pyx_t_11 = 1;
+      __pyx_t_12 = 1;
     }
   }
   #endif
   {
     PyObject *__pyx_callargs[2] = {__pyx_t_7, __pyx_t_8};
-    __pyx_t_1 = __Pyx_PyObject_FastCall(__pyx_t_6, __pyx_callargs+1-__pyx_t_11, 1+__pyx_t_11);
+    __pyx_t_1 = __Pyx_PyObject_FastCall(__pyx_t_6, __pyx_callargs+1-__pyx_t_12, 1+__pyx_t_12);
     __Pyx_XDECREF(__pyx_t_7); __pyx_t_7 = 0;
     __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
     if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 135, __pyx_L1_error)
@@ -9515,7 +9548,7 @@ static PyObject *__pyx_pf_9resources_3svm_6read_divide_classify(CYTHON_UNUSED Py
   __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_v_svm, __pyx_n_s_predict); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 136, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
   __pyx_t_8 = NULL;
-  __pyx_t_11 = 0;
+  __pyx_t_12 = 0;
   #if CYTHON_UNPACK_METHODS
   if (likely(PyMethod_Check(__pyx_t_6))) {
     __pyx_t_8 = PyMethod_GET_SELF(__pyx_t_6);
@@ -9524,13 +9557,13 @@ static PyObject *__pyx_pf_9resources_3svm_6read_divide_classify(CYTHON_UNUSED Py
       __Pyx_INCREF(__pyx_t_8);
       __Pyx_INCREF(function);
       __Pyx_DECREF_SET(__pyx_t_6, function);
-      __pyx_t_11 = 1;
+      __pyx_t_12 = 1;
     }
   }
   #endif
   {
     PyObject *__pyx_callargs[2] = {__pyx_t_8, __pyx_v_transformed_features};
-    __pyx_t_1 = __Pyx_PyObject_FastCall(__pyx_t_6, __pyx_callargs+1-__pyx_t_11, 1+__pyx_t_11);
+    __pyx_t_1 = __Pyx_PyObject_FastCall(__pyx_t_6, __pyx_callargs+1-__pyx_t_12, 1+__pyx_t_12);
     __Pyx_XDECREF(__pyx_t_8); __pyx_t_8 = 0;
     if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 136, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
@@ -9549,7 +9582,7 @@ static PyObject *__pyx_pf_9resources_3svm_6read_divide_classify(CYTHON_UNUSED Py
   __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_v_svm, __pyx_n_s_decision_function); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 137, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
   __pyx_t_8 = NULL;
-  __pyx_t_11 = 0;
+  __pyx_t_12 = 0;
   #if CYTHON_UNPACK_METHODS
   if (likely(PyMethod_Check(__pyx_t_6))) {
     __pyx_t_8 = PyMethod_GET_SELF(__pyx_t_6);
@@ -9558,13 +9591,13 @@ static PyObject *__pyx_pf_9resources_3svm_6read_divide_classify(CYTHON_UNUSED Py
       __Pyx_INCREF(__pyx_t_8);
       __Pyx_INCREF(function);
       __Pyx_DECREF_SET(__pyx_t_6, function);
-      __pyx_t_11 = 1;
+      __pyx_t_12 = 1;
     }
   }
   #endif
   {
     PyObject *__pyx_callargs[2] = {__pyx_t_8, __pyx_v_transformed_features};
-    __pyx_t_1 = __Pyx_PyObject_FastCall(__pyx_t_6, __pyx_callargs+1-__pyx_t_11, 1+__pyx_t_11);
+    __pyx_t_1 = __Pyx_PyObject_FastCall(__pyx_t_6, __pyx_callargs+1-__pyx_t_12, 1+__pyx_t_12);
     __Pyx_XDECREF(__pyx_t_8); __pyx_t_8 = 0;
     if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 137, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
@@ -9589,7 +9622,7 @@ static PyObject *__pyx_pf_9resources_3svm_6read_divide_classify(CYTHON_UNUSED Py
   __Pyx_GOTREF(__pyx_t_6);
   __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
   __pyx_t_8 = NULL;
-  __pyx_t_11 = 0;
+  __pyx_t_12 = 0;
   #if CYTHON_UNPACK_METHODS
   if (likely(PyMethod_Check(__pyx_t_6))) {
     __pyx_t_8 = PyMethod_GET_SELF(__pyx_t_6);
@@ -9598,13 +9631,13 @@ static PyObject *__pyx_pf_9resources_3svm_6read_divide_classify(CYTHON_UNUSED Py
       __Pyx_INCREF(__pyx_t_8);
       __Pyx_INCREF(function);
       __Pyx_DECREF_SET(__pyx_t_6, function);
-      __pyx_t_11 = 1;
+      __pyx_t_12 = 1;
     }
   }
   #endif
   {
     PyObject *__pyx_callargs[2] = {__pyx_t_8, __pyx_v_image_path};
-    __pyx_t_1 = __Pyx_PyObject_FastCall(__pyx_t_6, __pyx_callargs+1-__pyx_t_11, 1+__pyx_t_11);
+    __pyx_t_1 = __Pyx_PyObject_FastCall(__pyx_t_6, __pyx_callargs+1-__pyx_t_12, 1+__pyx_t_12);
     __Pyx_XDECREF(__pyx_t_8); __pyx_t_8 = 0;
     if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 139, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
@@ -9648,43 +9681,43 @@ static PyObject *__pyx_pf_9resources_3svm_6read_divide_classify(CYTHON_UNUSED Py
       __Pyx_GOTREF(__pyx_t_6);
       __pyx_t_7 = __Pyx_GetItemInt(__pyx_v_decision_scores, __pyx_8genexpr2__pyx_v_i, Py_ssize_t, 1, PyInt_FromSsize_t, 0, 1, 1); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 142, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_7);
-      __pyx_t_12 = __Pyx_PyObject_CallOneArg(__pyx_builtin_max, __pyx_t_7); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 142, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_12);
-      __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-      __pyx_t_7 = __Pyx_PyNumber_Float(__pyx_t_12); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 142, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_7);
-      __Pyx_DECREF(__pyx_t_12); __pyx_t_12 = 0;
-      if (unlikely(!__pyx_v_coords)) { __Pyx_RaiseUnboundLocalError("coords"); __PYX_ERR(0, 142, __pyx_L1_error) }
-      __pyx_t_12 = __Pyx_GetItemInt(__pyx_v_coords, __pyx_8genexpr2__pyx_v_i, Py_ssize_t, 1, PyInt_FromSsize_t, 0, 1, 1); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 142, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_12);
-      if (unlikely(!__pyx_v_gridcoords)) { __Pyx_RaiseUnboundLocalError("gridcoords"); __PYX_ERR(0, 142, __pyx_L1_error) }
-      __pyx_t_9 = __Pyx_GetItemInt(__pyx_v_gridcoords, __pyx_8genexpr2__pyx_v_i, Py_ssize_t, 1, PyInt_FromSsize_t, 0, 1, 1); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 142, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_9);
-      __pyx_t_10 = PyList_New(7); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 142, __pyx_L1_error)
+      __pyx_t_10 = __Pyx_PyObject_CallOneArg(__pyx_builtin_max, __pyx_t_7); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 142, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_10);
+      __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
+      __pyx_t_7 = __Pyx_PyNumber_Float(__pyx_t_10); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 142, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_7);
+      __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
+      if (unlikely(!__pyx_v_coords)) { __Pyx_RaiseUnboundLocalError("coords"); __PYX_ERR(0, 142, __pyx_L1_error) }
+      __pyx_t_10 = __Pyx_GetItemInt(__pyx_v_coords, __pyx_8genexpr2__pyx_v_i, Py_ssize_t, 1, PyInt_FromSsize_t, 0, 1, 1); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 142, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_10);
+      if (unlikely(!__pyx_v_gridcoords)) { __Pyx_RaiseUnboundLocalError("gridcoords"); __PYX_ERR(0, 142, __pyx_L1_error) }
+      __pyx_t_11 = __Pyx_GetItemInt(__pyx_v_gridcoords, __pyx_8genexpr2__pyx_v_i, Py_ssize_t, 1, PyInt_FromSsize_t, 0, 1, 1); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 142, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_11);
+      __pyx_t_9 = PyList_New(7); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 142, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_9);
       __Pyx_GIVEREF(__pyx_t_8);
-      if (__Pyx_PyList_SET_ITEM(__pyx_t_10, 0, __pyx_t_8)) __PYX_ERR(0, 142, __pyx_L1_error);
+      if (__Pyx_PyList_SET_ITEM(__pyx_t_9, 0, __pyx_t_8)) __PYX_ERR(0, 142, __pyx_L1_error);
       __Pyx_INCREF(__pyx_v_image_count);
       __Pyx_GIVEREF(__pyx_v_image_count);
-      if (__Pyx_PyList_SET_ITEM(__pyx_t_10, 1, __pyx_v_image_count)) __PYX_ERR(0, 142, __pyx_L1_error);
+      if (__Pyx_PyList_SET_ITEM(__pyx_t_9, 1, __pyx_v_image_count)) __PYX_ERR(0, 142, __pyx_L1_error);
       __Pyx_GIVEREF(__pyx_t_6);
-      if (__Pyx_PyList_SET_ITEM(__pyx_t_10, 2, __pyx_t_6)) __PYX_ERR(0, 142, __pyx_L1_error);
+      if (__Pyx_PyList_SET_ITEM(__pyx_t_9, 2, __pyx_t_6)) __PYX_ERR(0, 142, __pyx_L1_error);
       __Pyx_GIVEREF(__pyx_t_7);
-      if (__Pyx_PyList_SET_ITEM(__pyx_t_10, 3, __pyx_t_7)) __PYX_ERR(0, 142, __pyx_L1_error);
-      __Pyx_GIVEREF(__pyx_t_12);
-      if (__Pyx_PyList_SET_ITEM(__pyx_t_10, 4, __pyx_t_12)) __PYX_ERR(0, 142, __pyx_L1_error);
+      if (__Pyx_PyList_SET_ITEM(__pyx_t_9, 3, __pyx_t_7)) __PYX_ERR(0, 142, __pyx_L1_error);
+      __Pyx_GIVEREF(__pyx_t_10);
+      if (__Pyx_PyList_SET_ITEM(__pyx_t_9, 4, __pyx_t_10)) __PYX_ERR(0, 142, __pyx_L1_error);
       __Pyx_INCREF(__pyx_v_basename);
       __Pyx_GIVEREF(__pyx_v_basename);
-      if (__Pyx_PyList_SET_ITEM(__pyx_t_10, 5, __pyx_v_basename)) __PYX_ERR(0, 142, __pyx_L1_error);
-      __Pyx_GIVEREF(__pyx_t_9);
-      if (__Pyx_PyList_SET_ITEM(__pyx_t_10, 6, __pyx_t_9)) __PYX_ERR(0, 142, __pyx_L1_error);
+      if (__Pyx_PyList_SET_ITEM(__pyx_t_9, 5, __pyx_v_basename)) __PYX_ERR(0, 142, __pyx_L1_error);
+      __Pyx_GIVEREF(__pyx_t_11);
+      if (__Pyx_PyList_SET_ITEM(__pyx_t_9, 6, __pyx_t_11)) __PYX_ERR(0, 142, __pyx_L1_error);
       __pyx_t_8 = 0;
       __pyx_t_6 = 0;
       __pyx_t_7 = 0;
-      __pyx_t_12 = 0;
-      __pyx_t_9 = 0;
-      if (unlikely(__Pyx_ListComp_Append(__pyx_t_1, (PyObject*)__pyx_t_10))) __PYX_ERR(0, 142, __pyx_L1_error)
-      __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
+      __pyx_t_10 = 0;
+      __pyx_t_11 = 0;
+      if (unlikely(__Pyx_ListComp_Append(__pyx_t_1, (PyObject*)__pyx_t_9))) __PYX_ERR(0, 142, __pyx_L1_error)
+      __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
     }
   } /* exit inner scope */
   __pyx_v_labeled_patches = ((PyObject*)__pyx_t_1);
@@ -9705,7 +9738,7 @@ static PyObject *__pyx_pf_9resources_3svm_6read_divide_classify(CYTHON_UNUSED Py
   /* "resources/svm.py":114
  * 
  * # labeled_patches = [ (patch, image_count, label, distance, patch coords, image_path), ... ]
- * def read_divide_classify(image_path, svm, pca, scaler):             # <<<<<<<<<<<<<<
+ * def read_divide_classify(image_path, svm, pca, scaler, image=None):             # <<<<<<<<<<<<<<
  *     attempts = 0
  *     while attempts < 10:
  */
@@ -9718,7 +9751,7 @@ static PyObject *__pyx_pf_9resources_3svm_6read_divide_classify(CYTHON_UNUSED Py
   __Pyx_XDECREF(__pyx_t_8);
   __Pyx_XDECREF(__pyx_t_9);
   __Pyx_XDECREF(__pyx_t_10);
-  __Pyx_XDECREF(__pyx_t_12);
+  __Pyx_XDECREF(__pyx_t_11);
   __Pyx_XDECREF(__pyx_t_15);
   __Pyx_AddTraceback("resources.svm.read_divide_classify", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
@@ -19589,7 +19622,7 @@ static int __Pyx_CreateStringTabAndInitStrings(void) {
     {&__pyx_n_s__15, __pyx_k__15, sizeof(__pyx_k__15), 0, 0, 1, 1},
     {&__pyx_kp_u__3, __pyx_k__3, sizeof(__pyx_k__3), 0, 1, 0, 0},
     {&__pyx_kp_u__5, __pyx_k__5, sizeof(__pyx_k__5), 0, 1, 0, 0},
-    {&__pyx_n_s__52, __pyx_k__52, sizeof(__pyx_k__52), 0, 0, 1, 1},
+    {&__pyx_n_s__53, __pyx_k__53, sizeof(__pyx_k__53), 0, 0, 1, 1},
     {&__pyx_kp_u__9, __pyx_k__9, sizeof(__pyx_k__9), 0, 1, 0, 0},
     {&__pyx_n_s_add_patch, __pyx_k_add_patch, sizeof(__pyx_k_add_patch), 0, 0, 1, 1},
     {&__pyx_n_s_add_to_cut_page_coordinates_dict, __pyx_k_add_to_cut_page_coordinates_dict, sizeof(__pyx_k_add_to_cut_page_coordinates_dict), 0, 0, 1, 1},
@@ -19697,6 +19730,7 @@ static int __Pyx_CreateStringTabAndInitStrings(void) {
     {&__pyx_n_s_height, __pyx_k_height, sizeof(__pyx_k_height), 0, 0, 1, 1},
     {&__pyx_n_s_i, __pyx_k_i, sizeof(__pyx_k_i), 0, 0, 1, 1},
     {&__pyx_n_s_idx, __pyx_k_idx, sizeof(__pyx_k_idx), 0, 0, 1, 1},
+    {&__pyx_n_s_image, __pyx_k_image, sizeof(__pyx_k_image), 0, 0, 1, 1},
     {&__pyx_n_s_image_count, __pyx_k_image_count, sizeof(__pyx_k_image_count), 0, 0, 1, 1},
     {&__pyx_n_s_image_path, __pyx_k_image_path, sizeof(__pyx_k_image_path), 0, 0, 1, 1},
     {&__pyx_n_s_image_size, __pyx_k_image_size, sizeof(__pyx_k_image_size), 0, 0, 1, 1},
@@ -20039,14 +20073,17 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   /* "resources/svm.py":114
  * 
  * # labeled_patches = [ (patch, image_count, label, distance, patch coords, image_path), ... ]
- * def read_divide_classify(image_path, svm, pca, scaler):             # <<<<<<<<<<<<<<
+ * def read_divide_classify(image_path, svm, pca, scaler, image=None):             # <<<<<<<<<<<<<<
  *     attempts = 0
  *     while attempts < 10:
  */
-  __pyx_tuple__23 = PyTuple_Pack(19, __pyx_n_s_image_path, __pyx_n_s_svm, __pyx_n_s_pca, __pyx_n_s_scaler, __pyx_n_s_attempts, __pyx_n_s_patches, __pyx_n_s_coords, __pyx_n_s_gridcoords, __pyx_n_s_e, __pyx_n_s_patch_features, __pyx_n_s_num_of_patches, __pyx_n_s_transformed_features, __pyx_n_s_labels, __pyx_n_s_decision_scores, __pyx_n_s_basename, __pyx_n_s_image_count, __pyx_n_s_labeled_patches, __pyx_n_s_i, __pyx_n_s_i); if (unlikely(!__pyx_tuple__23)) __PYX_ERR(0, 114, __pyx_L1_error)
+  __pyx_tuple__23 = PyTuple_Pack(20, __pyx_n_s_image_path, __pyx_n_s_svm, __pyx_n_s_pca, __pyx_n_s_scaler, __pyx_n_s_image, __pyx_n_s_attempts, __pyx_n_s_patches, __pyx_n_s_coords, __pyx_n_s_gridcoords, __pyx_n_s_e, __pyx_n_s_patch_features, __pyx_n_s_num_of_patches, __pyx_n_s_transformed_features, __pyx_n_s_labels, __pyx_n_s_decision_scores, __pyx_n_s_basename, __pyx_n_s_image_count, __pyx_n_s_labeled_patches, __pyx_n_s_i, __pyx_n_s_i); if (unlikely(!__pyx_tuple__23)) __PYX_ERR(0, 114, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__23);
   __Pyx_GIVEREF(__pyx_tuple__23);
-  __pyx_codeobj__24 = (PyObject*)__Pyx_PyCode_New(4, 0, 0, 19, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__23, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_resources_svm_py, __pyx_n_s_read_divide_classify, 114, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__24)) __PYX_ERR(0, 114, __pyx_L1_error)
+  __pyx_codeobj__24 = (PyObject*)__Pyx_PyCode_New(5, 0, 0, 20, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__23, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_resources_svm_py, __pyx_n_s_read_divide_classify, 114, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__24)) __PYX_ERR(0, 114, __pyx_L1_error)
+  __pyx_tuple__25 = PyTuple_Pack(1, Py_None); if (unlikely(!__pyx_tuple__25)) __PYX_ERR(0, 114, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__25);
+  __Pyx_GIVEREF(__pyx_tuple__25);
 
   /* "resources/svm.py":146
  *     return labeled_patches
@@ -20055,10 +20092,10 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
  *     # load patches
  *     patch_loader = PatchLoader(patches_path)
  */
-  __pyx_tuple__25 = PyTuple_Pack(28, __pyx_n_s_patches_path, __pyx_n_s_patch_loader, __pyx_n_s_patches, __pyx_n_s_filenames, __pyx_n_s_features, __pyx_n_s_labels, __pyx_n_s_patch_names, __pyx_n_s_category, __pyx_n_s_patch_list, __pyx_n_s_patch, __pyx_n_s_filename, __pyx_n_s_scaler, __pyx_n_s_features_scaled, __pyx_n_s_pca, __pyx_n_s_features_reduced, __pyx_n_s_class_weights, __pyx_n_s_class_weights_dict, __pyx_n_s_target_class, __pyx_n_s_svm, __pyx_n_s_X_train, __pyx_n_s_X_test, __pyx_n_s_y_train, __pyx_n_s_y_test, __pyx_n_s_X_test_scaled, __pyx_n_s_X_test_reduced, __pyx_n_s_y_pred, __pyx_n_s_i, __pyx_n_s_label); if (unlikely(!__pyx_tuple__25)) __PYX_ERR(0, 146, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__25);
-  __Pyx_GIVEREF(__pyx_tuple__25);
-  __pyx_codeobj__26 = (PyObject*)__Pyx_PyCode_New(1, 0, 0, 28, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__25, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_resources_svm_py, __pyx_n_s_train_svm, 146, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__26)) __PYX_ERR(0, 146, __pyx_L1_error)
+  __pyx_tuple__26 = PyTuple_Pack(28, __pyx_n_s_patches_path, __pyx_n_s_patch_loader, __pyx_n_s_patches, __pyx_n_s_filenames, __pyx_n_s_features, __pyx_n_s_labels, __pyx_n_s_patch_names, __pyx_n_s_category, __pyx_n_s_patch_list, __pyx_n_s_patch, __pyx_n_s_filename, __pyx_n_s_scaler, __pyx_n_s_features_scaled, __pyx_n_s_pca, __pyx_n_s_features_reduced, __pyx_n_s_class_weights, __pyx_n_s_class_weights_dict, __pyx_n_s_target_class, __pyx_n_s_svm, __pyx_n_s_X_train, __pyx_n_s_X_test, __pyx_n_s_y_train, __pyx_n_s_y_test, __pyx_n_s_X_test_scaled, __pyx_n_s_X_test_reduced, __pyx_n_s_y_pred, __pyx_n_s_i, __pyx_n_s_label); if (unlikely(!__pyx_tuple__26)) __PYX_ERR(0, 146, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__26);
+  __Pyx_GIVEREF(__pyx_tuple__26);
+  __pyx_codeobj__27 = (PyObject*)__Pyx_PyCode_New(1, 0, 0, 28, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__26, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_resources_svm_py, __pyx_n_s_train_svm, 146, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__27)) __PYX_ERR(0, 146, __pyx_L1_error)
 
   /* "resources/svm.py":212
  * 
@@ -20067,13 +20104,13 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
  *         from keras.api.models import load_model
  * 
  */
-  __pyx_tuple__27 = PyTuple_Pack(5, __pyx_n_s_self, __pyx_n_s_barcode, __pyx_n_s_temp_images_path, __pyx_n_s_live, __pyx_n_s_load_model); if (unlikely(!__pyx_tuple__27)) __PYX_ERR(0, 212, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__27);
-  __Pyx_GIVEREF(__pyx_tuple__27);
-  __pyx_codeobj__28 = (PyObject*)__Pyx_PyCode_New(4, 0, 0, 5, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__27, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_resources_svm_py, __pyx_n_s_init, 212, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__28)) __PYX_ERR(0, 212, __pyx_L1_error)
-  __pyx_tuple__29 = PyTuple_Pack(1, ((PyObject *)Py_False)); if (unlikely(!__pyx_tuple__29)) __PYX_ERR(0, 212, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__29);
-  __Pyx_GIVEREF(__pyx_tuple__29);
+  __pyx_tuple__28 = PyTuple_Pack(5, __pyx_n_s_self, __pyx_n_s_barcode, __pyx_n_s_temp_images_path, __pyx_n_s_live, __pyx_n_s_load_model); if (unlikely(!__pyx_tuple__28)) __PYX_ERR(0, 212, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__28);
+  __Pyx_GIVEREF(__pyx_tuple__28);
+  __pyx_codeobj__29 = (PyObject*)__Pyx_PyCode_New(4, 0, 0, 5, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__28, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_resources_svm_py, __pyx_n_s_init, 212, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__29)) __PYX_ERR(0, 212, __pyx_L1_error)
+  __pyx_tuple__30 = PyTuple_Pack(1, ((PyObject *)Py_False)); if (unlikely(!__pyx_tuple__30)) __PYX_ERR(0, 212, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__30);
+  __Pyx_GIVEREF(__pyx_tuple__30);
 
   /* "resources/svm.py":231
  *         # init cut page coordinates dict from coords_map.xml filein temp_images_path
@@ -20082,10 +20119,10 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
  *         xml_path = os.path.join(self.temp_images_path, 'coord_map.xml')
  *         tree = ET.parse(xml_path)
  */
-  __pyx_tuple__30 = PyTuple_Pack(14, __pyx_n_s_self, __pyx_n_s_xml_path, __pyx_n_s_tree, __pyx_n_s_root, __pyx_n_s_image_size, __pyx_n_s_page_paths_to_coord_scales_dict, __pyx_n_s_frame, __pyx_n_s_basename, __pyx_n_s_coords_text, __pyx_n_s_coords, __pyx_n_s_top_left_coords, __pyx_n_s_bottom_right_coords, __pyx_n_s_scale_x, __pyx_n_s_scale_y); if (unlikely(!__pyx_tuple__30)) __PYX_ERR(0, 231, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__30);
-  __Pyx_GIVEREF(__pyx_tuple__30);
-  __pyx_codeobj__31 = (PyObject*)__Pyx_PyCode_New(1, 0, 0, 14, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__30, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_resources_svm_py, __pyx_n_s_parse_xml_to_dict, 231, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__31)) __PYX_ERR(0, 231, __pyx_L1_error)
+  __pyx_tuple__31 = PyTuple_Pack(14, __pyx_n_s_self, __pyx_n_s_xml_path, __pyx_n_s_tree, __pyx_n_s_root, __pyx_n_s_image_size, __pyx_n_s_page_paths_to_coord_scales_dict, __pyx_n_s_frame, __pyx_n_s_basename, __pyx_n_s_coords_text, __pyx_n_s_coords, __pyx_n_s_top_left_coords, __pyx_n_s_bottom_right_coords, __pyx_n_s_scale_x, __pyx_n_s_scale_y); if (unlikely(!__pyx_tuple__31)) __PYX_ERR(0, 231, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__31);
+  __Pyx_GIVEREF(__pyx_tuple__31);
+  __pyx_codeobj__32 = (PyObject*)__Pyx_PyCode_New(1, 0, 0, 14, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__31, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_resources_svm_py, __pyx_n_s_parse_xml_to_dict, 231, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__32)) __PYX_ERR(0, 231, __pyx_L1_error)
 
   /* "resources/svm.py":256
  *         return page_paths_to_coord_scales_dict
@@ -20094,10 +20131,10 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
  *         try:
  *             folder_path = os.path.join(os.getenv("INSPECTION_CLIENT_FOLDERS_PATH"), 'collages', self.barcode, patch_class)
  */
-  __pyx_tuple__32 = PyTuple_Pack(11, __pyx_n_s_self, __pyx_n_s_batch, __pyx_n_s_patch_class, __pyx_n_s_folder_path, __pyx_n_s_collage_2, __pyx_n_s_file_path, __pyx_n_s_metadata_path, __pyx_n_s_file, __pyx_n_s_buffer, __pyx_n_s_patch_touple, __pyx_n_s_e); if (unlikely(!__pyx_tuple__32)) __PYX_ERR(0, 256, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__32);
-  __Pyx_GIVEREF(__pyx_tuple__32);
-  __pyx_codeobj__33 = (PyObject*)__Pyx_PyCode_New(3, 0, 0, 11, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__32, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_resources_svm_py, __pyx_n_s_save_batch_as_image, 256, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__33)) __PYX_ERR(0, 256, __pyx_L1_error)
+  __pyx_tuple__33 = PyTuple_Pack(11, __pyx_n_s_self, __pyx_n_s_batch, __pyx_n_s_patch_class, __pyx_n_s_folder_path, __pyx_n_s_collage_2, __pyx_n_s_file_path, __pyx_n_s_metadata_path, __pyx_n_s_file, __pyx_n_s_buffer, __pyx_n_s_patch_touple, __pyx_n_s_e); if (unlikely(!__pyx_tuple__33)) __PYX_ERR(0, 256, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__33);
+  __Pyx_GIVEREF(__pyx_tuple__33);
+  __pyx_codeobj__34 = (PyObject*)__Pyx_PyCode_New(3, 0, 0, 11, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__33, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_resources_svm_py, __pyx_n_s_save_batch_as_image, 256, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__34)) __PYX_ERR(0, 256, __pyx_L1_error)
 
   /* "resources/svm.py":281
  *             LoggerSingleton().error('(Svm-CH-sbai) '+ str(e))
@@ -20106,10 +20143,10 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
  *         num_rows = max((len(batch) + self.dimensions - 1) // self.dimensions, 1)
  *         collage = np.zeros((self.patch_size * num_rows, self.patch_size * self.dimensions), dtype=np.uint8)
  */
-  __pyx_tuple__34 = PyTuple_Pack(18, __pyx_n_s_self, __pyx_n_s_batch, __pyx_n_s_num_rows, __pyx_n_s_collage_2, __pyx_n_s_max_width, __pyx_n_s_max_height, __pyx_n_s_idx, __pyx_n_s_patch, __pyx_n_s_page_number, __pyx_n_s_label, __pyx_n_s_score, __pyx_n_s_coords, __pyx_n_s_path, __pyx_n_s_row, __pyx_n_s_col, __pyx_n_s_x_offset, __pyx_n_s_y_offset, __pyx_n_s_resized_patch); if (unlikely(!__pyx_tuple__34)) __PYX_ERR(0, 281, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__34);
-  __Pyx_GIVEREF(__pyx_tuple__34);
-  __pyx_codeobj__35 = (PyObject*)__Pyx_PyCode_New(2, 0, 0, 18, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__34, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_resources_svm_py, __pyx_n_s_create_collage, 281, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__35)) __PYX_ERR(0, 281, __pyx_L1_error)
+  __pyx_tuple__35 = PyTuple_Pack(18, __pyx_n_s_self, __pyx_n_s_batch, __pyx_n_s_num_rows, __pyx_n_s_collage_2, __pyx_n_s_max_width, __pyx_n_s_max_height, __pyx_n_s_idx, __pyx_n_s_patch, __pyx_n_s_page_number, __pyx_n_s_label, __pyx_n_s_score, __pyx_n_s_coords, __pyx_n_s_path, __pyx_n_s_row, __pyx_n_s_col, __pyx_n_s_x_offset, __pyx_n_s_y_offset, __pyx_n_s_resized_patch); if (unlikely(!__pyx_tuple__35)) __PYX_ERR(0, 281, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__35);
+  __Pyx_GIVEREF(__pyx_tuple__35);
+  __pyx_codeobj__36 = (PyObject*)__Pyx_PyCode_New(2, 0, 0, 18, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__35, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_resources_svm_py, __pyx_n_s_create_collage, 281, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__36)) __PYX_ERR(0, 281, __pyx_L1_error)
 
   /* "resources/svm.py":298
  *         return collage
@@ -20118,10 +20155,10 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
  *         new_target = []
  * 
  */
-  __pyx_tuple__36 = PyTuple_Pack(7, __pyx_n_s_self, __pyx_n_s_target, __pyx_n_s_new_target, __pyx_n_s_patches, __pyx_n_s_results, __pyx_n_s_i, __pyx_n_s_i); if (unlikely(!__pyx_tuple__36)) __PYX_ERR(0, 298, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__36);
-  __Pyx_GIVEREF(__pyx_tuple__36);
-  __pyx_codeobj__37 = (PyObject*)__Pyx_PyCode_New(2, 0, 0, 7, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__36, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_resources_svm_py, __pyx_n_s_filter_non_blurry, 298, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__37)) __PYX_ERR(0, 298, __pyx_L1_error)
+  __pyx_tuple__37 = PyTuple_Pack(7, __pyx_n_s_self, __pyx_n_s_target, __pyx_n_s_new_target, __pyx_n_s_patches, __pyx_n_s_results, __pyx_n_s_i, __pyx_n_s_i); if (unlikely(!__pyx_tuple__37)) __PYX_ERR(0, 298, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__37);
+  __Pyx_GIVEREF(__pyx_tuple__37);
+  __pyx_codeobj__38 = (PyObject*)__Pyx_PyCode_New(2, 0, 0, 7, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__37, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_resources_svm_py, __pyx_n_s_filter_non_blurry, 298, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__38)) __PYX_ERR(0, 298, __pyx_L1_error)
 
   /* "resources/svm.py":313
  *         target.extend(new_target)
@@ -20130,10 +20167,10 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
  *         for target, patch_class, target_cache in zip([self.blurry_patches, self.empty_patches, self.indeterminate_patches], ['blurry', 'empty', 'indeterminate'], [self.blurry_batch_paths, None, self.indeterminate_batch_paths]):
  *             if patch_class == 'empty': continue
  */
-  __pyx_tuple__38 = PyTuple_Pack(8, __pyx_n_s_self, __pyx_n_s_target, __pyx_n_s_patch_class, __pyx_n_s_target_cache, __pyx_n_s_cnn_results, __pyx_n_s_attempts, __pyx_n_s_cache, __pyx_n_s_e); if (unlikely(!__pyx_tuple__38)) __PYX_ERR(0, 313, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__38);
-  __Pyx_GIVEREF(__pyx_tuple__38);
-  __pyx_codeobj__39 = (PyObject*)__Pyx_PyCode_New(1, 0, 0, 8, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__38, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_resources_svm_py, __pyx_n_s_finish, 313, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__39)) __PYX_ERR(0, 313, __pyx_L1_error)
+  __pyx_tuple__39 = PyTuple_Pack(8, __pyx_n_s_self, __pyx_n_s_target, __pyx_n_s_patch_class, __pyx_n_s_target_cache, __pyx_n_s_cnn_results, __pyx_n_s_attempts, __pyx_n_s_cache, __pyx_n_s_e); if (unlikely(!__pyx_tuple__39)) __PYX_ERR(0, 313, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__39);
+  __Pyx_GIVEREF(__pyx_tuple__39);
+  __pyx_codeobj__40 = (PyObject*)__Pyx_PyCode_New(1, 0, 0, 8, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__39, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_resources_svm_py, __pyx_n_s_finish, 313, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__40)) __PYX_ERR(0, 313, __pyx_L1_error)
 
   /* "resources/svm.py":343
  *         self.save_patches_to_xml(self.cut_page_coordinates_dict)
@@ -20142,10 +20179,10 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
  *         for labeled_patch in target:
  *             num_of_page = labeled_patch[1]
  */
-  __pyx_tuple__40 = PyTuple_Pack(11, __pyx_n_s_self, __pyx_n_s_target, __pyx_n_s_labeled_patch, __pyx_n_s_num_of_page, __pyx_n_s_path, __pyx_n_s_xp, __pyx_n_s_yp, __pyx_n_s_xa, __pyx_n_s_ya, __pyx_n_s_scale_x, __pyx_n_s_scale_y); if (unlikely(!__pyx_tuple__40)) __PYX_ERR(0, 343, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__40);
-  __Pyx_GIVEREF(__pyx_tuple__40);
-  __pyx_codeobj__41 = (PyObject*)__Pyx_PyCode_New(2, 0, 0, 11, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__40, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_resources_svm_py, __pyx_n_s_add_to_cut_page_coordinates_dict, 343, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__41)) __PYX_ERR(0, 343, __pyx_L1_error)
+  __pyx_tuple__41 = PyTuple_Pack(11, __pyx_n_s_self, __pyx_n_s_target, __pyx_n_s_labeled_patch, __pyx_n_s_num_of_page, __pyx_n_s_path, __pyx_n_s_xp, __pyx_n_s_yp, __pyx_n_s_xa, __pyx_n_s_ya, __pyx_n_s_scale_x, __pyx_n_s_scale_y); if (unlikely(!__pyx_tuple__41)) __PYX_ERR(0, 343, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__41);
+  __Pyx_GIVEREF(__pyx_tuple__41);
+  __pyx_codeobj__42 = (PyObject*)__Pyx_PyCode_New(2, 0, 0, 11, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__41, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_resources_svm_py, __pyx_n_s_add_to_cut_page_coordinates_dict, 343, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__42)) __PYX_ERR(0, 343, __pyx_L1_error)
 
   /* "resources/svm.py":362
  *             self.cut_page_coordinates_dict[num_of_page].append((int(xa + xp * scale_x), int(ya + yp * scale_y) , int(200 * scale_x), int(200 * scale_y)))
@@ -20154,10 +20191,10 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
  *         for target, patch_class, target_cache in zip([self.blurry_patches, self.empty_patches, self.indeterminate_patches], ['blurry', 'empty', 'indeterminate'], [self.blurry_batch_paths, None, self.indeterminate_batch_paths]):
  *             if patch_class == 'empty': continue
  */
-  __pyx_tuple__42 = PyTuple_Pack(13, __pyx_n_s_self, __pyx_n_s_target, __pyx_n_s_patch_class, __pyx_n_s_target_cache, __pyx_n_s_labeled_patch, __pyx_n_s_num_of_page, __pyx_n_s_path, __pyx_n_s_xp, __pyx_n_s_yp, __pyx_n_s_xa, __pyx_n_s_ya, __pyx_n_s_scale_x, __pyx_n_s_scale_y); if (unlikely(!__pyx_tuple__42)) __PYX_ERR(0, 362, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__42);
-  __Pyx_GIVEREF(__pyx_tuple__42);
-  __pyx_codeobj__43 = (PyObject*)__Pyx_PyCode_New(1, 0, 0, 13, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__42, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_resources_svm_py, __pyx_n_s_finish_old, 362, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__43)) __PYX_ERR(0, 362, __pyx_L1_error)
+  __pyx_tuple__43 = PyTuple_Pack(13, __pyx_n_s_self, __pyx_n_s_target, __pyx_n_s_patch_class, __pyx_n_s_target_cache, __pyx_n_s_labeled_patch, __pyx_n_s_num_of_page, __pyx_n_s_path, __pyx_n_s_xp, __pyx_n_s_yp, __pyx_n_s_xa, __pyx_n_s_ya, __pyx_n_s_scale_x, __pyx_n_s_scale_y); if (unlikely(!__pyx_tuple__43)) __PYX_ERR(0, 362, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__43);
+  __Pyx_GIVEREF(__pyx_tuple__43);
+  __pyx_codeobj__44 = (PyObject*)__Pyx_PyCode_New(1, 0, 0, 13, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__43, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_resources_svm_py, __pyx_n_s_finish_old, 362, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__44)) __PYX_ERR(0, 362, __pyx_L1_error)
 
   /* "resources/svm.py":392
  *         self.save_patches_to_xml(self.cut_page_coordinates_dict)
@@ -20166,10 +20203,10 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
  *         folder_path = os.path.join(os.getenv("INSPECTION_CLIENT_FOLDERS_PATH"), 'collages')
  *         xml_filename = os.path.join(folder_path, f'{self.barcode}_patches.xml')
  */
-  __pyx_tuple__44 = PyTuple_Pack(16, __pyx_n_s_self, __pyx_n_s_patches_dict, __pyx_n_s_folder_path, __pyx_n_s_xml_filename, __pyx_n_s_book, __pyx_n_s_page_number, __pyx_n_s_patches, __pyx_n_s_x, __pyx_n_s_y, __pyx_n_s_w, __pyx_n_s_h, __pyx_n_s_width, __pyx_n_s_height, __pyx_n_s_page, __pyx_n_s_patch, __pyx_n_s_tree); if (unlikely(!__pyx_tuple__44)) __PYX_ERR(0, 392, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__44);
-  __Pyx_GIVEREF(__pyx_tuple__44);
-  __pyx_codeobj__45 = (PyObject*)__Pyx_PyCode_New(2, 0, 0, 16, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__44, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_resources_svm_py, __pyx_n_s_save_patches_to_xml, 392, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__45)) __PYX_ERR(0, 392, __pyx_L1_error)
+  __pyx_tuple__45 = PyTuple_Pack(16, __pyx_n_s_self, __pyx_n_s_patches_dict, __pyx_n_s_folder_path, __pyx_n_s_xml_filename, __pyx_n_s_book, __pyx_n_s_page_number, __pyx_n_s_patches, __pyx_n_s_x, __pyx_n_s_y, __pyx_n_s_w, __pyx_n_s_h, __pyx_n_s_width, __pyx_n_s_height, __pyx_n_s_page, __pyx_n_s_patch, __pyx_n_s_tree); if (unlikely(!__pyx_tuple__45)) __PYX_ERR(0, 392, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__45);
+  __Pyx_GIVEREF(__pyx_tuple__45);
+  __pyx_codeobj__46 = (PyObject*)__Pyx_PyCode_New(2, 0, 0, 16, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__45, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_resources_svm_py, __pyx_n_s_save_patches_to_xml, 392, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__46)) __PYX_ERR(0, 392, __pyx_L1_error)
 
   /* "resources/svm.py":413
  * 
@@ -20178,10 +20215,10 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
  *         with self.lock:  # Ensure thread-safe access
  *             target = None
  */
-  __pyx_tuple__46 = PyTuple_Pack(6, __pyx_n_s_self, __pyx_n_s_labeled_patch, __pyx_n_s_target, __pyx_n_s_patch_class, __pyx_n_s_cache_list, __pyx_n_s_cache_path); if (unlikely(!__pyx_tuple__46)) __PYX_ERR(0, 413, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__46);
-  __Pyx_GIVEREF(__pyx_tuple__46);
-  __pyx_codeobj__47 = (PyObject*)__Pyx_PyCode_New(2, 0, 0, 6, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__46, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_resources_svm_py, __pyx_n_s_add_patch, 413, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__47)) __PYX_ERR(0, 413, __pyx_L1_error)
+  __pyx_tuple__47 = PyTuple_Pack(6, __pyx_n_s_self, __pyx_n_s_labeled_patch, __pyx_n_s_target, __pyx_n_s_patch_class, __pyx_n_s_cache_list, __pyx_n_s_cache_path); if (unlikely(!__pyx_tuple__47)) __PYX_ERR(0, 413, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__47);
+  __Pyx_GIVEREF(__pyx_tuple__47);
+  __pyx_codeobj__48 = (PyObject*)__Pyx_PyCode_New(2, 0, 0, 6, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__47, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_resources_svm_py, __pyx_n_s_add_patch, 413, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__48)) __PYX_ERR(0, 413, __pyx_L1_error)
 
   /* "resources/svm.py":444
  * 
@@ -20190,10 +20227,10 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
  *         self.base_folder = base_folder
  * 
  */
-  __pyx_tuple__48 = PyTuple_Pack(2, __pyx_n_s_self, __pyx_n_s_base_folder); if (unlikely(!__pyx_tuple__48)) __PYX_ERR(0, 444, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__48);
-  __Pyx_GIVEREF(__pyx_tuple__48);
-  __pyx_codeobj__49 = (PyObject*)__Pyx_PyCode_New(2, 0, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__48, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_resources_svm_py, __pyx_n_s_init, 444, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__49)) __PYX_ERR(0, 444, __pyx_L1_error)
+  __pyx_tuple__49 = PyTuple_Pack(2, __pyx_n_s_self, __pyx_n_s_base_folder); if (unlikely(!__pyx_tuple__49)) __PYX_ERR(0, 444, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__49);
+  __Pyx_GIVEREF(__pyx_tuple__49);
+  __pyx_codeobj__50 = (PyObject*)__Pyx_PyCode_New(2, 0, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__49, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_resources_svm_py, __pyx_n_s_init, 444, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__50)) __PYX_ERR(0, 444, __pyx_L1_error)
 
   /* "resources/svm.py":447
  *         self.base_folder = base_folder
@@ -20202,10 +20239,10 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
  *         categories = ['blurry', 'sharp', 'empty', 'indeterminate']
  *         patches = {category: [] for category in categories}
  */
-  __pyx_tuple__50 = PyTuple_Pack(12, __pyx_n_s_self, __pyx_n_s_categories, __pyx_n_s_patches, __pyx_n_s_filenames, __pyx_n_s_category, __pyx_n_s_category_folder, __pyx_n_s_filename, __pyx_n_s_patch_path, __pyx_n_s_patch, __pyx_n_s_e, __pyx_n_s_category, __pyx_n_s_category); if (unlikely(!__pyx_tuple__50)) __PYX_ERR(0, 447, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__50);
-  __Pyx_GIVEREF(__pyx_tuple__50);
-  __pyx_codeobj__51 = (PyObject*)__Pyx_PyCode_New(1, 0, 0, 12, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__50, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_resources_svm_py, __pyx_n_s_load_patches_with_filenames, 447, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__51)) __PYX_ERR(0, 447, __pyx_L1_error)
+  __pyx_tuple__51 = PyTuple_Pack(12, __pyx_n_s_self, __pyx_n_s_categories, __pyx_n_s_patches, __pyx_n_s_filenames, __pyx_n_s_category, __pyx_n_s_category_folder, __pyx_n_s_filename, __pyx_n_s_patch_path, __pyx_n_s_patch, __pyx_n_s_e, __pyx_n_s_category, __pyx_n_s_category); if (unlikely(!__pyx_tuple__51)) __PYX_ERR(0, 447, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__51);
+  __Pyx_GIVEREF(__pyx_tuple__51);
+  __pyx_codeobj__52 = (PyObject*)__Pyx_PyCode_New(1, 0, 0, 12, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__51, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_resources_svm_py, __pyx_n_s_load_patches_with_filenames, 447, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__52)) __PYX_ERR(0, 447, __pyx_L1_error)
   __Pyx_RefNannyFinishContext();
   return 0;
   __pyx_L1_error:;
@@ -21053,12 +21090,13 @@ if (!__Pyx_RefNanny) {
   /* "resources/svm.py":114
  * 
  * # labeled_patches = [ (patch, image_count, label, distance, patch coords, image_path), ... ]
- * def read_divide_classify(image_path, svm, pca, scaler):             # <<<<<<<<<<<<<<
+ * def read_divide_classify(image_path, svm, pca, scaler, image=None):             # <<<<<<<<<<<<<<
  *     attempts = 0
  *     while attempts < 10:
  */
   __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_9resources_3svm_7read_divide_classify, 0, __pyx_n_s_read_divide_classify, NULL, __pyx_n_s_resources_svm, __pyx_d, ((PyObject *)__pyx_codeobj__24)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 114, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
+  __Pyx_CyFunction_SetDefaultsTuple(__pyx_t_3, __pyx_tuple__25);
   if (PyDict_SetItem(__pyx_d, __pyx_n_s_read_divide_classify, __pyx_t_3) < 0) __PYX_ERR(0, 114, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
@@ -21069,7 +21107,7 @@ if (!__Pyx_RefNanny) {
  *     # load patches
  *     patch_loader = PatchLoader(patches_path)
  */
-  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_9resources_3svm_9train_svm, 0, __pyx_n_s_train_svm, NULL, __pyx_n_s_resources_svm, __pyx_d, ((PyObject *)__pyx_codeobj__26)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 146, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_9resources_3svm_9train_svm, 0, __pyx_n_s_train_svm, NULL, __pyx_n_s_resources_svm, __pyx_d, ((PyObject *)__pyx_codeobj__27)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 146, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   if (PyDict_SetItem(__pyx_d, __pyx_n_s_train_svm, __pyx_t_3) < 0) __PYX_ERR(0, 146, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
@@ -21091,9 +21129,9 @@ if (!__Pyx_RefNanny) {
  *         from keras.api.models import load_model
  * 
  */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_9resources_3svm_14CollageHandler_1__init__, 0, __pyx_n_s_CollageHandler___init, NULL, __pyx_n_s_resources_svm, __pyx_d, ((PyObject *)__pyx_codeobj__28)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 212, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_9resources_3svm_14CollageHandler_1__init__, 0, __pyx_n_s_CollageHandler___init, NULL, __pyx_n_s_resources_svm, __pyx_d, ((PyObject *)__pyx_codeobj__29)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 212, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_CyFunction_SetDefaultsTuple(__pyx_t_2, __pyx_tuple__29);
+  __Pyx_CyFunction_SetDefaultsTuple(__pyx_t_2, __pyx_tuple__30);
   if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_init, __pyx_t_2) < 0) __PYX_ERR(0, 212, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
@@ -21104,7 +21142,7 @@ if (!__Pyx_RefNanny) {
  *         xml_path = os.path.join(self.temp_images_path, 'coord_map.xml')
  *         tree = ET.parse(xml_path)
  */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_9resources_3svm_14CollageHandler_3parse_xml_to_dict, 0, __pyx_n_s_CollageHandler_parse_xml_to_dict, NULL, __pyx_n_s_resources_svm, __pyx_d, ((PyObject *)__pyx_codeobj__31)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 231, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_9resources_3svm_14CollageHandler_3parse_xml_to_dict, 0, __pyx_n_s_CollageHandler_parse_xml_to_dict, NULL, __pyx_n_s_resources_svm, __pyx_d, ((PyObject *)__pyx_codeobj__32)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 231, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_parse_xml_to_dict, __pyx_t_2) < 0) __PYX_ERR(0, 231, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
@@ -21119,7 +21157,7 @@ if (!__Pyx_RefNanny) {
   __pyx_t_2 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 256, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   if (PyDict_SetItem(__pyx_t_2, __pyx_n_s_batch, __pyx_n_s_list) < 0) __PYX_ERR(0, 256, __pyx_L1_error)
-  __pyx_t_4 = __Pyx_CyFunction_New(&__pyx_mdef_9resources_3svm_14CollageHandler_5save_batch_as_image, 0, __pyx_n_s_CollageHandler_save_batch_as_ima_2, NULL, __pyx_n_s_resources_svm, __pyx_d, ((PyObject *)__pyx_codeobj__33)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 256, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_CyFunction_New(&__pyx_mdef_9resources_3svm_14CollageHandler_5save_batch_as_image, 0, __pyx_n_s_CollageHandler_save_batch_as_ima_2, NULL, __pyx_n_s_resources_svm, __pyx_d, ((PyObject *)__pyx_codeobj__34)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 256, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_CyFunction_SetAnnotationsDict(__pyx_t_4, __pyx_t_2);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
@@ -21133,7 +21171,7 @@ if (!__Pyx_RefNanny) {
  *         num_rows = max((len(batch) + self.dimensions - 1) // self.dimensions, 1)
  *         collage = np.zeros((self.patch_size * num_rows, self.patch_size * self.dimensions), dtype=np.uint8)
  */
-  __pyx_t_4 = __Pyx_CyFunction_New(&__pyx_mdef_9resources_3svm_14CollageHandler_7create_collage, 0, __pyx_n_s_CollageHandler_create_collage, NULL, __pyx_n_s_resources_svm, __pyx_d, ((PyObject *)__pyx_codeobj__35)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 281, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_CyFunction_New(&__pyx_mdef_9resources_3svm_14CollageHandler_7create_collage, 0, __pyx_n_s_CollageHandler_create_collage, NULL, __pyx_n_s_resources_svm, __pyx_d, ((PyObject *)__pyx_codeobj__36)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 281, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_create_collage, __pyx_t_4) < 0) __PYX_ERR(0, 281, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
@@ -21148,7 +21186,7 @@ if (!__Pyx_RefNanny) {
   __pyx_t_4 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 298, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   if (PyDict_SetItem(__pyx_t_4, __pyx_n_s_target, __pyx_n_s_list) < 0) __PYX_ERR(0, 298, __pyx_L1_error)
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_9resources_3svm_14CollageHandler_9filter_non_blurry, 0, __pyx_n_s_CollageHandler_filter_non_blurry, NULL, __pyx_n_s_resources_svm, __pyx_d, ((PyObject *)__pyx_codeobj__37)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 298, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_9resources_3svm_14CollageHandler_9filter_non_blurry, 0, __pyx_n_s_CollageHandler_filter_non_blurry, NULL, __pyx_n_s_resources_svm, __pyx_d, ((PyObject *)__pyx_codeobj__38)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 298, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_CyFunction_SetAnnotationsDict(__pyx_t_2, __pyx_t_4);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
@@ -21162,7 +21200,7 @@ if (!__Pyx_RefNanny) {
  *         for target, patch_class, target_cache in zip([self.blurry_patches, self.empty_patches, self.indeterminate_patches], ['blurry', 'empty', 'indeterminate'], [self.blurry_batch_paths, None, self.indeterminate_batch_paths]):
  *             if patch_class == 'empty': continue
  */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_9resources_3svm_14CollageHandler_11finish, 0, __pyx_n_s_CollageHandler_finish, NULL, __pyx_n_s_resources_svm, __pyx_d, ((PyObject *)__pyx_codeobj__39)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 313, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_9resources_3svm_14CollageHandler_11finish, 0, __pyx_n_s_CollageHandler_finish, NULL, __pyx_n_s_resources_svm, __pyx_d, ((PyObject *)__pyx_codeobj__40)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 313, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_finish, __pyx_t_2) < 0) __PYX_ERR(0, 313, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
@@ -21174,7 +21212,7 @@ if (!__Pyx_RefNanny) {
  *         for labeled_patch in target:
  *             num_of_page = labeled_patch[1]
  */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_9resources_3svm_14CollageHandler_13add_to_cut_page_coordinates_dict, 0, __pyx_n_s_CollageHandler_add_to_cut_page_c, NULL, __pyx_n_s_resources_svm, __pyx_d, ((PyObject *)__pyx_codeobj__41)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 343, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_9resources_3svm_14CollageHandler_13add_to_cut_page_coordinates_dict, 0, __pyx_n_s_CollageHandler_add_to_cut_page_c, NULL, __pyx_n_s_resources_svm, __pyx_d, ((PyObject *)__pyx_codeobj__42)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 343, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_add_to_cut_page_coordinates_dict, __pyx_t_2) < 0) __PYX_ERR(0, 343, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
@@ -21186,7 +21224,7 @@ if (!__Pyx_RefNanny) {
  *         for target, patch_class, target_cache in zip([self.blurry_patches, self.empty_patches, self.indeterminate_patches], ['blurry', 'empty', 'indeterminate'], [self.blurry_batch_paths, None, self.indeterminate_batch_paths]):
  *             if patch_class == 'empty': continue
  */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_9resources_3svm_14CollageHandler_15finish_old, 0, __pyx_n_s_CollageHandler_finish_old, NULL, __pyx_n_s_resources_svm, __pyx_d, ((PyObject *)__pyx_codeobj__43)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 362, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_9resources_3svm_14CollageHandler_15finish_old, 0, __pyx_n_s_CollageHandler_finish_old, NULL, __pyx_n_s_resources_svm, __pyx_d, ((PyObject *)__pyx_codeobj__44)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 362, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_finish_old, __pyx_t_2) < 0) __PYX_ERR(0, 362, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
@@ -21201,7 +21239,7 @@ if (!__Pyx_RefNanny) {
   __pyx_t_2 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 392, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   if (PyDict_SetItem(__pyx_t_2, __pyx_n_s_patches_dict, __pyx_n_s_dict) < 0) __PYX_ERR(0, 392, __pyx_L1_error)
-  __pyx_t_4 = __Pyx_CyFunction_New(&__pyx_mdef_9resources_3svm_14CollageHandler_17save_patches_to_xml, 0, __pyx_n_s_CollageHandler_save_patches_to_x, NULL, __pyx_n_s_resources_svm, __pyx_d, ((PyObject *)__pyx_codeobj__45)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 392, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_CyFunction_New(&__pyx_mdef_9resources_3svm_14CollageHandler_17save_patches_to_xml, 0, __pyx_n_s_CollageHandler_save_patches_to_x, NULL, __pyx_n_s_resources_svm, __pyx_d, ((PyObject *)__pyx_codeobj__46)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 392, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_CyFunction_SetAnnotationsDict(__pyx_t_4, __pyx_t_2);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
@@ -21215,7 +21253,7 @@ if (!__Pyx_RefNanny) {
  *         with self.lock:  # Ensure thread-safe access
  *             target = None
  */
-  __pyx_t_4 = __Pyx_CyFunction_New(&__pyx_mdef_9resources_3svm_14CollageHandler_19add_patch, 0, __pyx_n_s_CollageHandler_add_patch, NULL, __pyx_n_s_resources_svm, __pyx_d, ((PyObject *)__pyx_codeobj__47)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 413, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_CyFunction_New(&__pyx_mdef_9resources_3svm_14CollageHandler_19add_patch, 0, __pyx_n_s_CollageHandler_add_patch, NULL, __pyx_n_s_resources_svm, __pyx_d, ((PyObject *)__pyx_codeobj__48)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 413, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_add_patch, __pyx_t_4) < 0) __PYX_ERR(0, 413, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
@@ -21250,7 +21288,7 @@ if (!__Pyx_RefNanny) {
  *         self.base_folder = base_folder
  * 
  */
-  __pyx_t_4 = __Pyx_CyFunction_New(&__pyx_mdef_9resources_3svm_11PatchLoader_1__init__, 0, __pyx_n_s_PatchLoader___init, NULL, __pyx_n_s_resources_svm, __pyx_d, ((PyObject *)__pyx_codeobj__49)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 444, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_CyFunction_New(&__pyx_mdef_9resources_3svm_11PatchLoader_1__init__, 0, __pyx_n_s_PatchLoader___init, NULL, __pyx_n_s_resources_svm, __pyx_d, ((PyObject *)__pyx_codeobj__50)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 444, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_init, __pyx_t_4) < 0) __PYX_ERR(0, 444, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
@@ -21262,7 +21300,7 @@ if (!__Pyx_RefNanny) {
  *         categories = ['blurry', 'sharp', 'empty', 'indeterminate']
  *         patches = {category: [] for category in categories}
  */
-  __pyx_t_4 = __Pyx_CyFunction_New(&__pyx_mdef_9resources_3svm_11PatchLoader_3load_patches_with_filenames, 0, __pyx_n_s_PatchLoader_load_patches_with_fi, NULL, __pyx_n_s_resources_svm, __pyx_d, ((PyObject *)__pyx_codeobj__51)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 447, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_CyFunction_New(&__pyx_mdef_9resources_3svm_11PatchLoader_3load_patches_with_filenames, 0, __pyx_n_s_PatchLoader_load_patches_with_fi, NULL, __pyx_n_s_resources_svm, __pyx_d, ((PyObject *)__pyx_codeobj__52)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 447, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   if (__Pyx_SetNameInClass(__pyx_t_3, __pyx_n_s_load_patches_with_filenames, __pyx_t_4) < 0) __PYX_ERR(0, 447, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
@@ -26699,7 +26737,7 @@ __Pyx_PyType_GetName(PyTypeObject* tp)
     if (unlikely(name == NULL) || unlikely(!PyUnicode_Check(name))) {
         PyErr_Clear();
         Py_XDECREF(name);
-        name = __Pyx_NewRef(__pyx_n_s__52);
+        name = __Pyx_NewRef(__pyx_n_s__53);
     }
     return name;
 }

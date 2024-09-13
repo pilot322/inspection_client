@@ -4,15 +4,16 @@ import cv2
 import time
 from resources.log import LoggerSingleton
 
-def retry_on_exception(func, max_retries=5, delay=5):
+def retry_on_exception(func, max_retries=20, delay=0.1):
     def wrapper(*args, **kwargs):
         retries = 0
         while retries < max_retries:
             try:
                 return func(*args, **kwargs)
             except Exception as e:
-                print(f'(Retry) Trying again in 5 seconds. Error: {e}')
-                LoggerSingleton().error('(Retry) Trying again in 5 seconds. Error: '+ e.__str__())
+                print('- ', end='')
+                #print(f'(Retry) Trying again in {delay} seconds. Error: {e}')
+                #LoggerSingleton().error(f'(Retry) Trying again in {delay} seconds. Error: '+ e.__str__())
                 retries += 1
                 time.sleep(delay)
         raise Exception(f"Failed after {max_retries} retries")

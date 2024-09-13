@@ -111,11 +111,11 @@ def monitor_queue(queue, collage_handler):
             collage_handler.add_patch(labeled_patch)
 
 # labeled_patches = [ (patch, image_count, label, distance, patch coords, image_path), ... ]
-def read_divide_classify(image_path, svm, pca, scaler):
+def read_divide_classify(image_path, svm, pca, scaler, image=None):
     attempts = 0
     while attempts < 10:
         try:
-            patches, coords, gridcoords = utils.divide_into_patches(read_image_with_retry(image_path, cv2.IMREAD_GRAYSCALE), (int(os.getenv("INSPECTION_CLIENT_GRID_SIZE")), int(os.getenv("INSPECTION_CLIENT_GRID_SIZE"))))
+            patches, coords, gridcoords = utils.divide_into_patches(image if image is not None else read_image_with_retry(image_path, cv2.IMREAD_GRAYSCALE), (int(os.getenv("INSPECTION_CLIENT_GRID_SIZE")), int(os.getenv("INSPECTION_CLIENT_GRID_SIZE"))))
             break
         except ZeroDivisionError as e:
             print(f'(Svm-rdf) {e}')

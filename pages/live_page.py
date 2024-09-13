@@ -1,75 +1,14 @@
 from PyQt5.QtWidgets import QWidget, QLabel, QVBoxLayout, QComboBox, QTableWidgetItem, QListWidgetItem, QPushButton, QFileDialog, QListWidget, QMenu
 from PyQt5.QtCore import QThread, pyqtSignal, Qt
-from PyQt5.QtGui import QColor, QBrush, QMouseEvent
 from queue import Queue
 from time import sleep
 import os
-import sys
-import joblib
-from resources.utils import process_and_save_image
-from multiprocessing import Manager
-import threading
-from keras.api.models import load_model
-from resources.cnn import predict_blur
-from resources.svm import read_divide_classify
 from pages.point_report_window import PointReportWindow
+from resources.live_handler import LiveHandler
 
 next_num_page = '0'
 recent_half_paths = []
-
-class QueueMonitor(QThread):
-    def __init__(self, manager_queue, send_labeled_patches_callback):
-        super().__init__()
-        self.manager_queue = manager_queue
-        self._running = True
-        self.model = load_model(os.path.join(os.getenv("INSPECTION_CLIENT_FOLDERS_PATH"),'blur_detection_model.keras'))
-        self.send_labeled_patches_callback = send_labeled_patches_callback
-
-    def run(self):
-        while self._running:
-            labeled_patches = self.manager_queue.get()
-            n = len(labeled_patches)
-            if labeled_patches == 'DONE':
-                break
-            if labeled_patches == None:
-                print('none detected in monitor queue')
-                continue
-
-            new_labeled_patches = []
-
-            for labeled_patch in labeled_patches:
-                if labeled_patch[2] == 'blurry' or labeled_patch[2] == 'indeterminate':
-                    new_labeled_patches.append(labeled_patch)
-            
-            labeled_patches = new_labeled_patches
-            patches = [labeled_patches[i][0] for i in range(len(labeled_patches))]
-            
-            results = predict_blur(patches, self.model)
-
-            count = 0
-
-            for result in results:
-                if result:
-                    count += 1
-
-            print(f'number of blurries: {count} / {n}')
-
-            new_labeled_patches = []
-            
-            for i in range(len(labeled_patches)):
-                if results[i]:
-                    new_labeled_patches.append(labeled_patches[i])
-            
-            new_labeled_patches.append(recent_half_paths)
-            new_labeled_patches.append(next_num_page)
-            self.send_labeled_patches_callback(new_labeled_patches)
-
-
-            
-    def stop(self):
-        self._running = False
-        self.manager_queue.put('DONE')
-        self.wait()
+inspecting = False
 
 class FolderWatcher(QThread):
     def __init__(self, folder_to_watch, new_image_signal):
@@ -81,11 +20,15 @@ class FolderWatcher(QThread):
 
         for file_name in sorted(os.listdir(self.folder_to_watch)):
             file_path = os.path.join(self.folder_to_watch, file_name)
-            if file_path not in self.processed_files and file_name.endswith(('.tif')):
+            if file_path not in self.processed_files:
                 self.processed_files.add(file_path)
 
     def run(self):
+        global inspecting
         while self._running:
+            sleep(0.05)  # Check for new files every second
+            if inspecting:
+                continue
             #print('watching')
             for file_name in sorted(os.listdir(self.folder_to_watch)):
                 file_path = os.path.join(self.folder_to_watch, file_name)
@@ -96,8 +39,7 @@ class FolderWatcher(QThread):
                         global next_num_page
                         self.new_image_signal.emit(file_path)
                         next_num_page = file_name[:4]
-            sleep(0.1)  # Check for new files every second
-
+           
     def stop(self):
         self._running = False
         self.wait()
@@ -169,8 +111,6 @@ class LivePage(QWidget):
         if not self.watched_folder or not self.preset_combo.currentText() or self.watcher_thread is not None:
             if self.watcher_thread:
                 self.watcher_thread.stop()
-            if self.monitor_thread:
-                self.monitor_thread.stop()
             if self.point_report_map:
                 self.point_report_map.close()
                 self.point_report_map = None
@@ -186,24 +126,23 @@ class LivePage(QWidget):
             self.back_btn.setDisabled(False)
             self.folder_btn.setDisabled(False)
             self.watcher_thread = None
-            self.monitor_thread = None
+
+            if self.live_handler:
+                self.live_handler.stop()
+
+            self.live_handler = None
             return
         
-        self.point_report_map = PointReportWindow()
+        self.selected_preset = self.preset_combo.currentText()
+        
+        self.live_handler = LiveHandler(self.selected_preset)
+    
         self.start_btn.setText('Stop Watching')
         self.start_btn.setStyleSheet("""
             QPushButton {
                 background-color: #aa0000;                       
             }
         """)
-        self.selected_preset = self.preset_combo.currentText()
-        preset_path = os.path.join(os.getenv("INSPECTION_CLIENT_FOLDERS_PATH"), 'presets', self.selected_preset)
-        
-        try:
-            self.svm, self.scaler, self.pca = joblib.load(preset_path)
-        except Exception as e:
-            print(f"Error loading SVM model: {e}")
-            return
         
         self.preset_combo.setDisabled(True)
         self.back_btn.setDisabled(True)
@@ -211,44 +150,26 @@ class LivePage(QWidget):
         
         self.watcher_thread = FolderWatcher(self.watched_folder, self.new_image_signal)
         self.watcher_thread.start()
+
+        
+        self.point_report_map = PointReportWindow()
+        
+        self.live_handler.result_ready.connect(self.point_report_map.draw_points)
+        self.live_handler.start_watching(self.watched_folder, self.temp_folder)
         self.update_label.setText(f'Started watching folder: {self.watched_folder}')
         
-        self.manager = Manager()
-        self.manager_queue = self.manager.Queue()
-        self.monitor_thread = QueueMonitor(self.manager_queue, self.point_report_map.draw_points)
-        self.monitor_thread.start()
 
     def process_new_image(self, image_path):
-        sleep(0.5)
-
-        if not os.path.exists(image_path):
-            print('overwrite, probably?')
-            return
+        i = 0
+        while not os.path.exists(image_path):
+            #print('overwrite, probably?')
+            i += 1
+            sleep(0.1)
+            if i == 10:
+                return
 
         self.update_label.setText(f'Processing image: {image_path}')
-        print(f'paths: {os.path.basename(image_path)} {self.watched_folder} {self.temp_folder}')        
-        paths = process_and_save_image(os.path.basename(image_path), self.watched_folder, self.temp_folder, None, None, None, None)
-        
-        total_labeled_patches = []
-
-        i = 0
-
-        global recent_half_paths
-        recent_half_paths = paths
-
-        for path in paths:
-            labeled_patches = read_divide_classify(path, self.svm, self.pca, self.scaler)
-
-            if i == 1:
-                for labeled_patch in labeled_patches:
-                    labeled_patch.insert(4, (labeled_patch[4][0] + int(os.getenv('INSPECTION_CLIENT_TEMP_IMAGE_SIZE')),labeled_patch[4][1]))
-                    labeled_patch.pop(5)
-                    labeled_patch.insert(6, (labeled_patch[6][0] + int(os.getenv('INSPECTION_CLIENT_GRID_SIZE')), labeled_patch[6][1]))
-                    labeled_patch.pop(7)
-
-            total_labeled_patches.extend(labeled_patches)
-            i += 1
-        self.manager_queue.put(total_labeled_patches)
+        self.live_handler.add_image(image_path)
         
     def back_to_main_page_action(self):
         if self.watcher_thread:
